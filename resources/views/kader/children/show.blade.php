@@ -60,9 +60,16 @@
                         <span>Cetak KMS</span>
                     </a>
 
+                    <!-- Rekomendasi Menu Gizi AI -->
+                    <a href="{{ route('kader.children.ai-consult.show', $child->id) }}"
+                       class="inline-flex items-center space-x-1.5 px-3 py-2 rounded-md border border-lime-300 bg-lime-50 hover:bg-lime-100 text-lime-800 text-xs font-semibold transition">
+                        <i data-lucide="sparkles" class="w-3.5 h-3.5 text-lime-600"></i>
+                        <span>Menu Gizi AI</span>
+                    </a>
+
                     <!-- Add Immunization Trigger -->
-                    <button type="button" @click="showImunisasiModal = true"
-                            class="inline-flex items-center space-x-1.5 px-3 py-2 rounded-md border border-sky-300 bg-sky-50 hover:bg-sky-100 text-sky-800 text-xs font-semibold transition">
+                    <button type="button" @click="showImunisasiModal = true; setTab('imunisasi');"
+                            class="inline-flex items-center space-x-1.5 px-3 py-2 rounded-md border border-sky-300 bg-sky-50 hover:bg-sky-100 text-sky-800 text-xs font-semibold transition cursor-pointer">
                         <i data-lucide="syringe" class="w-3.5 h-3.5 text-sky-600"></i>
                         <span>Catat Imunisasi</span>
                     </button>
@@ -140,341 +147,236 @@
         </div>
     </div>
 
-    <!-- AI Clinical Nutrition Advisor Widget -->
-    <div class="bg-white border border-slate-200 rounded-lg p-5 shadow-sm space-y-5" x-data="aiAdvisorWidget()">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
-            <div class="flex items-center space-x-2">
-                <div class="w-7 h-7 rounded bg-lime-100 text-lime-800 flex items-center justify-center font-bold text-xs">
-                    <i data-lucide="bot" class="w-4 h-4"></i>
-                </div>
-                <div>
-                    <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider">AI Clinical Nutrition Advisor</h3>
-                    <p class="text-xs text-slate-500">Konsultasi gizi klinis Kemenkes RI & penyusunan menu lokal berbasis anggaran harian keluarga.</p>
-                </div>
+    <!-- AI Clinical Nutrition Advisor Banner (Separated to dedicated page) -->
+    <div class="bg-gradient-to-r from-lime-50/80 via-white to-emerald-50/80 border border-lime-200 rounded-lg p-4 shadow-2xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div class="flex items-center space-x-3.5">
+            <div class="w-10 h-10 rounded-lg bg-lime-600 text-white flex items-center justify-center shrink-0 shadow-2xs">
+                <i data-lucide="sparkles" class="w-5 h-5"></i>
             </div>
-            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-lime-50 text-lime-800 font-semibold border border-lime-200">
-                Engine: Google Gemini Live AI
-            </span>
-        </div>
-
-        <!-- Budget Control Input (Custom Typed Amount, No 50k Limit) & Generation Trigger -->
-        <div class="bg-slate-50 p-4 rounded-md border border-slate-200 space-y-3">
-            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-                <div class="flex-1 space-y-2">
-                    <label for="budget_input" class="text-xs font-semibold uppercase tracking-wider text-slate-700 block">
-                        Anggaran Belanja Makan Harian Balita:
-                    </label>
-                    <div class="flex flex-col sm:flex-row sm:items-center gap-3">
-                        <div class="relative rounded-md shadow-xs max-w-xs w-full">
-                            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                                <span class="text-slate-500 font-bold text-xs">Rp</span>
-                            </div>
-                            <input type="number" id="budget_input" step="1000" min="5000" x-model.number="budget"
-                                   placeholder="Contoh: 35000"
-                                   class="block w-full rounded-md border border-slate-300 pl-9 pr-3 py-2 text-sm font-semibold text-slate-900 focus:border-lime-500 focus:ring-lime-500 bg-white">
-                        </div>
-                        <div class="flex items-center space-x-1.5 flex-wrap gap-y-1">
-                            <span class="text-[11px] text-slate-400 font-medium">Pilihan Cepat:</span>
-                            <button type="button" @click="budget = 15000" class="px-2 py-1 text-[11px] rounded bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 font-medium transition" :class="budget === 15000 ? 'border-lime-500 text-lime-700 bg-lime-50 font-bold' : ''">15rb</button>
-                            <button type="button" @click="budget = 25000" class="px-2 py-1 text-[11px] rounded bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 font-medium transition" :class="budget === 25000 ? 'border-lime-500 text-lime-700 bg-lime-50 font-bold' : ''">25rb</button>
-                            <button type="button" @click="budget = 50000" class="px-2 py-1 text-[11px] rounded bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 font-medium transition" :class="budget === 50000 ? 'border-lime-500 text-lime-700 bg-lime-50 font-bold' : ''">50rb</button>
-                            <button type="button" @click="budget = 75000" class="px-2 py-1 text-[11px] rounded bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 font-medium transition" :class="budget === 75000 ? 'border-lime-500 text-lime-700 bg-lime-50 font-bold' : ''">75rb</button>
-                            <button type="button" @click="budget = 100000" class="px-2 py-1 text-[11px] rounded bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 font-medium transition" :class="budget === 100000 ? 'border-lime-500 text-lime-700 bg-lime-50 font-bold' : ''">100rb</button>
-                        </div>
-                    </div>
-                    <p class="text-[11px] text-slate-500">
-                        Gemini AI akan meracik variasi menu sarapan, makan siang, dan makan malam bergizi seimbang sesuai nominal <strong class="text-lime-800 font-bold" x-text="formatRupiah(budget)"></strong>.
-                    </p>
-                </div>
-
-                <div class="shrink-0">
-                    <button type="button" @click="generateRecommendation()" :disabled="isLoading || !budget || budget < 5000"
-                            class="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-5 py-2.5 rounded-md bg-lime-600 hover:bg-lime-700 text-white text-xs font-bold transition shadow-sm disabled:opacity-50">
-                        <i data-lucide="sparkles" class="w-4 h-4" x-show="!isLoading"></i>
-                        <svg x-show="isLoading" class="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
-                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
-                        </svg>
-                        <span x-text="isLoading ? 'Gemini AI Sedang Meracik Menu...' : 'Generate Rekomendasi Menu Baru (AI)'"></span>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Error Banner -->
-        <template x-if="errorMessage">
-            <div class="p-3.5 rounded-md bg-rose-50 border border-rose-200 text-rose-800 text-xs flex items-center justify-between">
+            <div>
                 <div class="flex items-center space-x-2">
-                    <i data-lucide="alert-circle" class="w-4 h-4 text-rose-600 shrink-0"></i>
-                    <span x-text="errorMessage"></span>
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-slate-900">Rekomendasi Menu Makan &amp; Gizi Balita (AI)</h3>
+                    <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-lime-100 text-lime-800 font-semibold border border-lime-200">Gemini AI</span>
                 </div>
-                <button type="button" @click="errorMessage = ''" class="text-rose-500 hover:text-rose-800 cursor-pointer">
-                    <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                <p class="text-xs text-slate-600 mt-0.5">
+                    @if($child->aiConsultations->isNotEmpty())
+                        Tersedia riwayat menu gizi (terakhir {{ $child->aiConsultations->first()->created_at->translatedFormat('d M Y, H:i') }}). Racik menu harian sesuai kondisi antropometri balita.
+                    @else
+                        Konsultasi gizi klinis Kemenkes RI & penyusunan variasi menu pangan lokal terjangkau sesuai anggaran keluarga balita.
+                    @endif
+                </p>
+            </div>
+        </div>
+        <a href="{{ route('kader.children.ai-consult.show', $child->id) }}"
+           class="inline-flex items-center justify-center space-x-1.5 px-4 py-2 rounded-md bg-lime-600 hover:bg-lime-700 text-white text-xs font-bold transition shrink-0 shadow-2xs">
+            <i data-lucide="utensils" class="w-4 h-4"></i>
+            <span>Buka Rekomendasi Menu AI</span>
+            <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+        </a>
+    </div>
+
+    <!-- Table Tabs Navigation -->
+    <div class="border-b border-slate-200">
+        <nav class="flex space-x-2 sm:space-x-4">
+            <button type="button" @click="setTab('penimbangan')"
+                    :class="activeTab === 'penimbangan' 
+                        ? 'border-lime-600 text-lime-800 bg-lime-50/70 border-b-2 font-bold' 
+                        : 'border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300 font-medium'"
+                    class="py-2.5 px-3.5 sm:px-4 rounded-t-lg transition-colors flex items-center space-x-2 text-xs sm:text-sm cursor-pointer">
+                <i data-lucide="scale" class="w-4 h-4"></i>
+                <span>Riwayat Penimbangan &amp; Pengukuran</span>
+                <span class="px-2 py-0.5 text-[10px] font-mono rounded-full bg-slate-100 text-slate-700 font-semibold border border-slate-200">
+                    {{ $child->measurementRecords->count() }}
+                </span>
+            </button>
+            <button type="button" @click="setTab('imunisasi')"
+                    :class="activeTab === 'imunisasi' 
+                        ? 'border-sky-600 text-sky-800 bg-sky-50/70 border-b-2 font-bold' 
+                        : 'border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300 font-medium'"
+                    class="py-2.5 px-3.5 sm:px-4 rounded-t-lg transition-colors flex items-center space-x-2 text-xs sm:text-sm cursor-pointer">
+                <i data-lucide="syringe" class="w-4 h-4"></i>
+                <span>Buku Imunisasi &amp; Vitamin A</span>
+                <span class="px-2 py-0.5 text-[10px] font-mono rounded-full bg-sky-100 text-sky-800 font-semibold border border-sky-200">
+                    {{ $child->immunizationRecords->count() }}
+                </span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Tab 1: Riwayat Penimbangan & Pengukuran -->
+    <div x-show="activeTab === 'penimbangan'" class="space-y-4">
+        <!-- Measurement Records Historical Table -->
+        <div class="bg-white border border-slate-200 rounded-lg shadow-sm">
+            <div class="px-5 py-3.5 border-b border-slate-200 flex items-center justify-between">
+                <div>
+                    <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-700">Riwayat Penimbangan &amp; Pengukuran Lengkap</h3>
+                    <p class="text-[11px] text-slate-500">Semua entri log biometrik yang tercatat di KMS digital.</p>
+                </div>
+                <button type="button" @click="showAddModal = true"
+                        class="text-xs text-lime-700 hover:text-lime-800 font-semibold">
+                    + Tambah Pengukuran
                 </button>
             </div>
-        </template>
 
-        <!-- Rendered Results: Crisp 3-Part Card -->
-        <template x-if="consultation">
-            <div class="space-y-4 pt-2">
-                <!-- Clinical Alert Banner if Emergency -->
-                <template x-if="consultation.clinicalAlert">
-                    <div class="p-3.5 rounded-md bg-rose-50 border border-rose-200 text-rose-900 text-xs flex items-start space-x-2.5">
-                        <i data-lucide="alert-octagon" class="w-4 h-4 text-rose-600 shrink-0 mt-0.5"></i>
-                        <div>
-                            <span class="font-bold">PERINGATAN KLINIS:</span>
-                            <span x-text="consultation.clinicalAlert"></span>
-                        </div>
-                    </div>
-                </template>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <!-- Part 1: Diagnosis & Status -->
-                    <div class="bg-white border border-slate-200 rounded-md p-4 space-y-2">
-                        <div class="flex items-center space-x-1.5 text-xs font-bold uppercase tracking-wider text-slate-700">
-                            <i data-lucide="stethoscope" class="w-4 h-4 text-lime-700"></i>
-                            <span>1. Diagnosis Klinis</span>
-                        </div>
-                        <p class="text-xs text-slate-700 leading-relaxed" x-text="consultation.statusDiagnosis"></p>
-                        
-                        <div class="pt-3 border-t border-slate-100 text-xs">
-                            <span class="font-semibold text-slate-600">Rujukan Puskesmas:</span>
-                            <span x-show="consultation.shouldReferToPuskesmas" class="font-bold text-rose-600"> Wajib Dirujuk Segera</span>
-                            <span x-show="!consultation.shouldReferToPuskesmas" class="font-medium text-emerald-700"> Pantau Mandiri di Posyandu</span>
-                        </div>
-                    </div>
-
-                    <!-- Part 2: Tactical Menu Plan -->
-                    <div class="bg-white border border-slate-200 rounded-md p-4 space-y-2.5 md:col-span-2">
-                        <div class="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-slate-700">
-                            <div class="flex items-center space-x-1.5">
-                                <i data-lucide="utensils" class="w-4 h-4 text-lime-700"></i>
-                                <span>2. Menu Harian Pangan Lokal Rendah Biaya</span>
-                            </div>
-                            <span class="text-[11px] font-mono text-lime-800 font-semibold" x-text="'Budget: ' + formatRupiah(budget)"></span>
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                            <template x-for="item in consultation.recommendedMenu" :key="item.mealTime">
-                                <div class="p-2.5 rounded bg-slate-50 border border-slate-200 text-xs space-y-1">
-                                    <div class="flex items-center justify-between">
-                                        <span class="font-bold text-slate-900" x-text="item.mealTime"></span>
-                                        <span class="font-mono text-[10px] text-emerald-700 font-semibold" x-text="item.estimatedCost"></span>
-                                    </div>
-                                    <p class="font-semibold text-slate-800" x-text="item.menuName"></p>
-                                    <p class="text-[11px] text-slate-600 leading-tight" x-text="item.ingredients"></p>
-                                </div>
-                            </template>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Part 3: Parent Action Tips -->
-                <div class="bg-white border border-slate-200 rounded-md p-4 space-y-2">
-                    <div class="flex items-center space-x-1.5 text-xs font-bold uppercase tracking-wider text-slate-700">
-                        <i data-lucide="heart-handshake" class="w-4 h-4 text-lime-700"></i>
-                        <span>3. Panduan Tindakan & Pola Asuh Orang Tua</span>
-                    </div>
-                    <ul class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-slate-700">
-                        <template x-for="(tip, idx) in consultation.parentActionTips" :key="idx">
-                            <li class="flex items-start space-x-2 p-2 rounded bg-lime-50/50 border border-lime-100">
-                                <span class="font-mono font-bold text-lime-700 text-xs shrink-0" x-text="(idx + 1) + '.'"></span>
-                                <span x-text="tip"></span>
-                            </li>
-                        </template>
-                    </ul>
-                </div>
-            </div>
-        </template>
-
-        <!-- Fallback if consultation is empty and previous consultation exists -->
-        @if($child->aiConsultations->isNotEmpty())
-            <div x-show="!consultation" class="pt-2">
-                <p class="text-xs text-slate-500 mb-2 font-semibold">Hasil Konsultasi Terakhir ({{ $child->aiConsultations->first()->created_at->translatedFormat('d M Y, H:i') }}):</p>
-                @php $prev = $child->aiConsultations->first()->ai_response; @endphp
-                <div class="p-4 rounded-md bg-slate-50 border border-slate-200 text-xs space-y-3">
-                    <p class="text-slate-800"><strong>Diagnosis:</strong> {{ $prev['statusDiagnosis'] ?? '-' }}</p>
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                        @foreach($prev['recommendedMenu'] ?? [] as $m)
-                            <div class="p-2 rounded bg-white border border-slate-200">
-                                <span class="font-bold text-[11px] block">{{ $m['mealTime'] }}: {{ $m['menuName'] }} ({{ $m['estimatedCost'] }})</span>
-                                <span class="text-[10px] text-slate-500">{{ $m['ingredients'] }}</span>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        @endif
-    </div>
-
-    <!-- Measurement Records Historical Table -->
-    <div class="bg-white border border-slate-200 rounded-lg shadow-sm">
-        <div class="px-5 py-3.5 border-b border-slate-200 flex items-center justify-between">
-            <div>
-                <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-700">Riwayat Penimbangan & Pengukuran Lengkap</h3>
-                <p class="text-[11px] text-slate-500">Semua entri log biometrik yang tercatat di KMS digital.</p>
-            </div>
-            <button type="button" @click="showAddModal = true"
-                    class="text-xs text-lime-700 hover:text-lime-800 font-semibold">
-                + Tambah Pengukuran
-            </button>
-        </div>
-
-        <div class="overflow-x-auto">
-            <table class="w-full text-left text-xs">
-                <thead>
-                    <tr class="border-b border-slate-200 bg-slate-50 text-[11px] font-semibold uppercase tracking-wider text-slate-500">
-                        <th class="py-2.5 px-4">Tanggal Pengukuran</th>
-                        <th class="py-2.5 px-3">Usia</th>
-                        <th class="py-2.5 px-3 text-right">TB / PB (cm)</th>
-                        <th class="py-2.5 px-3 text-right">BB (kg)</th>
-                        <th class="py-2.5 px-3 text-right">LK / LiLA</th>
-                        <th class="py-2.5 px-3 text-center">Z-Score TB/U</th>
-                        <th class="py-2.5 px-3 text-center">Z-Score BB/U</th>
-                        <th class="py-2.5 px-3 text-center">Z-Score BB/TB</th>
-                        <th class="py-2.5 px-3">Status Stunting</th>
-                        <th class="py-2.5 px-3">Tren BB</th>
-                        <th class="py-2.5 px-4 text-right">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-slate-100">
-                    @forelse($child->measurementRecords as $rec)
-                        <tr class="hover:bg-slate-50/50">
-                            <td class="py-2.5 px-4 font-mono font-medium text-slate-900">
-                                {{ $rec->measurement_date->format('d/m/Y') }}
-                            </td>
-                            <td class="py-2.5 px-3 text-slate-700 tabular-nums">
-                                {{ $rec->age_in_months }} bln
-                            </td>
-                            <td class="py-2.5 px-3 text-right font-mono font-medium text-slate-900 tabular-nums">
-                                {{ number_format($rec->height, 1) }}
-                            </td>
-                            <td class="py-2.5 px-3 text-right font-mono font-medium text-slate-900 tabular-nums">
-                                {{ number_format($rec->weight, 2) }}
-                            </td>
-                            <td class="py-2.5 px-3 text-right font-mono text-slate-500 tabular-nums text-[11px]">
-                                {{ $rec->head_circum ? $rec->head_circum . ' cm' : '-' }} / {{ $rec->arm_circum ? $rec->arm_circum . ' cm' : '-' }}
-                            </td>
-                            <td class="py-2.5 px-3 text-center font-mono tabular-nums font-semibold {{ $rec->zscore_tb_u < -2 ? 'text-rose-600' : 'text-slate-800' }}">
-                                {{ $rec->zscore_tb_u > 0 ? '+' : '' }}{{ number_format($rec->zscore_tb_u, 2) }}
-                            </td>
-                            <td class="py-2.5 px-3 text-center font-mono tabular-nums text-slate-700">
-                                {{ $rec->zscore_bb_u > 0 ? '+' : '' }}{{ number_format($rec->zscore_bb_u, 2) }}
-                            </td>
-                            <td class="py-2.5 px-3 text-center font-mono tabular-nums text-slate-700">
-                                {{ $rec->zscore_bb_tb > 0 ? '+' : '' }}{{ number_format($rec->zscore_bb_tb, 2) }}
-                            </td>
-                            <td class="py-2.5 px-3">
-                                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-medium border {{ $rec->badge_class }}">
-                                    {{ $rec->stunting_status_label }}
-                                </span>
-                            </td>
-                            <td class="py-2.5 px-3">
-                                @if($rec->is_weight_stagnant)
-                                    <span class="inline-flex items-center space-x-1 px-1.5 py-0.5 rounded text-[10px] font-medium bg-amber-50 text-amber-700 border border-amber-200">
-                                        <span>2T Stagnan</span>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs">
+                    <thead>
+                        <tr class="border-b border-slate-200 bg-slate-50 text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+                            <th class="py-2.5 px-4">Tanggal Pengukuran</th>
+                            <th class="py-2.5 px-3">Usia</th>
+                            <th class="py-2.5 px-3 text-right">TB / PB (cm)</th>
+                            <th class="py-2.5 px-3 text-right">BB (kg)</th>
+                            <th class="py-2.5 px-3 text-right">LK / LiLA</th>
+                            <th class="py-2.5 px-3 text-center">Z-Score TB/U</th>
+                            <th class="py-2.5 px-3 text-center">Z-Score BB/U</th>
+                            <th class="py-2.5 px-3 text-center">Z-Score BB/TB</th>
+                            <th class="py-2.5 px-3">Status Stunting</th>
+                            <th class="py-2.5 px-3">Tren BB</th>
+                            <th class="py-2.5 px-4 text-right">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        @forelse($child->measurementRecords as $rec)
+                            <tr class="hover:bg-slate-50/50">
+                                <td class="py-2.5 px-4 font-mono font-medium text-slate-900">
+                                    {{ $rec->measurement_date->format('d/m/Y') }}
+                                </td>
+                                <td class="py-2.5 px-3 text-slate-700 tabular-nums">
+                                    {{ $rec->age_in_months }} bln
+                                </td>
+                                <td class="py-2.5 px-3 text-right font-mono font-medium text-slate-900 tabular-nums">
+                                    {{ number_format($rec->height, 1) }}
+                                </td>
+                                <td class="py-2.5 px-3 text-right font-mono font-medium text-slate-900 tabular-nums">
+                                    {{ number_format($rec->weight, 2) }}
+                                </td>
+                                <td class="py-2.5 px-3 text-right font-mono text-slate-500 tabular-nums text-[11px]">
+                                    {{ $rec->head_circum ? $rec->head_circum . ' cm' : '-' }} / {{ $rec->arm_circum ? $rec->arm_circum . ' cm' : '-' }}
+                                </td>
+                                <td class="py-2.5 px-3 text-center font-mono tabular-nums font-semibold {{ $rec->zscore_tb_u < -2 ? 'text-rose-600' : 'text-slate-800' }}">
+                                    {{ $rec->zscore_tb_u > 0 ? '+' : '' }}{{ number_format($rec->zscore_tb_u, 2) }}
+                                </td>
+                                <td class="py-2.5 px-3 text-center font-mono tabular-nums text-slate-700">
+                                    {{ $rec->zscore_bb_u > 0 ? '+' : '' }}{{ number_format($rec->zscore_bb_u, 2) }}
+                                </td>
+                                <td class="py-2.5 px-3 text-center font-mono tabular-nums text-slate-700">
+                                    {{ $rec->zscore_bb_tb > 0 ? '+' : '' }}{{ number_format($rec->zscore_bb_tb, 2) }}
+                                </td>
+                                <td class="py-2.5 px-3">
+                                    <span class="inline-block px-2 py-0.5 rounded text-[10px] font-medium border {{ $rec->badge_class }}">
+                                        {{ $rec->stunting_status_label }}
                                     </span>
-                                @else
-                                    <span class="text-emerald-700 text-[10px]">Naik</span>
-                                @endif
-                            </td>
-                            <td class="py-2.5 px-4 text-right">
-                                <form action="{{ route('kader.measurements.destroy', $rec->id) }}" method="POST" class="inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="button" 
-                                            onclick="confirmDelete(this, {
-                                                title: 'Hapus Catatan Penimbangan',
-                                                message: 'Apakah Anda yakin ingin menghapus data penimbangan tanggal {{ $rec->measurement_date->format('d/m/Y') }}? Grafik pertumbuhan KMS akan diperbarui secara otomatis.',
-                                                itemDetail: 'TB: {{ $rec->height }} cm • BB: {{ $rec->weight }} kg ({{ $rec->stunting_status_label }})',
-                                                confirmText: 'Ya, Hapus Data'
-                                            })"
-                                            class="text-slate-400 hover:text-rose-600 p-1 transition cursor-pointer" title="Hapus">
-                                        <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="11" class="py-6 text-center text-slate-400">Belum ada riwayat penimbangan tercatat.</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
+                                </td>
+                                <td class="py-2.5 px-3">
+                                    @if($rec->is_weight_stagnant)
+                                        <span class="inline-flex items-center space-x-1 px-1.5 py-0.5 rounded text-[10px] font-medium bg-amber-50 text-amber-700 border border-amber-200">
+                                            <span>2T Stagnan</span>
+                                        </span>
+                                    @else
+                                        <span class="text-emerald-700 text-[10px]">Naik</span>
+                                    @endif
+                                </td>
+                                <td class="py-2.5 px-4 text-right">
+                                    <form action="{{ route('kader.measurements.destroy', $rec->id) }}" method="POST" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="button" 
+                                                onclick="confirmDelete(this, {
+                                                    title: 'Hapus Catatan Penimbangan',
+                                                    message: 'Apakah Anda yakin ingin menghapus data penimbangan tanggal {{ $rec->measurement_date->format('d/m/Y') }}? Grafik pertumbuhan KMS akan diperbarui secara otomatis.',
+                                                    itemDetail: 'TB: {{ $rec->height }} cm • BB: {{ $rec->weight }} kg ({{ $rec->stunting_status_label }})',
+                                                    confirmText: 'Ya, Hapus Data'
+                                                })"
+                                                class="text-slate-400 hover:text-rose-600 p-1 transition cursor-pointer" title="Hapus">
+                                            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="11" class="py-6 text-center text-slate-400">Belum ada riwayat penimbangan tercatat.</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
-    <!-- Buku Imunisasi Dasar & Suplementasi Vitamin A Card -->
-    <div class="bg-white border border-slate-200 rounded-lg shadow-sm overflow-hidden">
-        <div class="px-5 py-3.5 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-50/50">
-            <div>
-                <div class="flex items-center space-x-2">
-                    <i data-lucide="shield-plus" class="w-4 h-4 text-sky-600"></i>
-                    <h3 class="text-xs font-bold uppercase tracking-wider text-slate-800">Buku Imunisasi Dasar Lengkap & Suplementasi</h3>
+    <!-- Tab 2: Buku Imunisasi & Vitamin A -->
+    <div x-show="activeTab === 'imunisasi'" class="space-y-4" x-cloak>
+        <!-- Buku Imunisasi Dasar & Suplementasi Vitamin A Card -->
+        <div class="bg-white border border-slate-200 rounded-lg shadow-sm overflow-hidden">
+            <div class="px-5 py-3.5 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-50/50">
+                <div>
+                    <div class="flex items-center space-x-2">
+                        <i data-lucide="shield-plus" class="w-4 h-4 text-sky-600"></i>
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-800">Buku Imunisasi Dasar Lengkap &amp; Suplementasi</h3>
+                    </div>
+                    <p class="text-[11px] text-slate-500 mt-0.5">Pencegahan infeksi berulang dan penurunan risiko stunting melalui imunisasi rutin Kemenkes RI.</p>
                 </div>
-                <p class="text-[11px] text-slate-500 mt-0.5">Pencegahan infeksi berulang dan penurunan risiko stunting melalui imunisasi rutin Kemenkes RI.</p>
+                <button type="button" @click="showImunisasiModal = true"
+                        class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-md bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold shadow-2xs transition">
+                    <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                    <span>Catat Vaksin</span>
+                </button>
             </div>
-            <button type="button" @click="showImunisasiModal = true"
-                    class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-md bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold shadow-2xs transition">
-                <i data-lucide="plus" class="w-3.5 h-3.5"></i>
-                <span>Catat Vaksin</span>
-            </button>
-        </div>
 
-        <div class="overflow-x-auto">
-            <table class="w-full text-left text-xs">
-                <thead>
-                    <tr class="border-b border-slate-200 bg-slate-50 text-[11px] font-semibold uppercase tracking-wider text-slate-500">
-                        <th class="py-2.5 px-3 text-center w-10">#</th>
-                        <th class="py-2.5 px-4">Nama Vaksin / Suplemen</th>
-                        <th class="py-2.5 px-3">Kategori</th>
-                        <th class="py-2.5 px-3">Tgl Diberikan</th>
-                        <th class="py-2.5 px-3">No. Batch</th>
-                        <th class="py-2.5 px-3">Dicatat Oleh</th>
-                        <th class="py-2.5 px-3">Catatan</th>
-                        <th class="py-2.5 px-4 text-right w-16">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-slate-100">
-                    @forelse($child->immunizationRecords as $idx => $im)
-                        <tr class="hover:bg-slate-50/50 transition-colors">
-                            <td class="py-2.5 px-3 text-center text-slate-400 font-mono text-[11px]">{{ $idx + 1 }}</td>
-                            <td class="py-2.5 px-4 font-bold text-slate-900">{{ $im->vaccine_name }}</td>
-                            <td class="py-2.5 px-3">
-                                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-semibold border
-                                    {{ $im->category === 'vitamin_a' ? 'bg-amber-50 text-amber-800 border-amber-200' : ($im->category === 'obat_cacing' ? 'bg-purple-50 text-purple-800 border-purple-200' : 'bg-sky-50 text-sky-800 border-sky-200') }}">
-                                    {{ $im->category_label }}
-                                </span>
-                            </td>
-                            <td class="py-2.5 px-3 font-mono text-slate-700">{{ $im->administered_date->translatedFormat('d F Y') }}</td>
-                            <td class="py-2.5 px-3 font-mono text-slate-500">{{ $im->batch_number ?? '-' }}</td>
-                            <td class="py-2.5 px-3 text-slate-600">{{ $im->recordedBy->name ?? 'Kader Posyandu' }}</td>
-                            <td class="py-2.5 px-3 text-slate-500 text-[11px]">{{ $im->notes ?? '-' }}</td>
-                            <td class="py-2.5 px-4 text-right">
-                                <form action="{{ route('kader.immunizations.destroy', $im->id) }}" method="POST" class="inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="button" 
-                                            onclick="confirmDelete(this, {
-                                                title: 'Hapus Catatan Imunisasi / Suplemen',
-                                                message: 'Apakah Anda yakin ingin menghapus catatan pemberian {{ addslashes($im->vaccine_name) }} ini dari buku KMS balita?',
-                                                itemDetail: '{{ addslashes($im->vaccine_name) }} • Diberikan: {{ $im->administered_date->translatedFormat('d F Y') }}',
-                                                confirmText: 'Ya, Hapus Data'
-                                            })"
-                                            class="text-slate-400 hover:text-rose-600 p-1 transition cursor-pointer" title="Hapus">
-                                        <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
-                                    </button>
-                                </form>
-                            </td>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs">
+                    <thead>
+                        <tr class="border-b border-slate-200 bg-slate-50 text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+                            <th class="py-2.5 px-3 text-center w-10">#</th>
+                            <th class="py-2.5 px-4">Nama Vaksin / Suplemen</th>
+                            <th class="py-2.5 px-3">Kategori</th>
+                            <th class="py-2.5 px-3">Tgl Diberikan</th>
+                            <th class="py-2.5 px-3">No. Batch</th>
+                            <th class="py-2.5 px-3">Dicatat Oleh</th>
+                            <th class="py-2.5 px-3">Catatan</th>
+                            <th class="py-2.5 px-4 text-right w-16">Aksi</th>
                         </tr>
-                    @empty
-                        <tr>
-                            <td colspan="8" class="py-6 text-center text-slate-400">Belum ada catatan imunisasi atau vitamin A yang tercatat.</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        @forelse($child->immunizationRecords as $idx => $im)
+                            <tr class="hover:bg-slate-50/50 transition-colors">
+                                <td class="py-2.5 px-3 text-center text-slate-400 font-mono text-[11px]">{{ $idx + 1 }}</td>
+                                <td class="py-2.5 px-4 font-bold text-slate-900">{{ $im->vaccine_name }}</td>
+                                <td class="py-2.5 px-3">
+                                    <span class="inline-block px-2 py-0.5 rounded text-[10px] font-semibold border
+                                        {{ $im->category === 'vitamin_a' ? 'bg-amber-50 text-amber-800 border-amber-200' : ($im->category === 'obat_cacing' ? 'bg-purple-50 text-purple-800 border-purple-200' : 'bg-sky-50 text-sky-800 border-sky-200') }}">
+                                        {{ $im->category_label }}
+                                    </span>
+                                </td>
+                                <td class="py-2.5 px-3 font-mono text-slate-700">{{ $im->administered_date->translatedFormat('d F Y') }}</td>
+                                <td class="py-2.5 px-3 font-mono text-slate-500">{{ $im->batch_number ?? '-' }}</td>
+                                <td class="py-2.5 px-3 text-slate-600">{{ $im->recordedBy->name ?? 'Kader Posyandu' }}</td>
+                                <td class="py-2.5 px-3 text-slate-500 text-[11px]">{{ $im->notes ?? '-' }}</td>
+                                <td class="py-2.5 px-4 text-right">
+                                    <form action="{{ route('kader.immunizations.destroy', $im->id) }}" method="POST" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="button" 
+                                                onclick="confirmDelete(this, {
+                                                    title: 'Hapus Catatan Imunisasi / Suplemen',
+                                                    message: 'Apakah Anda yakin ingin menghapus catatan pemberian {{ addslashes($im->vaccine_name) }} ini dari buku KMS balita?',
+                                                    itemDetail: '{{ addslashes($im->vaccine_name) }} • Diberikan: {{ $im->administered_date->translatedFormat('d F Y') }}',
+                                                    confirmText: 'Ya, Hapus Data'
+                                                })"
+                                                class="text-slate-400 hover:text-rose-600 p-1 transition cursor-pointer" title="Hapus">
+                                            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="8" class="py-6 text-center text-slate-400">Belum ada catatan imunisasi atau vitamin A yang tercatat.</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -696,7 +598,10 @@
         return {
             showAddModal: false,
             showWaModal: false,
-            showImunisasiModal: false,
+@php
+    $defaultTab = (session('success') && (str_contains(session('success'), 'Vaksin') || str_contains(session('success'), 'Pencatatan') || str_contains(session('success'), 'Imunisasi') || str_contains(session('success'), 'imunisasi'))) ? 'imunisasi' : 'penimbangan';
+@endphp
+            activeTab: window.location.hash === '#imunisasi' ? 'imunisasi' : '{{ $defaultTab }}',
             chartType: 'tb_u',
             chartInstance: null,
 
@@ -706,7 +611,22 @@
             childWeightData: @json($childWeightPoints),
 
             init() {
+                if (window.location.hash === '#imunisasi') {
+                    this.activeTab = 'imunisasi';
+                }
                 this.renderChart();
+                if (window.lucide && window.lucide.createIcons) {
+                    window.lucide.createIcons();
+                }
+            },
+
+            setTab(tab) {
+                this.activeTab = tab;
+                this.$nextTick(() => {
+                    if (window.lucide && window.lucide.createIcons) {
+                        window.lucide.createIcons();
+                    }
+                });
             },
 
             switchChart(type) {
@@ -835,53 +755,6 @@
                         }
                     }
                 });
-            }
-        }
-    }
-
-    function aiAdvisorWidget() {
-        return {
-            budget: 20000,
-            isLoading: false,
-            consultation: null,
-            errorMessage: '',
-
-            formatRupiah(amount) {
-                return 'Rp' + new Intl.NumberFormat('id-ID').format(amount);
-            },
-
-            async generateRecommendation() {
-                this.isLoading = true;
-                this.errorMessage = '';
-                try {
-                    const response = await fetch('{{ route("kader.children.ai-consult", $child->id) }}', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                            'Accept': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            daily_budget: this.budget
-                        })
-                    });
-
-                    if (response.ok) {
-                        const data = await response.json();
-                        this.consultation = data.ai_response;
-                        this.$nextTick(() => {
-                            if (window.lucide) window.lucide.createIcons();
-                        });
-                    } else {
-                        const err = await response.json();
-                        this.errorMessage = err.error || 'Terjadi kesalahan saat memproses AI consultation.';
-                    }
-                } catch (e) {
-                    console.error('Error generating AI consultation:', e);
-                    this.errorMessage = 'Gagal menghubungi layanan konsultasi AI. Pastikan koneksi aktif.';
-                } finally {
-                    this.isLoading = false;
-                }
             }
         }
     }

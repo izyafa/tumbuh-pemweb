@@ -18,7 +18,7 @@
             <div>
                 <h2 class="text-base font-bold text-slate-900">Pemantauan Intervensi Gizi & Stunting Komprehensif</h2>
                 <p class="text-xs text-slate-500 mt-0.5">
-                    Data agregat seluruh Posyandu binaan selaras dengan target SDG 2 (Zero Hunger) & SDG 3 (Good Health and Well-Being).
+                    Data agregat seluruh Posyandu binaan
                 </p>
             </div>
             <div class="flex items-center space-x-2 shrink-0">

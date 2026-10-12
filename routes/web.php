@@ -45,6 +45,13 @@ Route::get('/pantau/{token}/kms-print', [ParentPortalController::class, 'printKm
     ->name('parent.kms-print')
     ->whereUuid('token');
 
+Route::get('/pantau/{token}/menu-gizi', [ParentPortalController::class, 'menuGizi'])
+    ->name('parent.menu-gizi')
+    ->whereUuid('token');
+
+Route::get('/pantau/{token}/ai-consult', fn($token) => redirect()->route('parent.menu-gizi', $token))
+    ->whereUuid('token');
+
 Route::post('/pantau/{token}/ai-consult', [ParentPortalController::class, 'generateAiConsult'])
     ->name('parent.ai-consult')
     ->whereUuid('token')
@@ -87,6 +94,8 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/immunizations/{id}', [ImmunizationController::class, 'destroy'])->name('immunizations.destroy');
 
         // AI Nutrition Consultation
+        Route::get('/children/{id}/ai-consult', [AiConsultationController::class, 'show'])
+            ->name('children.ai-consult.show');
         Route::post('/children/{id}/ai-consult', [AiConsultationController::class, 'generate'])
             ->name('children.ai-consult')
             ->middleware('throttle:15,1');

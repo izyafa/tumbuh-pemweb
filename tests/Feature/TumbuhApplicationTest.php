@@ -445,5 +445,95 @@ class TumbuhApplicationTest extends TestCase
         $response->assertSee('Salin Nomor HP');
         $response->assertSee('Pilih Semua Hasil Filter');
     }
+
+    public function test_kader_can_access_dedicated_ai_consult_page(): void
+    {
+        $kader = User::where('role', 'kader')->first();
+        $child = Child::whereHas('latestMeasurement')->first();
+
+        $response = $this->actingAs($kader)->get(route('kader.children.ai-consult.show', $child->id));
+        $response->assertStatus(200);
+        $response->assertSee($child->full_name);
+        $response->assertSee('AI Clinical Nutrition Advisor');
+        $response->assertSee('Peracik Menu Gizi &amp; Diagnosis Klinis AI', false);
+        $response->assertSee('Anggaran Belanja Makan Harian Balita');
+        $response->assertSee('Kembali ke Grafik KMS & Rekam Gizi', false);
+    }
+
+    public function test_kader_monitoring_page_is_unbloated_and_links_to_ai_consult(): void
+    {
+        $kader = User::where('role', 'kader')->first();
+        $child = Child::whereHas('latestMeasurement')->first();
+
+        $response = $this->actingAs($kader)->get(route('kader.children.show', $child->id));
+        $response->assertStatus(200);
+        $response->assertSee('Kurva Pertumbuhan Digital KMS');
+        $response->assertSee('Rekomendasi Menu Makan &amp; Gizi Balita (AI)', false);
+        $response->assertSee(route('kader.children.ai-consult.show', $child->id));
+        $response->assertDontSee('id="budget_input"', false);
+        $response->assertDontSee('aiAdvisorWidget()', false);
+        $response->assertDontSee('Gemini AI Sedang Meracik Menu...', false);
+    }
+
+    public function test_parent_can_access_dedicated_menu_gizi_page_without_auth(): void
+    {
+        $child = Child::whereHas('latestMeasurement')->first();
+
+        $response = $this->get(route('parent.menu-gizi', ['token' => $child->public_token]));
+        $response->assertStatus(200);
+        $response->assertSee($child->full_name);
+        $response->assertSee('Panduan Nutrisi Balita');
+        $response->assertSee('Racik Menu Makan Harian Sesuai Anggaran');
+        $response->assertSee('Anggaran Belanja Makan Hari Ini');
+        $response->assertSee('Kembali ke Grafik Pemantauan KMS');
+    }
+
+    public function test_parent_portal_monitoring_page_is_unbloated_and_links_to_menu_gizi(): void
+    {
+        $child = Child::whereHas('latestMeasurement')->first();
+
+        $response = $this->get(route('parent.portal', ['token' => $child->public_token]));
+        $response->assertStatus(200);
+        $response->assertSee('Grafik Digital KMS Balita');
+        $response->assertSee('Panduan Nutrisi &amp; Rekomendasi Menu Makan (AI)', false);
+        $response->assertSee(route('parent.menu-gizi', $child->public_token));
+        $response->assertDontSee('id="parent_budget"', false);
+        $response->assertDontSee('parentAiWidget()', false);
+        $response->assertDontSee('Meracik Menu AI...', false);
+    }
+
+    public function test_parent_ai_consult_get_redirects_to_menu_gizi(): void
+    {
+        $child = Child::first();
+
+        $response = $this->get("/pantau/{$child->public_token}/ai-consult");
+        $response->assertRedirect(route('parent.menu-gizi', $child->public_token));
+    }
+
+    public function test_parent_portal_has_dedicated_immunization_tab(): void
+    {
+        $child = Child::whereHas('immunizationRecords')->first();
+
+        $response = $this->get(route('parent.portal', ['token' => $child->public_token]));
+        $response->assertStatus(200);
+        $response->assertSee('Grafik Pertumbuhan KMS');
+        $response->assertSee('Buku Imunisasi &amp; Vitamin A', false);
+        $response->assertSee('activeTab', false);
+        $response->assertSee('x-show="activeTab === \'kms\'"', false);
+        $response->assertSee('x-show="activeTab === \'imunisasi\'"', false);
+    }
+
+    public function test_kader_children_show_has_tabs_for_measurements_and_immunizations(): void
+    {
+        $kader = User::where('role', 'kader')->first();
+        $child = Child::first();
+
+        $response = $this->actingAs($kader)->get(route('kader.children.show', $child->id));
+        $response->assertStatus(200);
+        $response->assertSee('Riwayat Penimbangan &amp; Pengukuran', false);
+        $response->assertSee('Buku Imunisasi &amp; Vitamin A', false);
+        $response->assertSee('x-show="activeTab === \'penimbangan\'"', false);
+        $response->assertSee('x-show="activeTab === \'imunisasi\'"', false);
+    }
 }
 

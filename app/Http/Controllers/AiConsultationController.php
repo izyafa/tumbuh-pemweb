@@ -8,6 +8,7 @@ use App\Services\AiNutritionService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class AiConsultationController extends Controller
 {
@@ -16,6 +17,28 @@ class AiConsultationController extends Controller
     public function __construct(AiNutritionService $aiService)
     {
         $this->aiService = $aiService;
+    }
+
+    /**
+     * Dedicated AI Clinical Nutrition Consultation page for Cadres and Admin
+     */
+    public function show(string $childId): View
+    {
+        $child = Child::with([
+            'latestMeasurement',
+            'aiConsultations' => function ($q) {
+                $q->orderBy('created_at', 'desc');
+            }
+        ])->findOrFail($childId);
+
+        $latestMeasurement = $child->latestMeasurement;
+        $latestConsultation = $child->aiConsultations->first();
+
+        return view('kader.children.ai_consult', compact(
+            'child',
+            'latestMeasurement',
+            'latestConsultation'
+        ));
     }
 
     public function generate(Request $request, string $childId): JsonResponse|RedirectResponse
@@ -67,7 +90,7 @@ class AiConsultationController extends Controller
             ]);
         }
 
-        return redirect()->route('kader.children.show', $child->id)
+        return redirect()->route('kader.children.ai-consult.show', $child->id)
             ->with('success', 'Rekomendasi Menu & Tindakan Klinis AI berhasil digenerate.');
     }
 }

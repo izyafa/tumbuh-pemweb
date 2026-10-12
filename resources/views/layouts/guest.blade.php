@@ -62,11 +62,6 @@
     <footer class="border-t border-slate-200 bg-white py-4 text-center text-xs text-slate-400">
         <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
             <span>Tumbuh &copy; {{ date('Y') }} — Memantau Pertumbuhan Balita Sesuai Standar Kemenkes RI & WHO Anthro.</span>
-            <div class="flex items-center space-x-4 text-slate-500 font-medium">
-                <span>SDG 2: Zero Hunger</span>
-                <span>•</span>
-                <span>SDG 3: Good Health and Well-Being</span>
-            </div>
         </div>
     </footer>
 

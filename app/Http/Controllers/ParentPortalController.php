@@ -59,7 +59,7 @@ class ParentPortalController extends Controller
             $waText .= "📈 Tren Kenaikan BB: " . ($latestMeasurement->is_weight_stagnant ? '⚠️ Perlu Perhatian (BB Stagnan)' : '✅ Kenaikan Baik') . "\n\n";
         }
         $waText .= "Lihat grafik digital KMS & panduan menu gizi harian secara lengkap di:\n{$publicUrl}\n\n";
-        $waText .= "Diberdayakan oleh Platform Tumbuh — Kolaborasi Posyandu & SDG 2 Zero Hunger.";
+        $waText .= "Diberdayakan oleh Platform Tumbuh — Kolaborasi Posyandu";
 
         $waShareUrl = "https://api.whatsapp.com/send?text=" . urlencode($waText);
 
@@ -94,6 +94,28 @@ class ParentPortalController extends Controller
         $latestMeasurement = $child->latestMeasurement;
 
         return view('kader.children.kms_print', compact('child', 'latestMeasurement'));
+    }
+
+    /**
+     * Dedicated AI Nutrition & Meal Recommendation page for parents
+     */
+    public function menuGizi(string $token): View
+    {
+        $child = Child::with(['latestMeasurement', 'aiConsultations' => function ($q) {
+            $q->orderBy('created_at', 'desc');
+        }])->where('public_token', $token)->firstOrFail();
+
+        $latestMeasurement = $child->latestMeasurement;
+        $latestConsultation = $child->aiConsultations->first();
+
+        $parentPortalUrl = route('parent.portal', ['token' => $child->public_token]);
+
+        return view('parent.menu_gizi', compact(
+            'child',
+            'latestMeasurement',
+            'latestConsultation',
+            'parentPortalUrl'
+        ));
     }
 
     /**
@@ -148,7 +170,7 @@ class ParentPortalController extends Controller
             ]);
         }
 
-        return redirect()->route('parent.portal', $token)
+        return redirect()->route('parent.menu-gizi', $token)
             ->with('success', 'Rekomendasi menu baru berhasil diracik oleh AI!');
     }
 }

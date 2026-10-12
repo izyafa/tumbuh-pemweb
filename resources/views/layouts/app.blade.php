@@ -26,7 +26,7 @@
                 </div>
                 <div>
                     <span class="font-bold text-slate-900 tracking-tight text-lg leading-none block">TUMBUH</span>
-                    <span class="text-[10px] text-slate-400 font-medium uppercase tracking-wider block mt-0.5">Posyandu • SDG 2 & 3</span>
+                    <span class="text-[10px] text-slate-400 font-medium uppercase tracking-wider block mt-0.5">Posyandu</span>
                 </div>
             </div>
             <span class="md:hidden">
