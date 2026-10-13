@@ -75,7 +75,7 @@
 ```env
 APP_NAME=Tumbuh
 APP_ENV=local
-APP_KEY=base64:eqqIrWN17MCCatQ0vcSugOMUr+i8xNGcyM1kbZQAD8I=
+APP_KEY=ur app key
 APP_DEBUG=true
 APP_URL=http://localhost:8000
 
