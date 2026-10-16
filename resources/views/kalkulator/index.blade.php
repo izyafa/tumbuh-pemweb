@@ -44,13 +44,13 @@
                                 @click="gender = 'male'; calculate()"
                                 :class="gender === 'male' ? 'bg-sky-50 border-sky-400 text-sky-800 font-bold ring-1 ring-sky-400' : 'bg-slate-50 border-slate-200 text-slate-600'"
                                 class="py-2.5 px-3 rounded-md border text-center transition flex items-center justify-center space-x-1.5 cursor-pointer">
-                            <span>👦 Laki-laki</span>
+                            <span>Laki-laki</span>
                         </button>
                         <button type="button" 
                                 @click="gender = 'female'; calculate()"
                                 :class="gender === 'female' ? 'bg-pink-50 border-pink-400 text-pink-800 font-bold ring-1 ring-pink-400' : 'bg-slate-50 border-slate-200 text-slate-600'"
                                 class="py-2.5 px-3 rounded-md border text-center transition flex items-center justify-center space-x-1.5 cursor-pointer">
-                            <span>👧 Perempuan</span>
+                            <span>Perempuan</span>
                         </button>
                     </div>
                 </div>
@@ -98,13 +98,13 @@
                     <span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block mb-1">Contoh Kasus Klinis Cepat:</span>
                     <div class="flex flex-wrap gap-1.5">
                         <button type="button" @click="setPreset('normal')" class="px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-600 text-[10px] font-medium transition cursor-pointer">
-                            ✅ 12 Bln Normal
+                            12 Bln Normal
                         </button>
                         <button type="button" @click="setPreset('stunted')" class="px-2 py-1 rounded bg-amber-50 hover:bg-amber-100 text-amber-800 text-[10px] font-medium transition cursor-pointer">
-                            ⚠️ 18 Bln Pendek
+                            18 Bln Pendek
                         </button>
                         <button type="button" @click="setPreset('severely_stunted')" class="px-2 py-1 rounded bg-rose-50 hover:bg-rose-100 text-rose-800 text-[10px] font-medium transition cursor-pointer">
-                            🚨 24 Bln Sangat Pendek
+                            24 Bln Sangat Pendek
                         </button>
                     </div>
                 </div>
