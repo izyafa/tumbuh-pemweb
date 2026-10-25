@@ -19,17 +19,12 @@
                 </p>
             </div>
 
-            <!-- Actions: Print KMS, Racik Menu AI & WhatsApp -->
+            <!-- Actions: Print KMS & WhatsApp -->
             <div class="shrink-0 flex flex-wrap items-center gap-2">
                 <a href="{{ route('parent.kms-print', $child->public_token) }}" target="_blank"
                    class="inline-flex items-center space-x-1.5 px-3.5 py-2.5 rounded-md border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs font-bold transition shadow-2xs">
                     <i data-lucide="printer" class="w-4 h-4 text-slate-500"></i>
                     <span>Cetak Kartu KMS</span>
-                </a>
-                <a href="{{ route('parent.menu-gizi', $child->public_token) }}"
-                   class="inline-flex items-center space-x-1.5 px-3.5 py-2.5 rounded-md border border-lime-300 bg-lime-50 hover:bg-lime-100 text-lime-800 text-xs font-bold transition shadow-2xs">
-                    <i data-lucide="utensils" class="w-4 h-4 text-lime-700"></i>
-                    <span>Racik Menu AI</span>
                 </a>
                 <a href="{{ $waShareUrl }}" target="_blank"
                    class="inline-flex items-center space-x-2 px-4 py-2.5 rounded-md bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition shadow-sm">
@@ -149,7 +144,7 @@
             </div>
         </div>
 
-        <!-- AI Meal Recommendation Banner (Separated to dedicated page) -->
+        <!-- AI Meal Recommendation Info Banner -->
         <div class="bg-gradient-to-r from-lime-50/80 via-white to-emerald-50/80 border border-lime-200 rounded-lg p-5 shadow-2xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div class="flex items-center space-x-3.5">
                 <div class="w-11 h-11 rounded-lg bg-lime-600 text-white flex items-center justify-center shrink-0 shadow-2xs">
@@ -162,19 +157,13 @@
                     </div>
                     <p class="text-xs text-slate-600 mt-1">
                         @if($latestConsultation)
-                            Menu gizi harian si kecil telah tersedia. Ibu juga bisa meracik variasi menu harian baru sesuai anggaran belanja keluarga hari ini.
+                            Menu gizi harian si kecil telah tersedia. Ibu bisa meracik variasi menu harian baru sesuai anggaran belanja keluarga melalui tombol <strong>Racik Menu AI</strong> di navbar atas.
                         @else
-                            Bingung menyusun menu makan si kecil hari ini? Racik menu harian bergizi seimbang dari bahan pangan lokal sesuai anggaran belanja keluarga.
+                            Bingung menyusun menu makan si kecil hari ini? Racik menu harian bergizi seimbang dari bahan pangan lokal sesuai anggaran keluarga dengan memilih menu <strong>Racik Menu AI</strong> di navbar atas.
                         @endif
                     </p>
                 </div>
             </div>
-            <a href="{{ route('parent.menu-gizi', $child->public_token) }}"
-               class="inline-flex items-center justify-center space-x-2 px-4 py-2.5 rounded-md bg-lime-600 hover:bg-lime-700 text-white text-xs font-bold transition shrink-0 shadow-2xs">
-                <i data-lucide="sparkles" class="w-4 h-4"></i>
-                <span>Buka Racik Menu Hari Ini</span>
-                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-            </a>
         </div>
 
         <!-- Educational Videos Banner for Parents -->

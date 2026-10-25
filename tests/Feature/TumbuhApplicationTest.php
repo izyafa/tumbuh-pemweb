@@ -442,7 +442,7 @@ class TumbuhApplicationTest extends TestCase
         $response->assertSee('Kirim ke Semua Orang');
         $response->assertSee('Bagikan Pengumuman Grup');
         $response->assertSee('Pengiriman Siaran WhatsApp Massal');
-        $response->assertSee('Salin Nomor HP');
+        $response->assertDontSee('Salin Nomor HP');
         $response->assertSee('Pilih Semua Hasil Filter');
     }
 

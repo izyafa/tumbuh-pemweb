@@ -36,7 +36,7 @@ class EducationalVideoController extends Controller
             });
         }
 
-        $videos = $query->orderBy('created_at', 'asc')->get();
+        $videos = $query->orderBy('created_at', 'asc')->paginate(10)->withQueryString();
 
         return view('edukasi.index', compact('videos', 'categories', 'selectedCategory', 'search'));
     }

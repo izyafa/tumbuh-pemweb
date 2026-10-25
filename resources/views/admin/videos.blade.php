@@ -132,6 +132,12 @@
                 </tbody>
             </table>
         </div>
+
+        @if($videos->hasPages())
+            <div class="px-5 py-3 border-t border-slate-200 bg-slate-50/50">
+                {{ $videos->links() }}
+            </div>
+        @endif
     </div>
 
     <!-- Video & Interactive Quiz Editor Modal -->

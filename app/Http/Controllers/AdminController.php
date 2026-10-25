@@ -60,7 +60,7 @@ class AdminController extends Controller
 
     public function users(): View
     {
-        $users = User::orderBy('role', 'asc')->orderBy('name', 'asc')->paginate(15);
+        $users = User::orderBy('role', 'asc')->orderBy('name', 'asc')->paginate(10);
         return view('admin.users', compact('users'));
     }
 
@@ -124,7 +124,7 @@ class AdminController extends Controller
 
     public function videos(): View
     {
-        $videos = EducationalVideo::orderBy('created_at', 'desc')->get();
+        $videos = EducationalVideo::orderBy('created_at', 'desc')->paginate(10);
         return view('admin.videos', compact('videos'));
     }
 }

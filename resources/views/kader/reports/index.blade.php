@@ -39,7 +39,7 @@
                 <a href="{{ route('kader.reports.print', ['month' => $selectedMonth]) }}" target="_blank"
                    class="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-md border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold shadow-sm transition">
                     <i data-lucide="printer" class="w-4 h-4 text-slate-500"></i>
-                    <span>Cetak / Cetak PDF</span>
+                    <span>Cetak PDF</span>
                 </a>
             </div>
         </div>
@@ -99,7 +99,7 @@
                     Daftar Hasil Penimbangan Periode {{ $monthCarbon->translatedFormat('F Y') }}
                 </h3>
             </div>
-            <span class="text-xs text-slate-500 font-mono">{{ $records->count() }} catatan</span>
+            <span class="text-xs text-slate-500 font-mono">{{ $records->total() }} catatan</span>
         </div>
 
         @if($records->isEmpty())
@@ -129,7 +129,7 @@
                     <tbody class="divide-y divide-slate-100">
                         @foreach($records as $index => $rec)
                             <tr class="hover:bg-slate-50/50 transition-colors">
-                                <td class="py-2.5 px-3 text-center text-slate-400 font-mono text-[11px]">{{ $index + 1 }}</td>
+                                <td class="py-2.5 px-3 text-center text-slate-400 font-mono text-[11px]">{{ $records->firstItem() + $index }}</td>
                                 <td class="py-2.5 px-4 font-medium text-slate-900">
                                     <a href="{{ route('kader.children.show', $rec->child_id) }}" class="hover:text-lime-700 hover:underline">
                                         {{ $rec->child->full_name }}
@@ -182,6 +182,12 @@
                     </tbody>
                 </table>
             </div>
+
+            @if($records->hasPages())
+                <div class="px-5 py-3 border-t border-slate-200 bg-slate-50/50">
+                    {{ $records->links() }}
+                </div>
+            @endif
         @endif
     </div>
 

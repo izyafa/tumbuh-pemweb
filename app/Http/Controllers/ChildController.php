@@ -43,7 +43,7 @@ class ChildController extends Controller
             });
         }
 
-        $children = $query->orderBy('full_name', 'asc')->paginate(12)->withQueryString();
+        $children = $query->orderBy('full_name', 'asc')->paginate(10)->withQueryString();
 
         return view('kader.children.index', compact('children'));
     }

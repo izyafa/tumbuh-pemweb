@@ -74,7 +74,7 @@
                         {{ $video->category }}
                     </span>
                     <span class="inline-flex items-center space-x-1 text-slate-400 text-xs">
-                        <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+                        <i data-lucide="calendar-days" class="w-3.5 h-3.5"></i>
                         <span>Dipublikasikan: {{ $video->created_at->format('d M Y') }}</span>
                     </span>
                     <span class="inline-flex items-center space-x-1 text-emerald-700 font-medium text-xs bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">

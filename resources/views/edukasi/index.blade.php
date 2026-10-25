@@ -117,7 +117,7 @@
                     @if($selectedCategory !== 'Semua Kategori')
                         pada kategori <strong class="font-bold">{{ $selectedCategory }}</strong>
                     @endif
-                    — <span class="font-bold">{{ $videos->count() }} modul</span> ditemukan.
+                    — <span class="font-bold">{{ $videos->total() }} modul</span> ditemukan.
                 </span>
             </div>
             <div class="flex items-center space-x-2 shrink-0">
@@ -139,7 +139,7 @@
     <!-- Video Cards Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         @forelse($videos as $vid)
-            <div class="bg-white border border-slate-200 rounded-xl shadow-sm flex flex-col overflow-hidden hover:shadow-md transition-shadow duration-200 group">
+            <div class="bg-white border border-slate-200/90 rounded-2xl shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col overflow-hidden hover:-translate-y-1 group">
                 <!-- Video Media Area: Live Inline Player OR High-Res Thumbnail Preview -->
                 <div class="relative w-full aspect-video bg-black overflow-hidden">
                     <!-- Inline Live Player (Active when clicked) -->
@@ -154,10 +154,9 @@
                     </template>
 
                     <!-- Thumbnail with Interactive Play Overlay -->
-                    <div x-show="inlinePlayingId !== '{{ $vid->id }}'"
-                         @click="playInline('{{ $vid->id }}')"
+                    <div @click="openPlayer(@js($vid))"
                          class="relative w-full h-full cursor-pointer group/thumb"
-                         title="Klik untuk memutar video langsung di sini">
+                         title="Klik untuk membuka Mode Bioskop">
                         <img src="{{ $vid->youtube_thumbnail_url }}" 
                              alt="{{ $vid->title }}" 
                              class="w-full h-full object-cover group-hover/thumb:scale-105 transition-transform duration-300"
@@ -166,11 +165,11 @@
                         <!-- Dark Gradient Overlay & Big Red Play Button -->
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/25 to-transparent flex flex-col justify-between p-3.5 transition-opacity duration-200">
                             <div class="flex items-center justify-between">
-                                <span class="inline-flex items-center space-x-1 px-2 py-0.5 rounded text-[10px] font-bold bg-black/60 text-white backdrop-blur-xs">
+                                <span class="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-black/60 text-white backdrop-blur-xs border border-white/10">
                                     <i data-lucide="video" class="w-3 h-3 text-lime-400"></i>
                                     <span>{{ $vid->category }}</span>
                                 </span>
-                                <span class="inline-flex items-center space-x-1 px-2 py-0.5 rounded text-[10px] font-semibold bg-lime-600/90 text-white shadow-xs">
+                                <span class="inline-flex items-center space-x-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-lime-600/90 text-white shadow-xs">
                                     <i data-lucide="shield-check" class="w-3 h-3"></i>
                                     <span>Kemenkes RI</span>
                                 </span>
@@ -183,10 +182,10 @@
                                     </div>
                                     <div>
                                         <span class="text-xs font-bold text-white drop-shadow-sm block leading-tight">
-                                            Putar Video
+                                            Mode Bioskop
                                         </span>
                                         <span class="text-[10px] text-slate-200">
-                                            Klik untuk langsung tonton
+                                            Klik untuk menonton
                                         </span>
                                     </div>
                                 </div>
@@ -198,72 +197,48 @@
                     </div>
                 </div>
 
-                <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+                <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-4">
                     <div>
-                        <div class="flex items-center justify-between gap-2 mb-1.5">
-                            <!-- Category Badge -->
-                            <span class="inline-block px-2.5 py-0.5 rounded text-[10px] font-bold bg-lime-50 text-lime-800 border border-lime-200 uppercase tracking-wider">
-                                {{ $vid->category }}
+                        <div class="flex items-center justify-between gap-2 mb-2">
+                            <!-- Category Badge with status dot -->
+                            <span class="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-lime-50 text-lime-800 border border-lime-200 uppercase tracking-wider">
+                                <span class="w-1.5 h-1.5 rounded-full bg-lime-600"></span>
+                                <span>{{ $vid->category }}</span>
                             </span>
-
-                            @if(!empty($vid->quiz_data))
-                                <span class="text-[10px] text-slate-500 font-medium flex items-center space-x-1">
-                                    <i data-lucide="help-circle" class="w-3 h-3 text-lime-600"></i>
-                                    <span>{{ count($vid->quiz_data) }} Soal Kuis</span>
-                                </span>
-                            @endif
                         </div>
                         
                         <!-- Title (Clickable) -->
-                        <h3 class="text-sm font-bold text-slate-900 leading-snug hover:text-lime-700 transition cursor-pointer"
-                            @click="playInline('{{ $vid->id }}')">
-                            {{ $vid->title }}
-                        </h3>
+                        <a href="{{ route('edukasi.show', $vid->id) }}" class="block group/title">
+                            <h3 class="text-sm font-bold text-slate-900 leading-snug group-hover/title:text-lime-700 transition line-clamp-2">
+                                {{ $vid->title }}
+                            </h3>
+                        </a>
 
                         <!-- Summary Takeaway Bullets -->
-                        <div class="mt-3 p-3 rounded-lg bg-slate-50 border border-slate-100 text-xs text-slate-700 space-y-1 leading-relaxed">
-                            <span class="font-bold text-[11px] text-slate-800 uppercase tracking-wider block mb-1">Intisari Praktis:</span>
+                        <div class="mt-3 p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs text-slate-700 space-y-1 leading-relaxed">
+                            <div class="flex items-center space-x-1.5 text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-1">
+                                <i data-lucide="sparkles" class="w-3 h-3 text-lime-600"></i>
+                                <span>Intisari Praktis</span>
+                            </div>
                             <div class="whitespace-pre-line text-[11px] text-slate-600 line-clamp-3">{{ $vid->summary }}</div>
                         </div>
                     </div>
 
-                    <!-- Action Buttons -->
-                    <div class="pt-3 border-t border-slate-100 space-y-2">
-                        <div class="grid grid-cols-2 gap-2">
-                            <!-- Primary Play Button (Inline Toggle) -->
-                            <button type="button" @click="toggleInline('{{ $vid->id }}')"
-                                    class="w-full py-2 px-2.5 rounded-lg text-xs font-semibold transition flex items-center justify-center space-x-1.5 shadow-xs cursor-pointer"
-                                    :class="inlinePlayingId === '{{ $vid->id }}' ? 'bg-slate-800 text-white hover:bg-slate-700' : 'bg-lime-600 hover:bg-lime-700 text-white'">
-                                <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i>
-                                <span x-text="inlinePlayingId === '{{ $vid->id }}' ? 'Tutup Pemutar' : 'Putar di Sini'"></span>
-                            </button>
-
-                            <!-- Secondary Button: Open Theater Modal -->
+                    <!-- Action Buttons: Mode Bioskop di kiri & Detail Modul di kanan -->
+                    <div class="pt-3 border-t border-slate-100">
+                        <div class="grid grid-cols-2 gap-2.5">
+                            <!-- Left: Mode Bioskop -->
                             <button type="button" @click="openPlayer(@js($vid))"
-                                    class="w-full py-2 px-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition flex items-center justify-center space-x-1.5 shadow-xs cursor-pointer">
-                                <i data-lucide="tv" class="w-3.5 h-3.5 text-lime-400"></i>
+                                    class="w-full py-2.5 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 active:scale-[0.98] text-white text-xs font-bold transition flex items-center justify-center space-x-1.5 shadow-sm hover:shadow-md cursor-pointer group/btn">
+                                <i data-lucide="tv-minimal-play" class="w-3.5 h-3.5 text-lime-400 group-hover/btn:scale-110 transition-transform"></i>
                                 <span>Mode Bioskop</span>
                             </button>
-                        </div>
 
-                        <!-- Secondary Links Bar -->
-                        <div class="flex items-center justify-between text-[11px] text-slate-500 pt-1">
-                            @if(!empty($vid->quiz_data))
-                                <button type="button" @click="openQuiz(@js($vid))"
-                                        class="text-lime-800 hover:text-lime-900 font-semibold flex items-center space-x-1 bg-lime-50 hover:bg-lime-100 px-2 py-0.5 rounded border border-lime-200 transition cursor-pointer">
-                                    <i data-lucide="help-circle" class="w-3 h-3 text-lime-600"></i>
-                                    <span>Kuis</span>
-                                </button>
-                            @endif
-
-                            <a href="{{ $vid->youtube_url }}" target="_blank"
-                               class="text-rose-600 hover:text-rose-700 font-semibold flex items-center space-x-1 hover:underline">
-                                <i data-lucide="youtube" class="w-3.5 h-3.5"></i>
-                                <span>Buka YouTube</span>
-                            </a>
-
-                            <a href="{{ route('edukasi.show', $vid->id) }}" class="text-slate-600 hover:text-slate-900 font-medium flex items-center space-x-1 hover:underline">
-                                <span>Detail Modul &rarr;</span>
+                            <!-- Right: Detail Modul (Vibrant Lime Green Primary) -->
+                            <a href="{{ route('edukasi.show', $vid->id) }}"
+                               class="w-full py-2.5 px-3 rounded-xl bg-lime-600 hover:bg-lime-700 active:scale-[0.98] text-white text-xs font-bold transition flex items-center justify-center space-x-1.5 shadow-sm hover:shadow-md cursor-pointer group/btn">
+                                <span>Detail Modul</span>
+                                <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-lime-200 group-hover/btn:translate-x-1 transition-transform"></i>
                             </a>
                         </div>
                     </div>
@@ -299,6 +274,12 @@
             </div>
         @endforelse
     </div>
+
+    @if($videos->hasPages())
+        <div class="pt-8 flex justify-center">
+            {{ $videos->links() }}
+        </div>
+    @endif
 
     <!-- Interactive Theater Player Modal (Opens when Video is Clicked) -->
     <div x-show="showPlayerModal" x-cloak
@@ -541,7 +522,7 @@
                     <!-- Quiz Actions -->
                     <div class="flex items-center justify-between pt-3 border-t border-slate-100">
                         <button type="button" @click="closeQuiz(); openPlayer(activeVideo, 'quiz')" class="text-lime-700 hover:underline text-xs font-semibold flex items-center space-x-1">
-                            <i data-lucide="tv" class="w-3.5 h-3.5"></i>
+                            <i data-lucide="tv-minimal-play" class="w-3.5 h-3.5"></i>
                             <span>Tonton Video Lagi</span>
                         </button>
                         <div class="flex items-center space-x-2">

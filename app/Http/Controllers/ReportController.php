@@ -21,6 +21,15 @@ class ReportController extends Controller
         $selectedMonth = $request->input('month', Carbon::now()->format('Y-m'));
         $data = $this->getMonthlyReportData($selectedMonth);
 
+        $startOfMonth = Carbon::createFromFormat('Y-m', $selectedMonth)->startOfMonth();
+        $endOfMonth = Carbon::createFromFormat('Y-m', $selectedMonth)->endOfMonth();
+
+        $data['records'] = MeasurementRecord::with(['child', 'measuredBy'])
+            ->whereBetween('measurement_date', [$startOfMonth, $endOfMonth])
+            ->orderBy('measurement_date', 'asc')
+            ->paginate(10)
+            ->withQueryString();
+
         return view('kader.reports.index', $data);
     }
 

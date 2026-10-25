@@ -42,13 +42,6 @@
                     <span>Bagikan Pengumuman Grup</span>
                 </a>
 
-                <!-- Button 3: Copy All Phone Numbers -->
-                <button type="button" @click="copyAllPhoneNumbers()"
-                        class="inline-flex items-center space-x-1 px-3 py-2 rounded-md border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-medium transition cursor-pointer"
-                        title="Salin semua nomor telepon untuk membuat Broadcast List di WhatsApp">
-                    <i data-lucide="copy" class="w-3.5 h-3.5 text-slate-400"></i>
-                    <span x-text="copiedAllPhones ? 'Nomor Tersalin!' : 'Salin Nomor HP'"></span>
-                </button>
             </div>
         </div>
 
@@ -81,7 +74,7 @@
         <!-- Left: Configuration Form (5 cols) -->
         <div class="lg:col-span-5 bg-white border border-slate-200 rounded-lg p-5 shadow-sm space-y-4">
             <h3 class="text-xs font-bold uppercase tracking-wider text-slate-700 border-b border-slate-100 pb-2 flex items-center space-x-1.5">
-                <i data-lucide="calendar" class="w-4 h-4 text-emerald-600"></i>
+                <i data-lucide="calendar-days" class="w-4 h-4 text-emerald-600"></i>
                 <span>Detail Jadwal Posyandu Berikutnya</span>
             </h3>
 
@@ -570,7 +563,6 @@ function broadcastManager() {
         posyanduLocation: '{{ $defaultLocation }}',
         additionalNotes: 'Mohon membawa Buku KIA/KMS balita. Tersedia penimbangan rutin, pengukuran Z-Score, dan konsultasi gizi.',
         copied: false,
-        copiedAllPhones: false,
         previewMode: 'personal',
         searchQuery: '',
         statusFilter: 'all', // 'all', 'unsent', 'sent'
@@ -728,19 +720,6 @@ function broadcastManager() {
                     localStorage.removeItem('tumbuh_sent_wa');
                     this.$nextTick(() => { if (window.lucide) window.lucide.createIcons(); });
                 }
-            });
-        },
-
-        // Copy All Clean Phone Numbers to Clipboard
-        copyAllPhoneNumbers() {
-            const phones = this.children
-                .map(ch => ch.parent_phone)
-                .filter(p => !!p && p.trim() !== '')
-                .join(', ');
-
-            navigator.clipboard.writeText(phones).then(() => {
-                this.copiedAllPhones = true;
-                setTimeout(() => this.copiedAllPhones = false, 2500);
             });
         },
 
