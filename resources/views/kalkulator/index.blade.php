@@ -57,75 +57,46 @@
 
                 <!-- Age input mode -->
                 <div>
-                    <!-- [BARIS LAMA / OLD LINE]:
-                    <div class="flex items-center justify-between mb-1.5">
-                        <label class="font-semibold text-slate-700">Usia Anak (Bulan) <span class="text-rose-500">*</span></label>
-                        <span class="text-[11px] text-slate-400 font-mono" x-text="ageInMonths + ' Bulan'"></span>
-                    </div>
-                    <input type="range" min="0" max="60" x-model.number="ageInMonths" @input="calculate()"
-                           class="w-full accent-lime-600 cursor-pointer">
-                    <div class="flex justify-between text-[10px] text-slate-400 font-mono mt-1">
-                        <span>0 Bulan (Lahir)</span>
-                        <span>24 Bln (2 Thn)</span>
-                        <span>60 Bln (5 Thn)</span>
-                    </div>
-                    -->
-
-                    <!-- [BARIS PERBAIKAN / NEW FIXED LINE]: Mengubah slider usia menjadi input manual dengan batas 0 - 60 bulan -->
                     <label class="block font-semibold text-slate-700 mb-1">Usia Anak (Bulan) <span class="text-rose-500">*</span></label>
                     <div class="relative">
                         <input type="number" min="0" max="60" step="1" x-model.number="ageInMonths"
                                @input.debounce.300ms="calculate()"
-                               @blur="clampAge()"
+                               :class="{'border-rose-400 focus:border-rose-500 focus:ring-rose-500': ageInMonths !== '' && ageInMonths !== null && (ageInMonths < 0 || ageInMonths > 60)}"
                                class="w-full px-3 py-2 rounded-md border border-slate-300 text-sm font-mono text-slate-900 focus:outline-none focus:border-lime-600 focus:ring-1 focus:ring-lime-600 tabular-nums"
                                placeholder="Contoh: 14">
                         <span class="absolute right-3 top-2.5 text-xs text-slate-400 font-medium">Bulan</span>
                     </div>
                     <p class="text-[10px] text-slate-400 mt-0.5">Rentang usia balita standar WHO: 0 hingga 60 bulan (5 tahun).</p>
-                    <p x-show="ageInMonths !== '' && ageInMonths !== null && (ageInMonths < 0 || ageInMonths > 60)" class="text-[10px] text-rose-500 mt-0.5 font-medium">Usia harus antara 0 hingga 60 bulan.</p>
+                    <p x-show="ageInMonths !== '' && ageInMonths !== null && (ageInMonths < 0 || ageInMonths > 60)" x-cloak class="text-[10px] text-rose-500 mt-0.5 font-medium">Usia harus antara 0 hingga 60 bulan.</p>
                 </div>
 
                 <!-- Height / Length -->
                 <div>
                     <label class="block font-semibold text-slate-700 mb-1">Panjang / Tinggi Badan (cm) <span class="text-rose-500">*</span></label>
                     <div class="relative">
-                        <!-- [BARIS LAMA / OLD LINE]:
-                        <input type="number" step="0.1" min="30" max="150" x-model.number="height" @input.debounce.300ms="calculate()"
-                               class="w-full px-3 py-2 rounded-md border border-slate-300 text-sm font-mono text-slate-900 focus:outline-none focus:border-lime-600 focus:ring-1 focus:ring-lime-600 tabular-nums"
-                               placeholder="Contoh: 75.5">
-                        -->
-
-                        <!-- [BARIS PERBAIKAN / NEW FIXED LINE]: Menambahkan @blur="clampHeight()" agar batas 30-150 cm tetap berlaku saat diketik manual -->
                         <input type="number" step="0.1" min="30" max="150" x-model.number="height"
                                @input.debounce.300ms="calculate()"
-                               @blur="clampHeight()"
+                               :class="{'border-rose-400 focus:border-rose-500 focus:ring-rose-500': height !== '' && height !== null && (height < 30 || height > 150)}"
                                class="w-full px-3 py-2 rounded-md border border-slate-300 text-sm font-mono text-slate-900 focus:outline-none focus:border-lime-600 focus:ring-1 focus:ring-lime-600 tabular-nums"
                                placeholder="Contoh: 75.5">
                         <span class="absolute right-3 top-2.5 text-xs text-slate-400 font-medium">cm</span>
                     </div>
                     <p class="text-[10px] text-slate-400 mt-0.5">Usia &lt; 2 thn diukur telentang (PB), &ge; 2 thn diukur berdiri (TB).</p>
-                    <p x-show="height !== '' && height !== null && (height < 30 || height > 150)" class="text-[10px] text-rose-500 mt-0.5 font-medium">Tinggi badan harus antara 30 hingga 150 cm.</p>
+                    <p x-show="height !== '' && height !== null && (height < 30 || height > 150)" x-cloak class="text-[10px] text-rose-500 mt-0.5 font-medium">Tinggi badan harus antara 30 hingga 150 cm.</p>
                 </div>
 
                 <!-- Weight -->
                 <div>
                     <label class="block font-semibold text-slate-700 mb-1">Berat Badan (kg) <span class="text-rose-500">*</span></label>
                     <div class="relative">
-                        <!-- [BARIS LAMA / OLD LINE]:
-                        <input type="number" step="0.05" min="1" max="50" x-model.number="weight" @input.debounce.300ms="calculate()"
-                               class="w-full px-3 py-2 rounded-md border border-slate-300 text-sm font-mono text-slate-900 focus:outline-none focus:border-lime-600 focus:ring-1 focus:ring-lime-600 tabular-nums"
-                               placeholder="Contoh: 9.8">
-                        -->
-
-                        <!-- [BARIS PERBAIKAN / NEW FIXED LINE]: Menambahkan @blur="clampWeight()" agar batas 1-50 kg tetap berlaku saat diketik manual -->
                         <input type="number" step="0.05" min="1" max="50" x-model.number="weight"
                                @input.debounce.300ms="calculate()"
-                               @blur="clampWeight()"
+                               :class="{'border-rose-400 focus:border-rose-500 focus:ring-rose-500': weight !== '' && weight !== null && (weight < 1 || weight > 50)}"
                                class="w-full px-3 py-2 rounded-md border border-slate-300 text-sm font-mono text-slate-900 focus:outline-none focus:border-lime-600 focus:ring-1 focus:ring-lime-600 tabular-nums"
                                placeholder="Contoh: 9.8">
                         <span class="absolute right-3 top-2.5 text-xs text-slate-400 font-medium">kg</span>
                     </div>
-                    <p x-show="weight !== '' && weight !== null && (weight < 1 || weight > 50)" class="text-[10px] text-rose-500 mt-0.5 font-medium">Berat badan harus antara 1 hingga 50 kg.</p>
+                    <p x-show="weight !== '' && weight !== null && (weight < 1 || weight > 50)" x-cloak class="text-[10px] text-rose-500 mt-0.5 font-medium">Berat badan harus antara 1 hingga 50 kg.</p>
                 </div>
 
                 <!-- Quick Presets -->
@@ -149,9 +120,20 @@
         <!-- Right: Live Result & Clinical Analysis (7 cols) -->
         <div class="lg:col-span-7 space-y-4">
 
+            <!-- Banner Peringatan Input Tidak Lengkap / Valid -->
+            <div x-show="!isValid" x-cloak class="p-3.5 rounded-lg bg-amber-50 border border-amber-200 text-amber-800 text-xs flex items-center space-x-2.5">
+                <i data-lucide="info" class="w-4 h-4 text-amber-600 shrink-0"></i>
+                <span>Data antropometri belum lengkap atau di luar batas baku WHO (0–60 bln, 30–150 cm, 1–50 kg). Perhitungan diagnosis ditangguhkan sampai data valid.</span>
+            </div>
+
             <!-- Result Card -->
-            <div class="bg-white border border-slate-200 rounded-lg p-5 shadow-sm space-y-5"
-                 :class="{'border-rose-300 ring-1 ring-rose-200': result.alert_level === 'danger', 'border-amber-300 ring-1 ring-amber-200': result.alert_level === 'warning', 'border-emerald-300': result.alert_level === 'normal'}">
+            <div class="bg-white border border-slate-200 rounded-lg p-5 shadow-sm space-y-5 transition-opacity duration-200"
+                 :class="{
+                     'opacity-40 pointer-events-none select-none': !isValid,
+                     'border-rose-300 ring-1 ring-rose-200': isValid && result.alert_level === 'danger',
+                     'border-amber-300 ring-1 ring-amber-200': isValid && result.alert_level === 'warning',
+                     'border-emerald-300': isValid && result.alert_level === 'normal'
+                 }">
                 
                 <!-- Status Header Banner -->
                 <div class="flex items-start justify-between gap-3">
@@ -278,36 +260,14 @@ function growthCalculator() {
             }
             this.calculate();
         },
-        // [BARIS PERBAIKAN / NEW FIXED LINE]: Fungsi pembatas nilai (clamp) otomatis saat selesai diketik manual
-        clampAge() {
-            if (this.ageInMonths === '' || this.ageInMonths === null) return;
-            if (this.ageInMonths < 0) this.ageInMonths = 0;
-            if (this.ageInMonths > 60) this.ageInMonths = 60;
-            this.calculate();
+        get isValid() {
+            if (this.ageInMonths === '' || this.ageInMonths === null || this.ageInMonths < 0 || this.ageInMonths > 60) return false;
+            if (this.height === '' || this.height === null || this.height < 30 || this.height > 150) return false;
+            if (this.weight === '' || this.weight === null || this.weight < 1 || this.weight > 50) return false;
+            return true;
         },
-        clampHeight() {
-            if (this.height === '' || this.height === null) return;
-            if (this.height < 30) this.height = 30;
-            if (this.height > 150) this.height = 150;
-            this.calculate();
-        },
-        clampWeight() {
-            if (this.weight === '' || this.weight === null) return;
-            if (this.weight < 1) this.weight = 1;
-            if (this.weight > 50) this.weight = 50;
-            this.calculate();
-        },
-
-        /* [BARIS LAMA / OLD LINE]:
         calculate() {
-            if (!this.height || !this.weight) return;
-        */
-        // [BARIS PERBAIKAN / NEW FIXED LINE]: Validasi rentang agar tidak request ke backend jika angka di luar batas saat diketik manual
-        calculate() {
-            if (!this.height || !this.weight || this.ageInMonths === '' || this.ageInMonths === null) return;
-            if (this.ageInMonths < 0 || this.ageInMonths > 60) return;
-            if (this.height < 30 || this.height > 150) return;
-            if (this.weight < 1 || this.weight > 50) return;
+            if (!this.isValid) return;
 
             fetch('{{ route('kalkulator.calculate') }}', {
                 method: 'POST',
@@ -318,7 +278,7 @@ function growthCalculator() {
                 },
                 body: JSON.stringify({
                     gender: this.gender,
-                    age_in_months: this.ageInMonths,
+                    age_in_months: parseInt(this.ageInMonths),
                     height: parseFloat(this.height),
                     weight: parseFloat(this.weight),
                 })
