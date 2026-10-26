@@ -497,6 +497,8 @@ class TumbuhApplicationTest extends TestCase
         $response->assertSee('Grafik Digital KMS Balita');
         $response->assertSee('Panduan Nutrisi &amp; Rekomendasi Menu Makan (AI)', false);
         $response->assertSee(route('parent.menu-gizi', $child->public_token));
+        $response->assertSee(route('kalkulator.index'));
+        $response->assertSee(route('edukasi.index'));
         $response->assertDontSee('id="parent_budget"', false);
         $response->assertDontSee('parentAiWidget()', false);
         $response->assertDontSee('Meracik Menu AI...', false);

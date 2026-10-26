@@ -44,6 +44,11 @@
                         <span>Racik Menu AI</span>
                     </a>
 
+                    <a href="{{ route('kalkulator.index') }}" class="text-slate-600 hover:text-lime-700 font-medium flex items-center space-x-1.5 px-2 py-1.5 rounded-md {{ request()->routeIs('kalkulator.*') ? 'text-lime-700 font-bold' : '' }}">
+                        <i data-lucide="calculator" class="w-3.5 h-3.5"></i>
+                        <span class="hidden sm:inline">Kalkulator</span>
+                    </a>
+
                     <a href="{{ route('edukasi.index') }}" class="text-slate-600 hover:text-lime-700 font-medium flex items-center space-x-1.5 px-2 py-1.5 rounded-md {{ request()->routeIs('edukasi.*') ? 'text-lime-700 font-bold' : '' }}">
                         <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
                         <span class="hidden sm:inline">Edukasi</span>
