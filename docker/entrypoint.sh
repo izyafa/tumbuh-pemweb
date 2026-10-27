@@ -37,6 +37,12 @@ if [ "${RUN_MIGRATIONS:-true}" = "true" ]; then
     php artisan migrate --force || echo "Warning: Migration failed or database not ready."
 fi
 
+# Run database seeder if explicitly requested (useful for first-time deploy on Render)
+if [ "${RUN_SEEDER:-false}" = "true" ]; then
+    echo "==> Running database seeders..."
+    php artisan db:seed --force || echo "Warning: Database seeding failed."
+fi
+
 # Execute CMD passed to container or default to supervisord
 if [ "$#" -gt 0 ]; then
     exec "$@"

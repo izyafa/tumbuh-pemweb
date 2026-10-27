@@ -1,0 +1,2792 @@
+{
+  "tb_u": {
+    "male": {
+      "0": {
+        "sd_minus_3": 44.2,
+        "sd_minus_2": 46.1,
+        "median": 49.9,
+        "sd_plus_2": 53.7,
+        "sd_val": 3.8
+      },
+      "1": {
+        "sd_minus_3": 48.9,
+        "sd_minus_2": 50.8,
+        "median": 54.7,
+        "sd_plus_2": 58.6,
+        "sd_val": 3.9
+      },
+      "2": {
+        "sd_minus_3": 52.4,
+        "sd_minus_2": 54.4,
+        "median": 58.4,
+        "sd_plus_2": 62.4,
+        "sd_val": 4.0
+      },
+      "3": {
+        "sd_minus_3": 55.3,
+        "sd_minus_2": 57.3,
+        "median": 61.4,
+        "sd_plus_2": 65.5,
+        "sd_val": 4.1
+      },
+      "4": {
+        "sd_minus_3": 57.6,
+        "sd_minus_2": 59.7,
+        "median": 63.9,
+        "sd_plus_2": 68.0,
+        "sd_val": 4.2
+      },
+      "5": {
+        "sd_minus_3": 59.6,
+        "sd_minus_2": 61.7,
+        "median": 65.9,
+        "sd_plus_2": 70.1,
+        "sd_val": 4.2
+      },
+      "6": {
+        "sd_minus_3": 61.2,
+        "sd_minus_2": 63.3,
+        "median": 67.6,
+        "sd_plus_2": 71.9,
+        "sd_val": 4.3
+      },
+      "7": {
+        "sd_minus_3": 62.7,
+        "sd_minus_2": 64.8,
+        "median": 69.2,
+        "sd_plus_2": 73.5,
+        "sd_val": 4.4
+      },
+      "8": {
+        "sd_minus_3": 64.0,
+        "sd_minus_2": 66.2,
+        "median": 70.6,
+        "sd_plus_2": 75.0,
+        "sd_val": 4.4
+      },
+      "9": {
+        "sd_minus_3": 65.2,
+        "sd_minus_2": 67.5,
+        "median": 72.0,
+        "sd_plus_2": 76.5,
+        "sd_val": 4.5
+      },
+      "10": {
+        "sd_minus_3": 66.4,
+        "sd_minus_2": 68.7,
+        "median": 73.3,
+        "sd_plus_2": 77.9,
+        "sd_val": 4.6
+      },
+      "11": {
+        "sd_minus_3": 67.6,
+        "sd_minus_2": 69.9,
+        "median": 74.5,
+        "sd_plus_2": 79.2,
+        "sd_val": 4.6
+      },
+      "12": {
+        "sd_minus_3": 68.6,
+        "sd_minus_2": 71.0,
+        "median": 75.7,
+        "sd_plus_2": 80.5,
+        "sd_val": 4.7
+      },
+      "13": {
+        "sd_minus_3": 69.6,
+        "sd_minus_2": 72.03,
+        "median": 76.83,
+        "sd_plus_2": 81.73,
+        "sd_val": 4.8
+      },
+      "14": {
+        "sd_minus_3": 70.6,
+        "sd_minus_2": 73.07,
+        "median": 77.97,
+        "sd_plus_2": 82.97,
+        "sd_val": 4.9
+      },
+      "15": {
+        "sd_minus_3": 71.6,
+        "sd_minus_2": 74.1,
+        "median": 79.1,
+        "sd_plus_2": 84.2,
+        "sd_val": 5.0
+      },
+      "16": {
+        "sd_minus_3": 72.47,
+        "sd_minus_2": 75.03,
+        "median": 80.17,
+        "sd_plus_2": 85.37,
+        "sd_val": 5.13
+      },
+      "17": {
+        "sd_minus_3": 73.33,
+        "sd_minus_2": 75.97,
+        "median": 81.23,
+        "sd_plus_2": 86.53,
+        "sd_val": 5.27
+      },
+      "18": {
+        "sd_minus_3": 74.2,
+        "sd_minus_2": 76.9,
+        "median": 82.3,
+        "sd_plus_2": 87.7,
+        "sd_val": 5.4
+      },
+      "19": {
+        "sd_minus_3": 74.97,
+        "sd_minus_2": 77.73,
+        "median": 83.23,
+        "sd_plus_2": 88.77,
+        "sd_val": 5.5
+      },
+      "20": {
+        "sd_minus_3": 75.73,
+        "sd_minus_2": 78.57,
+        "median": 84.17,
+        "sd_plus_2": 89.83,
+        "sd_val": 5.6
+      },
+      "21": {
+        "sd_minus_3": 76.5,
+        "sd_minus_2": 79.4,
+        "median": 85.1,
+        "sd_plus_2": 90.9,
+        "sd_val": 5.7
+      },
+      "22": {
+        "sd_minus_3": 77.23,
+        "sd_minus_2": 80.17,
+        "median": 86.0,
+        "sd_plus_2": 91.9,
+        "sd_val": 5.83
+      },
+      "23": {
+        "sd_minus_3": 77.97,
+        "sd_minus_2": 80.93,
+        "median": 86.9,
+        "sd_plus_2": 92.9,
+        "sd_val": 5.97
+      },
+      "24": {
+        "sd_minus_3": 78.7,
+        "sd_minus_2": 81.7,
+        "median": 87.8,
+        "sd_plus_2": 93.9,
+        "sd_val": 6.1
+      },
+      "25": {
+        "sd_minus_3": 79.33,
+        "sd_minus_2": 82.37,
+        "median": 88.55,
+        "sd_plus_2": 94.73,
+        "sd_val": 6.18
+      },
+      "26": {
+        "sd_minus_3": 79.97,
+        "sd_minus_2": 83.03,
+        "median": 89.3,
+        "sd_plus_2": 95.57,
+        "sd_val": 6.27
+      },
+      "27": {
+        "sd_minus_3": 80.6,
+        "sd_minus_2": 83.7,
+        "median": 90.05,
+        "sd_plus_2": 96.4,
+        "sd_val": 6.35
+      },
+      "28": {
+        "sd_minus_3": 81.23,
+        "sd_minus_2": 84.37,
+        "median": 90.8,
+        "sd_plus_2": 97.23,
+        "sd_val": 6.43
+      },
+      "29": {
+        "sd_minus_3": 81.87,
+        "sd_minus_2": 85.03,
+        "median": 91.55,
+        "sd_plus_2": 98.07,
+        "sd_val": 6.52
+      },
+      "30": {
+        "sd_minus_3": 82.5,
+        "sd_minus_2": 85.7,
+        "median": 92.3,
+        "sd_plus_2": 98.9,
+        "sd_val": 6.6
+      },
+      "31": {
+        "sd_minus_3": 83.08,
+        "sd_minus_2": 86.32,
+        "median": 92.93,
+        "sd_plus_2": 99.58,
+        "sd_val": 6.62
+      },
+      "32": {
+        "sd_minus_3": 83.67,
+        "sd_minus_2": 86.93,
+        "median": 93.57,
+        "sd_plus_2": 100.27,
+        "sd_val": 6.63
+      },
+      "33": {
+        "sd_minus_3": 84.25,
+        "sd_minus_2": 87.55,
+        "median": 94.2,
+        "sd_plus_2": 100.95,
+        "sd_val": 6.65
+      },
+      "34": {
+        "sd_minus_3": 84.83,
+        "sd_minus_2": 88.17,
+        "median": 94.83,
+        "sd_plus_2": 101.63,
+        "sd_val": 6.67
+      },
+      "35": {
+        "sd_minus_3": 85.42,
+        "sd_minus_2": 88.78,
+        "median": 95.47,
+        "sd_plus_2": 102.32,
+        "sd_val": 6.68
+      },
+      "36": {
+        "sd_minus_3": 86.0,
+        "sd_minus_2": 89.4,
+        "median": 96.1,
+        "sd_plus_2": 103.0,
+        "sd_val": 6.7
+      },
+      "37": {
+        "sd_minus_3": 86.5,
+        "sd_minus_2": 89.95,
+        "median": 96.7,
+        "sd_plus_2": 103.67,
+        "sd_val": 6.75
+      },
+      "38": {
+        "sd_minus_3": 87.0,
+        "sd_minus_2": 90.5,
+        "median": 97.3,
+        "sd_plus_2": 104.33,
+        "sd_val": 6.8
+      },
+      "39": {
+        "sd_minus_3": 87.5,
+        "sd_minus_2": 91.05,
+        "median": 97.9,
+        "sd_plus_2": 105.0,
+        "sd_val": 6.85
+      },
+      "40": {
+        "sd_minus_3": 88.0,
+        "sd_minus_2": 91.6,
+        "median": 98.5,
+        "sd_plus_2": 105.67,
+        "sd_val": 6.9
+      },
+      "41": {
+        "sd_minus_3": 88.5,
+        "sd_minus_2": 92.15,
+        "median": 99.1,
+        "sd_plus_2": 106.33,
+        "sd_val": 6.95
+      },
+      "42": {
+        "sd_minus_3": 89.0,
+        "sd_minus_2": 92.7,
+        "median": 99.7,
+        "sd_plus_2": 107.0,
+        "sd_val": 7.0
+      },
+      "43": {
+        "sd_minus_3": 89.48,
+        "sd_minus_2": 93.2,
+        "median": 100.25,
+        "sd_plus_2": 107.58,
+        "sd_val": 7.05
+      },
+      "44": {
+        "sd_minus_3": 89.97,
+        "sd_minus_2": 93.7,
+        "median": 100.8,
+        "sd_plus_2": 108.17,
+        "sd_val": 7.1
+      },
+      "45": {
+        "sd_minus_3": 90.45,
+        "sd_minus_2": 94.2,
+        "median": 101.35,
+        "sd_plus_2": 108.75,
+        "sd_val": 7.15
+      },
+      "46": {
+        "sd_minus_3": 90.93,
+        "sd_minus_2": 94.7,
+        "median": 101.9,
+        "sd_plus_2": 109.33,
+        "sd_val": 7.2
+      },
+      "47": {
+        "sd_minus_3": 91.42,
+        "sd_minus_2": 95.2,
+        "median": 102.45,
+        "sd_plus_2": 109.92,
+        "sd_val": 7.25
+      },
+      "48": {
+        "sd_minus_3": 91.9,
+        "sd_minus_2": 95.7,
+        "median": 103.0,
+        "sd_plus_2": 110.5,
+        "sd_val": 7.3
+      },
+      "49": {
+        "sd_minus_3": 92.35,
+        "sd_minus_2": 96.18,
+        "median": 103.52,
+        "sd_plus_2": 111.08,
+        "sd_val": 7.33
+      },
+      "50": {
+        "sd_minus_3": 92.8,
+        "sd_minus_2": 96.67,
+        "median": 104.03,
+        "sd_plus_2": 111.67,
+        "sd_val": 7.37
+      },
+      "51": {
+        "sd_minus_3": 93.25,
+        "sd_minus_2": 97.15,
+        "median": 104.55,
+        "sd_plus_2": 112.25,
+        "sd_val": 7.4
+      },
+      "52": {
+        "sd_minus_3": 93.7,
+        "sd_minus_2": 97.63,
+        "median": 105.07,
+        "sd_plus_2": 112.83,
+        "sd_val": 7.43
+      },
+      "53": {
+        "sd_minus_3": 94.15,
+        "sd_minus_2": 98.12,
+        "median": 105.58,
+        "sd_plus_2": 113.42,
+        "sd_val": 7.47
+      },
+      "54": {
+        "sd_minus_3": 94.6,
+        "sd_minus_2": 98.6,
+        "median": 106.1,
+        "sd_plus_2": 114.0,
+        "sd_val": 7.5
+      },
+      "55": {
+        "sd_minus_3": 95.02,
+        "sd_minus_2": 99.05,
+        "median": 106.62,
+        "sd_plus_2": 114.58,
+        "sd_val": 7.57
+      },
+      "56": {
+        "sd_minus_3": 95.43,
+        "sd_minus_2": 99.5,
+        "median": 107.13,
+        "sd_plus_2": 115.17,
+        "sd_val": 7.63
+      },
+      "57": {
+        "sd_minus_3": 95.85,
+        "sd_minus_2": 99.95,
+        "median": 107.65,
+        "sd_plus_2": 115.75,
+        "sd_val": 7.7
+      },
+      "58": {
+        "sd_minus_3": 96.27,
+        "sd_minus_2": 100.4,
+        "median": 108.17,
+        "sd_plus_2": 116.33,
+        "sd_val": 7.77
+      },
+      "59": {
+        "sd_minus_3": 96.68,
+        "sd_minus_2": 100.85,
+        "median": 108.68,
+        "sd_plus_2": 116.92,
+        "sd_val": 7.83
+      },
+      "60": {
+        "sd_minus_3": 97.1,
+        "sd_minus_2": 101.3,
+        "median": 109.2,
+        "sd_plus_2": 117.5,
+        "sd_val": 7.9
+      }
+    },
+    "female": {
+      "0": {
+        "sd_minus_3": 43.6,
+        "sd_minus_2": 45.4,
+        "median": 49.1,
+        "sd_plus_2": 52.9,
+        "sd_val": 3.7
+      },
+      "1": {
+        "sd_minus_3": 47.8,
+        "sd_minus_2": 49.8,
+        "median": 53.7,
+        "sd_plus_2": 57.6,
+        "sd_val": 3.9
+      },
+      "2": {
+        "sd_minus_3": 51.0,
+        "sd_minus_2": 53.0,
+        "median": 57.1,
+        "sd_plus_2": 61.1,
+        "sd_val": 4.1
+      },
+      "3": {
+        "sd_minus_3": 53.5,
+        "sd_minus_2": 55.6,
+        "median": 59.8,
+        "sd_plus_2": 64.0,
+        "sd_val": 4.2
+      },
+      "4": {
+        "sd_minus_3": 55.6,
+        "sd_minus_2": 57.8,
+        "median": 62.1,
+        "sd_plus_2": 66.4,
+        "sd_val": 4.3
+      },
+      "5": {
+        "sd_minus_3": 57.4,
+        "sd_minus_2": 59.6,
+        "median": 64.0,
+        "sd_plus_2": 68.5,
+        "sd_val": 4.4
+      },
+      "6": {
+        "sd_minus_3": 58.9,
+        "sd_minus_2": 61.2,
+        "median": 65.7,
+        "sd_plus_2": 70.3,
+        "sd_val": 4.5
+      },
+      "7": {
+        "sd_minus_3": 60.3,
+        "sd_minus_2": 62.7,
+        "median": 67.3,
+        "sd_plus_2": 71.9,
+        "sd_val": 4.6
+      },
+      "8": {
+        "sd_minus_3": 61.7,
+        "sd_minus_2": 64.0,
+        "median": 68.7,
+        "sd_plus_2": 73.5,
+        "sd_val": 4.7
+      },
+      "9": {
+        "sd_minus_3": 62.9,
+        "sd_minus_2": 65.3,
+        "median": 70.1,
+        "sd_plus_2": 75.0,
+        "sd_val": 4.8
+      },
+      "10": {
+        "sd_minus_3": 64.1,
+        "sd_minus_2": 66.5,
+        "median": 71.5,
+        "sd_plus_2": 76.4,
+        "sd_val": 5.0
+      },
+      "11": {
+        "sd_minus_3": 65.2,
+        "sd_minus_2": 67.7,
+        "median": 72.8,
+        "sd_plus_2": 77.8,
+        "sd_val": 5.1
+      },
+      "12": {
+        "sd_minus_3": 66.3,
+        "sd_minus_2": 68.9,
+        "median": 74.0,
+        "sd_plus_2": 79.2,
+        "sd_val": 5.1
+      },
+      "13": {
+        "sd_minus_3": 67.3,
+        "sd_minus_2": 69.93,
+        "median": 75.17,
+        "sd_plus_2": 80.47,
+        "sd_val": 5.23
+      },
+      "14": {
+        "sd_minus_3": 68.3,
+        "sd_minus_2": 70.97,
+        "median": 76.33,
+        "sd_plus_2": 81.73,
+        "sd_val": 5.37
+      },
+      "15": {
+        "sd_minus_3": 69.3,
+        "sd_minus_2": 72.0,
+        "median": 77.5,
+        "sd_plus_2": 83.0,
+        "sd_val": 5.5
+      },
+      "16": {
+        "sd_minus_3": 70.2,
+        "sd_minus_2": 72.97,
+        "median": 78.57,
+        "sd_plus_2": 84.17,
+        "sd_val": 5.6
+      },
+      "17": {
+        "sd_minus_3": 71.1,
+        "sd_minus_2": 73.93,
+        "median": 79.63,
+        "sd_plus_2": 85.33,
+        "sd_val": 5.7
+      },
+      "18": {
+        "sd_minus_3": 72.0,
+        "sd_minus_2": 74.9,
+        "median": 80.7,
+        "sd_plus_2": 86.5,
+        "sd_val": 5.8
+      },
+      "19": {
+        "sd_minus_3": 72.83,
+        "sd_minus_2": 75.77,
+        "median": 81.7,
+        "sd_plus_2": 87.6,
+        "sd_val": 5.93
+      },
+      "20": {
+        "sd_minus_3": 73.67,
+        "sd_minus_2": 76.63,
+        "median": 82.7,
+        "sd_plus_2": 88.7,
+        "sd_val": 6.07
+      },
+      "21": {
+        "sd_minus_3": 74.5,
+        "sd_minus_2": 77.5,
+        "median": 83.7,
+        "sd_plus_2": 89.8,
+        "sd_val": 6.2
+      },
+      "22": {
+        "sd_minus_3": 75.23,
+        "sd_minus_2": 78.33,
+        "median": 84.6,
+        "sd_plus_2": 90.83,
+        "sd_val": 6.27
+      },
+      "23": {
+        "sd_minus_3": 75.97,
+        "sd_minus_2": 79.17,
+        "median": 85.5,
+        "sd_plus_2": 91.87,
+        "sd_val": 6.33
+      },
+      "24": {
+        "sd_minus_3": 76.7,
+        "sd_minus_2": 80.0,
+        "median": 86.4,
+        "sd_plus_2": 92.9,
+        "sd_val": 6.4
+      },
+      "25": {
+        "sd_minus_3": 77.33,
+        "sd_minus_2": 80.68,
+        "median": 87.2,
+        "sd_plus_2": 93.8,
+        "sd_val": 6.52
+      },
+      "26": {
+        "sd_minus_3": 77.97,
+        "sd_minus_2": 81.37,
+        "median": 88.0,
+        "sd_plus_2": 94.7,
+        "sd_val": 6.63
+      },
+      "27": {
+        "sd_minus_3": 78.6,
+        "sd_minus_2": 82.05,
+        "median": 88.8,
+        "sd_plus_2": 95.6,
+        "sd_val": 6.75
+      },
+      "28": {
+        "sd_minus_3": 79.23,
+        "sd_minus_2": 82.73,
+        "median": 89.6,
+        "sd_plus_2": 96.5,
+        "sd_val": 6.87
+      },
+      "29": {
+        "sd_minus_3": 79.87,
+        "sd_minus_2": 83.42,
+        "median": 90.4,
+        "sd_plus_2": 97.4,
+        "sd_val": 6.98
+      },
+      "30": {
+        "sd_minus_3": 80.5,
+        "sd_minus_2": 84.1,
+        "median": 91.2,
+        "sd_plus_2": 98.3,
+        "sd_val": 7.1
+      },
+      "31": {
+        "sd_minus_3": 81.1,
+        "sd_minus_2": 84.73,
+        "median": 91.85,
+        "sd_plus_2": 99.03,
+        "sd_val": 7.12
+      },
+      "32": {
+        "sd_minus_3": 81.7,
+        "sd_minus_2": 85.37,
+        "median": 92.5,
+        "sd_plus_2": 99.77,
+        "sd_val": 7.13
+      },
+      "33": {
+        "sd_minus_3": 82.3,
+        "sd_minus_2": 86.0,
+        "median": 93.15,
+        "sd_plus_2": 100.5,
+        "sd_val": 7.15
+      },
+      "34": {
+        "sd_minus_3": 82.9,
+        "sd_minus_2": 86.63,
+        "median": 93.8,
+        "sd_plus_2": 101.23,
+        "sd_val": 7.17
+      },
+      "35": {
+        "sd_minus_3": 83.5,
+        "sd_minus_2": 87.27,
+        "median": 94.45,
+        "sd_plus_2": 101.97,
+        "sd_val": 7.18
+      },
+      "36": {
+        "sd_minus_3": 84.1,
+        "sd_minus_2": 87.9,
+        "median": 95.1,
+        "sd_plus_2": 102.7,
+        "sd_val": 7.2
+      },
+      "37": {
+        "sd_minus_3": 84.62,
+        "sd_minus_2": 88.45,
+        "median": 95.75,
+        "sd_plus_2": 103.38,
+        "sd_val": 7.3
+      },
+      "38": {
+        "sd_minus_3": 85.13,
+        "sd_minus_2": 89.0,
+        "median": 96.4,
+        "sd_plus_2": 104.07,
+        "sd_val": 7.4
+      },
+      "39": {
+        "sd_minus_3": 85.65,
+        "sd_minus_2": 89.55,
+        "median": 97.05,
+        "sd_plus_2": 104.75,
+        "sd_val": 7.5
+      },
+      "40": {
+        "sd_minus_3": 86.17,
+        "sd_minus_2": 90.1,
+        "median": 97.7,
+        "sd_plus_2": 105.43,
+        "sd_val": 7.6
+      },
+      "41": {
+        "sd_minus_3": 86.68,
+        "sd_minus_2": 90.65,
+        "median": 98.35,
+        "sd_plus_2": 106.12,
+        "sd_val": 7.7
+      },
+      "42": {
+        "sd_minus_3": 87.2,
+        "sd_minus_2": 91.2,
+        "median": 99.0,
+        "sd_plus_2": 106.8,
+        "sd_val": 7.8
+      },
+      "43": {
+        "sd_minus_3": 87.7,
+        "sd_minus_2": 91.73,
+        "median": 99.58,
+        "sd_plus_2": 107.45,
+        "sd_val": 7.85
+      },
+      "44": {
+        "sd_minus_3": 88.2,
+        "sd_minus_2": 92.27,
+        "median": 100.17,
+        "sd_plus_2": 108.1,
+        "sd_val": 7.9
+      },
+      "45": {
+        "sd_minus_3": 88.7,
+        "sd_minus_2": 92.8,
+        "median": 100.75,
+        "sd_plus_2": 108.75,
+        "sd_val": 7.95
+      },
+      "46": {
+        "sd_minus_3": 89.2,
+        "sd_minus_2": 93.33,
+        "median": 101.33,
+        "sd_plus_2": 109.4,
+        "sd_val": 8.0
+      },
+      "47": {
+        "sd_minus_3": 89.7,
+        "sd_minus_2": 93.87,
+        "median": 101.92,
+        "sd_plus_2": 110.05,
+        "sd_val": 8.05
+      },
+      "48": {
+        "sd_minus_3": 90.2,
+        "sd_minus_2": 94.4,
+        "median": 102.5,
+        "sd_plus_2": 110.7,
+        "sd_val": 8.1
+      },
+      "49": {
+        "sd_minus_3": 90.67,
+        "sd_minus_2": 94.9,
+        "median": 103.05,
+        "sd_plus_2": 111.32,
+        "sd_val": 8.15
+      },
+      "50": {
+        "sd_minus_3": 91.13,
+        "sd_minus_2": 95.4,
+        "median": 103.6,
+        "sd_plus_2": 111.93,
+        "sd_val": 8.2
+      },
+      "51": {
+        "sd_minus_3": 91.6,
+        "sd_minus_2": 95.9,
+        "median": 104.15,
+        "sd_plus_2": 112.55,
+        "sd_val": 8.25
+      },
+      "52": {
+        "sd_minus_3": 92.07,
+        "sd_minus_2": 96.4,
+        "median": 104.7,
+        "sd_plus_2": 113.17,
+        "sd_val": 8.3
+      },
+      "53": {
+        "sd_minus_3": 92.53,
+        "sd_minus_2": 96.9,
+        "median": 105.25,
+        "sd_plus_2": 113.78,
+        "sd_val": 8.35
+      },
+      "54": {
+        "sd_minus_3": 93.0,
+        "sd_minus_2": 97.4,
+        "median": 105.8,
+        "sd_plus_2": 114.4,
+        "sd_val": 8.4
+      },
+      "55": {
+        "sd_minus_3": 93.42,
+        "sd_minus_2": 97.85,
+        "median": 106.32,
+        "sd_plus_2": 115.0,
+        "sd_val": 8.47
+      },
+      "56": {
+        "sd_minus_3": 93.83,
+        "sd_minus_2": 98.3,
+        "median": 106.83,
+        "sd_plus_2": 115.6,
+        "sd_val": 8.53
+      },
+      "57": {
+        "sd_minus_3": 94.25,
+        "sd_minus_2": 98.75,
+        "median": 107.35,
+        "sd_plus_2": 116.2,
+        "sd_val": 8.6
+      },
+      "58": {
+        "sd_minus_3": 94.67,
+        "sd_minus_2": 99.2,
+        "median": 107.87,
+        "sd_plus_2": 116.8,
+        "sd_val": 8.67
+      },
+      "59": {
+        "sd_minus_3": 95.08,
+        "sd_minus_2": 99.65,
+        "median": 108.38,
+        "sd_plus_2": 117.4,
+        "sd_val": 8.73
+      },
+      "60": {
+        "sd_minus_3": 95.5,
+        "sd_minus_2": 100.1,
+        "median": 108.9,
+        "sd_plus_2": 118.0,
+        "sd_val": 8.8
+      }
+    }
+  },
+  "bb_u": {
+    "male": {
+      "0": {
+        "sd_minus_3": 2.1,
+        "sd_minus_2": 2.5,
+        "median": 3.3,
+        "sd_plus_2": 4.4,
+        "sd_val": 0.8
+      },
+      "1": {
+        "sd_minus_3": 2.9,
+        "sd_minus_2": 3.4,
+        "median": 4.5,
+        "sd_plus_2": 5.8,
+        "sd_val": 1.1
+      },
+      "2": {
+        "sd_minus_3": 3.8,
+        "sd_minus_2": 4.3,
+        "median": 5.6,
+        "sd_plus_2": 7.1,
+        "sd_val": 1.3
+      },
+      "3": {
+        "sd_minus_3": 4.4,
+        "sd_minus_2": 5.0,
+        "median": 6.4,
+        "sd_plus_2": 8.0,
+        "sd_val": 1.4
+      },
+      "4": {
+        "sd_minus_3": 4.9,
+        "sd_minus_2": 5.6,
+        "median": 7.0,
+        "sd_plus_2": 8.7,
+        "sd_val": 1.4
+      },
+      "5": {
+        "sd_minus_3": 5.3,
+        "sd_minus_2": 6.0,
+        "median": 7.5,
+        "sd_plus_2": 9.3,
+        "sd_val": 1.5
+      },
+      "6": {
+        "sd_minus_3": 5.7,
+        "sd_minus_2": 6.4,
+        "median": 7.9,
+        "sd_plus_2": 9.8,
+        "sd_val": 1.5
+      },
+      "7": {
+        "sd_minus_3": 5.9,
+        "sd_minus_2": 6.7,
+        "median": 8.3,
+        "sd_plus_2": 10.3,
+        "sd_val": 1.6
+      },
+      "8": {
+        "sd_minus_3": 6.2,
+        "sd_minus_2": 6.9,
+        "median": 8.6,
+        "sd_plus_2": 10.7,
+        "sd_val": 1.7
+      },
+      "9": {
+        "sd_minus_3": 6.4,
+        "sd_minus_2": 7.1,
+        "median": 8.9,
+        "sd_plus_2": 11.0,
+        "sd_val": 1.8
+      },
+      "10": {
+        "sd_minus_3": 6.6,
+        "sd_minus_2": 7.4,
+        "median": 9.2,
+        "sd_plus_2": 11.4,
+        "sd_val": 1.8
+      },
+      "11": {
+        "sd_minus_3": 6.8,
+        "sd_minus_2": 7.6,
+        "median": 9.4,
+        "sd_plus_2": 11.7,
+        "sd_val": 1.8
+      },
+      "12": {
+        "sd_minus_3": 6.9,
+        "sd_minus_2": 7.7,
+        "median": 9.6,
+        "sd_plus_2": 12.0,
+        "sd_val": 1.9
+      },
+      "13": {
+        "sd_minus_3": 7.07,
+        "sd_minus_2": 7.9,
+        "median": 9.83,
+        "sd_plus_2": 12.27,
+        "sd_val": 1.93
+      },
+      "14": {
+        "sd_minus_3": 7.23,
+        "sd_minus_2": 8.1,
+        "median": 10.07,
+        "sd_plus_2": 12.53,
+        "sd_val": 1.97
+      },
+      "15": {
+        "sd_minus_3": 7.4,
+        "sd_minus_2": 8.3,
+        "median": 10.3,
+        "sd_plus_2": 12.8,
+        "sd_val": 2.0
+      },
+      "16": {
+        "sd_minus_3": 7.57,
+        "sd_minus_2": 8.47,
+        "median": 10.5,
+        "sd_plus_2": 13.1,
+        "sd_val": 2.03
+      },
+      "17": {
+        "sd_minus_3": 7.73,
+        "sd_minus_2": 8.63,
+        "median": 10.7,
+        "sd_plus_2": 13.4,
+        "sd_val": 2.07
+      },
+      "18": {
+        "sd_minus_3": 7.9,
+        "sd_minus_2": 8.8,
+        "median": 10.9,
+        "sd_plus_2": 13.7,
+        "sd_val": 2.1
+      },
+      "19": {
+        "sd_minus_3": 8.03,
+        "sd_minus_2": 8.93,
+        "median": 11.1,
+        "sd_plus_2": 13.97,
+        "sd_val": 2.17
+      },
+      "20": {
+        "sd_minus_3": 8.17,
+        "sd_minus_2": 9.07,
+        "median": 11.3,
+        "sd_plus_2": 14.23,
+        "sd_val": 2.23
+      },
+      "21": {
+        "sd_minus_3": 8.3,
+        "sd_minus_2": 9.2,
+        "median": 11.5,
+        "sd_plus_2": 14.5,
+        "sd_val": 2.3
+      },
+      "22": {
+        "sd_minus_3": 8.4,
+        "sd_minus_2": 9.37,
+        "median": 11.73,
+        "sd_plus_2": 14.77,
+        "sd_val": 2.37
+      },
+      "23": {
+        "sd_minus_3": 8.5,
+        "sd_minus_2": 9.53,
+        "median": 11.97,
+        "sd_plus_2": 15.03,
+        "sd_val": 2.43
+      },
+      "24": {
+        "sd_minus_3": 8.6,
+        "sd_minus_2": 9.7,
+        "median": 12.2,
+        "sd_plus_2": 15.3,
+        "sd_val": 2.5
+      },
+      "25": {
+        "sd_minus_3": 8.73,
+        "sd_minus_2": 9.83,
+        "median": 12.38,
+        "sd_plus_2": 15.57,
+        "sd_val": 2.55
+      },
+      "26": {
+        "sd_minus_3": 8.87,
+        "sd_minus_2": 9.97,
+        "median": 12.57,
+        "sd_plus_2": 15.83,
+        "sd_val": 2.6
+      },
+      "27": {
+        "sd_minus_3": 9.0,
+        "sd_minus_2": 10.1,
+        "median": 12.75,
+        "sd_plus_2": 16.1,
+        "sd_val": 2.65
+      },
+      "28": {
+        "sd_minus_3": 9.13,
+        "sd_minus_2": 10.23,
+        "median": 12.93,
+        "sd_plus_2": 16.37,
+        "sd_val": 2.7
+      },
+      "29": {
+        "sd_minus_3": 9.27,
+        "sd_minus_2": 10.37,
+        "median": 13.12,
+        "sd_plus_2": 16.63,
+        "sd_val": 2.75
+      },
+      "30": {
+        "sd_minus_3": 9.4,
+        "sd_minus_2": 10.5,
+        "median": 13.3,
+        "sd_plus_2": 16.9,
+        "sd_val": 2.8
+      },
+      "31": {
+        "sd_minus_3": 9.5,
+        "sd_minus_2": 10.63,
+        "median": 13.47,
+        "sd_plus_2": 17.13,
+        "sd_val": 2.83
+      },
+      "32": {
+        "sd_minus_3": 9.6,
+        "sd_minus_2": 10.77,
+        "median": 13.63,
+        "sd_plus_2": 17.37,
+        "sd_val": 2.87
+      },
+      "33": {
+        "sd_minus_3": 9.7,
+        "sd_minus_2": 10.9,
+        "median": 13.8,
+        "sd_plus_2": 17.6,
+        "sd_val": 2.9
+      },
+      "34": {
+        "sd_minus_3": 9.8,
+        "sd_minus_2": 11.03,
+        "median": 13.97,
+        "sd_plus_2": 17.83,
+        "sd_val": 2.93
+      },
+      "35": {
+        "sd_minus_3": 9.9,
+        "sd_minus_2": 11.17,
+        "median": 14.13,
+        "sd_plus_2": 18.07,
+        "sd_val": 2.97
+      },
+      "36": {
+        "sd_minus_3": 10.0,
+        "sd_minus_2": 11.3,
+        "median": 14.3,
+        "sd_plus_2": 18.3,
+        "sd_val": 3.0
+      },
+      "37": {
+        "sd_minus_3": 10.1,
+        "sd_minus_2": 11.42,
+        "median": 14.47,
+        "sd_plus_2": 18.53,
+        "sd_val": 3.05
+      },
+      "38": {
+        "sd_minus_3": 10.2,
+        "sd_minus_2": 11.53,
+        "median": 14.63,
+        "sd_plus_2": 18.77,
+        "sd_val": 3.1
+      },
+      "39": {
+        "sd_minus_3": 10.3,
+        "sd_minus_2": 11.65,
+        "median": 14.8,
+        "sd_plus_2": 19.0,
+        "sd_val": 3.15
+      },
+      "40": {
+        "sd_minus_3": 10.4,
+        "sd_minus_2": 11.77,
+        "median": 14.97,
+        "sd_plus_2": 19.23,
+        "sd_val": 3.2
+      },
+      "41": {
+        "sd_minus_3": 10.5,
+        "sd_minus_2": 11.88,
+        "median": 15.13,
+        "sd_plus_2": 19.47,
+        "sd_val": 3.25
+      },
+      "42": {
+        "sd_minus_3": 10.6,
+        "sd_minus_2": 12.0,
+        "median": 15.3,
+        "sd_plus_2": 19.7,
+        "sd_val": 3.3
+      },
+      "43": {
+        "sd_minus_3": 10.7,
+        "sd_minus_2": 12.12,
+        "median": 15.47,
+        "sd_plus_2": 19.95,
+        "sd_val": 3.35
+      },
+      "44": {
+        "sd_minus_3": 10.8,
+        "sd_minus_2": 12.23,
+        "median": 15.63,
+        "sd_plus_2": 20.2,
+        "sd_val": 3.4
+      },
+      "45": {
+        "sd_minus_3": 10.9,
+        "sd_minus_2": 12.35,
+        "median": 15.8,
+        "sd_plus_2": 20.45,
+        "sd_val": 3.45
+      },
+      "46": {
+        "sd_minus_3": 11.0,
+        "sd_minus_2": 12.47,
+        "median": 15.97,
+        "sd_plus_2": 20.7,
+        "sd_val": 3.5
+      },
+      "47": {
+        "sd_minus_3": 11.1,
+        "sd_minus_2": 12.58,
+        "median": 16.13,
+        "sd_plus_2": 20.95,
+        "sd_val": 3.55
+      },
+      "48": {
+        "sd_minus_3": 11.2,
+        "sd_minus_2": 12.7,
+        "median": 16.3,
+        "sd_plus_2": 21.2,
+        "sd_val": 3.6
+      },
+      "49": {
+        "sd_minus_3": 11.3,
+        "sd_minus_2": 12.82,
+        "median": 16.47,
+        "sd_plus_2": 21.45,
+        "sd_val": 3.65
+      },
+      "50": {
+        "sd_minus_3": 11.4,
+        "sd_minus_2": 12.93,
+        "median": 16.63,
+        "sd_plus_2": 21.7,
+        "sd_val": 3.7
+      },
+      "51": {
+        "sd_minus_3": 11.5,
+        "sd_minus_2": 13.05,
+        "median": 16.8,
+        "sd_plus_2": 21.95,
+        "sd_val": 3.75
+      },
+      "52": {
+        "sd_minus_3": 11.6,
+        "sd_minus_2": 13.17,
+        "median": 16.97,
+        "sd_plus_2": 22.2,
+        "sd_val": 3.8
+      },
+      "53": {
+        "sd_minus_3": 11.7,
+        "sd_minus_2": 13.28,
+        "median": 17.13,
+        "sd_plus_2": 22.45,
+        "sd_val": 3.85
+      },
+      "54": {
+        "sd_minus_3": 11.8,
+        "sd_minus_2": 13.4,
+        "median": 17.3,
+        "sd_plus_2": 22.7,
+        "sd_val": 3.9
+      },
+      "55": {
+        "sd_minus_3": 11.9,
+        "sd_minus_2": 13.52,
+        "median": 17.47,
+        "sd_plus_2": 22.95,
+        "sd_val": 3.95
+      },
+      "56": {
+        "sd_minus_3": 12.0,
+        "sd_minus_2": 13.63,
+        "median": 17.63,
+        "sd_plus_2": 23.2,
+        "sd_val": 4.0
+      },
+      "57": {
+        "sd_minus_3": 12.1,
+        "sd_minus_2": 13.75,
+        "median": 17.8,
+        "sd_plus_2": 23.45,
+        "sd_val": 4.05
+      },
+      "58": {
+        "sd_minus_3": 12.2,
+        "sd_minus_2": 13.87,
+        "median": 17.97,
+        "sd_plus_2": 23.7,
+        "sd_val": 4.1
+      },
+      "59": {
+        "sd_minus_3": 12.3,
+        "sd_minus_2": 13.98,
+        "median": 18.13,
+        "sd_plus_2": 23.95,
+        "sd_val": 4.15
+      },
+      "60": {
+        "sd_minus_3": 12.4,
+        "sd_minus_2": 14.1,
+        "median": 18.3,
+        "sd_plus_2": 24.2,
+        "sd_val": 4.2
+      }
+    },
+    "female": {
+      "0": {
+        "sd_minus_3": 2.0,
+        "sd_minus_2": 2.4,
+        "median": 3.2,
+        "sd_plus_2": 4.2,
+        "sd_val": 0.8
+      },
+      "1": {
+        "sd_minus_3": 2.7,
+        "sd_minus_2": 3.2,
+        "median": 4.2,
+        "sd_plus_2": 5.5,
+        "sd_val": 1.0
+      },
+      "2": {
+        "sd_minus_3": 3.4,
+        "sd_minus_2": 3.9,
+        "median": 5.1,
+        "sd_plus_2": 6.6,
+        "sd_val": 1.2
+      },
+      "3": {
+        "sd_minus_3": 4.0,
+        "sd_minus_2": 4.5,
+        "median": 5.8,
+        "sd_plus_2": 7.5,
+        "sd_val": 1.3
+      },
+      "4": {
+        "sd_minus_3": 4.4,
+        "sd_minus_2": 5.0,
+        "median": 6.4,
+        "sd_plus_2": 8.2,
+        "sd_val": 1.4
+      },
+      "5": {
+        "sd_minus_3": 4.8,
+        "sd_minus_2": 5.4,
+        "median": 6.9,
+        "sd_plus_2": 8.8,
+        "sd_val": 1.5
+      },
+      "6": {
+        "sd_minus_3": 5.1,
+        "sd_minus_2": 5.7,
+        "median": 7.3,
+        "sd_plus_2": 9.3,
+        "sd_val": 1.6
+      },
+      "7": {
+        "sd_minus_3": 5.3,
+        "sd_minus_2": 6.0,
+        "median": 7.6,
+        "sd_plus_2": 9.8,
+        "sd_val": 1.6
+      },
+      "8": {
+        "sd_minus_3": 5.6,
+        "sd_minus_2": 6.3,
+        "median": 7.9,
+        "sd_plus_2": 10.2,
+        "sd_val": 1.6
+      },
+      "9": {
+        "sd_minus_3": 5.8,
+        "sd_minus_2": 6.5,
+        "median": 8.2,
+        "sd_plus_2": 10.5,
+        "sd_val": 1.7
+      },
+      "10": {
+        "sd_minus_3": 5.9,
+        "sd_minus_2": 6.7,
+        "median": 8.5,
+        "sd_plus_2": 10.9,
+        "sd_val": 1.8
+      },
+      "11": {
+        "sd_minus_3": 6.1,
+        "sd_minus_2": 6.9,
+        "median": 8.7,
+        "sd_plus_2": 11.2,
+        "sd_val": 1.8
+      },
+      "12": {
+        "sd_minus_3": 6.3,
+        "sd_minus_2": 7.0,
+        "median": 8.9,
+        "sd_plus_2": 11.5,
+        "sd_val": 1.9
+      },
+      "13": {
+        "sd_minus_3": 6.43,
+        "sd_minus_2": 7.2,
+        "median": 9.13,
+        "sd_plus_2": 11.8,
+        "sd_val": 1.93
+      },
+      "14": {
+        "sd_minus_3": 6.57,
+        "sd_minus_2": 7.4,
+        "median": 9.37,
+        "sd_plus_2": 12.1,
+        "sd_val": 1.97
+      },
+      "15": {
+        "sd_minus_3": 6.7,
+        "sd_minus_2": 7.6,
+        "median": 9.6,
+        "sd_plus_2": 12.4,
+        "sd_val": 2.0
+      },
+      "16": {
+        "sd_minus_3": 6.87,
+        "sd_minus_2": 7.77,
+        "median": 9.8,
+        "sd_plus_2": 12.67,
+        "sd_val": 2.03
+      },
+      "17": {
+        "sd_minus_3": 7.03,
+        "sd_minus_2": 7.93,
+        "median": 10.0,
+        "sd_plus_2": 12.93,
+        "sd_val": 2.07
+      },
+      "18": {
+        "sd_minus_3": 7.2,
+        "sd_minus_2": 8.1,
+        "median": 10.2,
+        "sd_plus_2": 13.2,
+        "sd_val": 2.1
+      },
+      "19": {
+        "sd_minus_3": 7.33,
+        "sd_minus_2": 8.27,
+        "median": 10.43,
+        "sd_plus_2": 13.47,
+        "sd_val": 2.17
+      },
+      "20": {
+        "sd_minus_3": 7.47,
+        "sd_minus_2": 8.43,
+        "median": 10.67,
+        "sd_plus_2": 13.73,
+        "sd_val": 2.23
+      },
+      "21": {
+        "sd_minus_3": 7.6,
+        "sd_minus_2": 8.6,
+        "median": 10.9,
+        "sd_plus_2": 14.0,
+        "sd_val": 2.3
+      },
+      "22": {
+        "sd_minus_3": 7.77,
+        "sd_minus_2": 8.73,
+        "median": 11.1,
+        "sd_plus_2": 14.27,
+        "sd_val": 2.37
+      },
+      "23": {
+        "sd_minus_3": 7.93,
+        "sd_minus_2": 8.87,
+        "median": 11.3,
+        "sd_plus_2": 14.53,
+        "sd_val": 2.43
+      },
+      "24": {
+        "sd_minus_3": 8.1,
+        "sd_minus_2": 9.0,
+        "median": 11.5,
+        "sd_plus_2": 14.8,
+        "sd_val": 2.5
+      },
+      "25": {
+        "sd_minus_3": 8.23,
+        "sd_minus_2": 9.15,
+        "median": 11.7,
+        "sd_plus_2": 15.08,
+        "sd_val": 2.55
+      },
+      "26": {
+        "sd_minus_3": 8.37,
+        "sd_minus_2": 9.3,
+        "median": 11.9,
+        "sd_plus_2": 15.37,
+        "sd_val": 2.6
+      },
+      "27": {
+        "sd_minus_3": 8.5,
+        "sd_minus_2": 9.45,
+        "median": 12.1,
+        "sd_plus_2": 15.65,
+        "sd_val": 2.65
+      },
+      "28": {
+        "sd_minus_3": 8.63,
+        "sd_minus_2": 9.6,
+        "median": 12.3,
+        "sd_plus_2": 15.93,
+        "sd_val": 2.7
+      },
+      "29": {
+        "sd_minus_3": 8.77,
+        "sd_minus_2": 9.75,
+        "median": 12.5,
+        "sd_plus_2": 16.22,
+        "sd_val": 2.75
+      },
+      "30": {
+        "sd_minus_3": 8.9,
+        "sd_minus_2": 9.9,
+        "median": 12.7,
+        "sd_plus_2": 16.5,
+        "sd_val": 2.8
+      },
+      "31": {
+        "sd_minus_3": 9.02,
+        "sd_minus_2": 10.05,
+        "median": 12.9,
+        "sd_plus_2": 16.77,
+        "sd_val": 2.85
+      },
+      "32": {
+        "sd_minus_3": 9.13,
+        "sd_minus_2": 10.2,
+        "median": 13.1,
+        "sd_plus_2": 17.03,
+        "sd_val": 2.9
+      },
+      "33": {
+        "sd_minus_3": 9.25,
+        "sd_minus_2": 10.35,
+        "median": 13.3,
+        "sd_plus_2": 17.3,
+        "sd_val": 2.95
+      },
+      "34": {
+        "sd_minus_3": 9.37,
+        "sd_minus_2": 10.5,
+        "median": 13.5,
+        "sd_plus_2": 17.57,
+        "sd_val": 3.0
+      },
+      "35": {
+        "sd_minus_3": 9.48,
+        "sd_minus_2": 10.65,
+        "median": 13.7,
+        "sd_plus_2": 17.83,
+        "sd_val": 3.05
+      },
+      "36": {
+        "sd_minus_3": 9.6,
+        "sd_minus_2": 10.8,
+        "median": 13.9,
+        "sd_plus_2": 18.1,
+        "sd_val": 3.1
+      },
+      "37": {
+        "sd_minus_3": 9.7,
+        "sd_minus_2": 10.92,
+        "median": 14.08,
+        "sd_plus_2": 18.35,
+        "sd_val": 3.17
+      },
+      "38": {
+        "sd_minus_3": 9.8,
+        "sd_minus_2": 11.03,
+        "median": 14.27,
+        "sd_plus_2": 18.6,
+        "sd_val": 3.23
+      },
+      "39": {
+        "sd_minus_3": 9.9,
+        "sd_minus_2": 11.15,
+        "median": 14.45,
+        "sd_plus_2": 18.85,
+        "sd_val": 3.3
+      },
+      "40": {
+        "sd_minus_3": 10.0,
+        "sd_minus_2": 11.27,
+        "median": 14.63,
+        "sd_plus_2": 19.1,
+        "sd_val": 3.37
+      },
+      "41": {
+        "sd_minus_3": 10.1,
+        "sd_minus_2": 11.38,
+        "median": 14.82,
+        "sd_plus_2": 19.35,
+        "sd_val": 3.43
+      },
+      "42": {
+        "sd_minus_3": 10.2,
+        "sd_minus_2": 11.5,
+        "median": 15.0,
+        "sd_plus_2": 19.6,
+        "sd_val": 3.5
+      },
+      "43": {
+        "sd_minus_3": 10.3,
+        "sd_minus_2": 11.63,
+        "median": 15.18,
+        "sd_plus_2": 19.87,
+        "sd_val": 3.55
+      },
+      "44": {
+        "sd_minus_3": 10.4,
+        "sd_minus_2": 11.77,
+        "median": 15.37,
+        "sd_plus_2": 20.13,
+        "sd_val": 3.6
+      },
+      "45": {
+        "sd_minus_3": 10.5,
+        "sd_minus_2": 11.9,
+        "median": 15.55,
+        "sd_plus_2": 20.4,
+        "sd_val": 3.65
+      },
+      "46": {
+        "sd_minus_3": 10.6,
+        "sd_minus_2": 12.03,
+        "median": 15.73,
+        "sd_plus_2": 20.67,
+        "sd_val": 3.7
+      },
+      "47": {
+        "sd_minus_3": 10.7,
+        "sd_minus_2": 12.17,
+        "median": 15.92,
+        "sd_plus_2": 20.93,
+        "sd_val": 3.75
+      },
+      "48": {
+        "sd_minus_3": 10.8,
+        "sd_minus_2": 12.3,
+        "median": 16.1,
+        "sd_plus_2": 21.2,
+        "sd_val": 3.8
+      },
+      "49": {
+        "sd_minus_3": 10.9,
+        "sd_minus_2": 12.42,
+        "median": 16.28,
+        "sd_plus_2": 21.48,
+        "sd_val": 3.87
+      },
+      "50": {
+        "sd_minus_3": 11.0,
+        "sd_minus_2": 12.53,
+        "median": 16.47,
+        "sd_plus_2": 21.77,
+        "sd_val": 3.93
+      },
+      "51": {
+        "sd_minus_3": 11.1,
+        "sd_minus_2": 12.65,
+        "median": 16.65,
+        "sd_plus_2": 22.05,
+        "sd_val": 4.0
+      },
+      "52": {
+        "sd_minus_3": 11.2,
+        "sd_minus_2": 12.77,
+        "median": 16.83,
+        "sd_plus_2": 22.33,
+        "sd_val": 4.07
+      },
+      "53": {
+        "sd_minus_3": 11.3,
+        "sd_minus_2": 12.88,
+        "median": 17.02,
+        "sd_plus_2": 22.62,
+        "sd_val": 4.13
+      },
+      "54": {
+        "sd_minus_3": 11.4,
+        "sd_minus_2": 13.0,
+        "median": 17.2,
+        "sd_plus_2": 22.9,
+        "sd_val": 4.2
+      },
+      "55": {
+        "sd_minus_3": 11.52,
+        "sd_minus_2": 13.12,
+        "median": 17.37,
+        "sd_plus_2": 23.17,
+        "sd_val": 4.25
+      },
+      "56": {
+        "sd_minus_3": 11.63,
+        "sd_minus_2": 13.23,
+        "median": 17.53,
+        "sd_plus_2": 23.43,
+        "sd_val": 4.3
+      },
+      "57": {
+        "sd_minus_3": 11.75,
+        "sd_minus_2": 13.35,
+        "median": 17.7,
+        "sd_plus_2": 23.7,
+        "sd_val": 4.35
+      },
+      "58": {
+        "sd_minus_3": 11.87,
+        "sd_minus_2": 13.47,
+        "median": 17.87,
+        "sd_plus_2": 23.97,
+        "sd_val": 4.4
+      },
+      "59": {
+        "sd_minus_3": 11.98,
+        "sd_minus_2": 13.58,
+        "median": 18.03,
+        "sd_plus_2": 24.23,
+        "sd_val": 4.45
+      },
+      "60": {
+        "sd_minus_3": 12.1,
+        "sd_minus_2": 13.7,
+        "median": 18.2,
+        "sd_plus_2": 24.5,
+        "sd_val": 4.5
+      }
+    }
+  },
+  "bb_tb": {
+    "male": {
+      "45": {
+        "sd_minus_3": 1.9,
+        "sd_minus_2": 2.1,
+        "median": 2.4,
+        "sd_plus_2": 3.0,
+        "sd_val": 0.3
+      },
+      "46": {
+        "sd_minus_3": 2.04,
+        "sd_minus_2": 2.24,
+        "median": 2.58,
+        "sd_plus_2": 3.2,
+        "sd_val": 0.34
+      },
+      "47": {
+        "sd_minus_3": 2.18,
+        "sd_minus_2": 2.38,
+        "median": 2.76,
+        "sd_plus_2": 3.4,
+        "sd_val": 0.38
+      },
+      "48": {
+        "sd_minus_3": 2.32,
+        "sd_minus_2": 2.52,
+        "median": 2.94,
+        "sd_plus_2": 3.6,
+        "sd_val": 0.42
+      },
+      "49": {
+        "sd_minus_3": 2.46,
+        "sd_minus_2": 2.66,
+        "median": 3.12,
+        "sd_plus_2": 3.8,
+        "sd_val": 0.46
+      },
+      "50": {
+        "sd_minus_3": 2.6,
+        "sd_minus_2": 2.8,
+        "median": 3.3,
+        "sd_plus_2": 4.0,
+        "sd_val": 0.5
+      },
+      "51": {
+        "sd_minus_3": 2.8,
+        "sd_minus_2": 3.04,
+        "median": 3.54,
+        "sd_plus_2": 4.3,
+        "sd_val": 0.5
+      },
+      "52": {
+        "sd_minus_3": 3.0,
+        "sd_minus_2": 3.28,
+        "median": 3.78,
+        "sd_plus_2": 4.6,
+        "sd_val": 0.5
+      },
+      "53": {
+        "sd_minus_3": 3.2,
+        "sd_minus_2": 3.52,
+        "median": 4.02,
+        "sd_plus_2": 4.9,
+        "sd_val": 0.5
+      },
+      "54": {
+        "sd_minus_3": 3.4,
+        "sd_minus_2": 3.76,
+        "median": 4.26,
+        "sd_plus_2": 5.2,
+        "sd_val": 0.5
+      },
+      "55": {
+        "sd_minus_3": 3.6,
+        "sd_minus_2": 4.0,
+        "median": 4.5,
+        "sd_plus_2": 5.5,
+        "sd_val": 0.5
+      },
+      "56": {
+        "sd_minus_3": 3.82,
+        "sd_minus_2": 4.22,
+        "median": 4.76,
+        "sd_plus_2": 5.8,
+        "sd_val": 0.54
+      },
+      "57": {
+        "sd_minus_3": 4.04,
+        "sd_minus_2": 4.44,
+        "median": 5.02,
+        "sd_plus_2": 6.1,
+        "sd_val": 0.58
+      },
+      "58": {
+        "sd_minus_3": 4.26,
+        "sd_minus_2": 4.66,
+        "median": 5.28,
+        "sd_plus_2": 6.4,
+        "sd_val": 0.62
+      },
+      "59": {
+        "sd_minus_3": 4.48,
+        "sd_minus_2": 4.88,
+        "median": 5.54,
+        "sd_plus_2": 6.7,
+        "sd_val": 0.66
+      },
+      "60": {
+        "sd_minus_3": 4.7,
+        "sd_minus_2": 5.1,
+        "median": 5.8,
+        "sd_plus_2": 7.0,
+        "sd_val": 0.7
+      },
+      "61": {
+        "sd_minus_3": 4.94,
+        "sd_minus_2": 5.36,
+        "median": 6.08,
+        "sd_plus_2": 7.3,
+        "sd_val": 0.72
+      },
+      "62": {
+        "sd_minus_3": 5.18,
+        "sd_minus_2": 5.62,
+        "median": 6.36,
+        "sd_plus_2": 7.6,
+        "sd_val": 0.74
+      },
+      "63": {
+        "sd_minus_3": 5.42,
+        "sd_minus_2": 5.88,
+        "median": 6.64,
+        "sd_plus_2": 7.9,
+        "sd_val": 0.76
+      },
+      "64": {
+        "sd_minus_3": 5.66,
+        "sd_minus_2": 6.14,
+        "median": 6.92,
+        "sd_plus_2": 8.2,
+        "sd_val": 0.78
+      },
+      "65": {
+        "sd_minus_3": 5.9,
+        "sd_minus_2": 6.4,
+        "median": 7.2,
+        "sd_plus_2": 8.5,
+        "sd_val": 0.8
+      },
+      "66": {
+        "sd_minus_3": 6.12,
+        "sd_minus_2": 6.64,
+        "median": 7.46,
+        "sd_plus_2": 8.8,
+        "sd_val": 0.82
+      },
+      "67": {
+        "sd_minus_3": 6.34,
+        "sd_minus_2": 6.88,
+        "median": 7.72,
+        "sd_plus_2": 9.1,
+        "sd_val": 0.84
+      },
+      "68": {
+        "sd_minus_3": 6.56,
+        "sd_minus_2": 7.12,
+        "median": 7.98,
+        "sd_plus_2": 9.4,
+        "sd_val": 0.86
+      },
+      "69": {
+        "sd_minus_3": 6.78,
+        "sd_minus_2": 7.36,
+        "median": 8.24,
+        "sd_plus_2": 9.7,
+        "sd_val": 0.88
+      },
+      "70": {
+        "sd_minus_3": 7.0,
+        "sd_minus_2": 7.6,
+        "median": 8.5,
+        "sd_plus_2": 10.0,
+        "sd_val": 0.9
+      },
+      "71": {
+        "sd_minus_3": 7.2,
+        "sd_minus_2": 7.8,
+        "median": 8.72,
+        "sd_plus_2": 10.26,
+        "sd_val": 0.92
+      },
+      "72": {
+        "sd_minus_3": 7.4,
+        "sd_minus_2": 8.0,
+        "median": 8.94,
+        "sd_plus_2": 10.52,
+        "sd_val": 0.94
+      },
+      "73": {
+        "sd_minus_3": 7.6,
+        "sd_minus_2": 8.2,
+        "median": 9.16,
+        "sd_plus_2": 10.78,
+        "sd_val": 0.96
+      },
+      "74": {
+        "sd_minus_3": 7.8,
+        "sd_minus_2": 8.4,
+        "median": 9.38,
+        "sd_plus_2": 11.04,
+        "sd_val": 0.98
+      },
+      "75": {
+        "sd_minus_3": 8.0,
+        "sd_minus_2": 8.6,
+        "median": 9.6,
+        "sd_plus_2": 11.3,
+        "sd_val": 1.0
+      },
+      "76": {
+        "sd_minus_3": 8.18,
+        "sd_minus_2": 8.8,
+        "median": 9.82,
+        "sd_plus_2": 11.54,
+        "sd_val": 1.02
+      },
+      "77": {
+        "sd_minus_3": 8.36,
+        "sd_minus_2": 9.0,
+        "median": 10.04,
+        "sd_plus_2": 11.78,
+        "sd_val": 1.04
+      },
+      "78": {
+        "sd_minus_3": 8.54,
+        "sd_minus_2": 9.2,
+        "median": 10.26,
+        "sd_plus_2": 12.02,
+        "sd_val": 1.06
+      },
+      "79": {
+        "sd_minus_3": 8.72,
+        "sd_minus_2": 9.4,
+        "median": 10.48,
+        "sd_plus_2": 12.26,
+        "sd_val": 1.08
+      },
+      "80": {
+        "sd_minus_3": 8.9,
+        "sd_minus_2": 9.6,
+        "median": 10.7,
+        "sd_plus_2": 12.5,
+        "sd_val": 1.1
+      },
+      "81": {
+        "sd_minus_3": 9.1,
+        "sd_minus_2": 9.8,
+        "median": 10.92,
+        "sd_plus_2": 12.76,
+        "sd_val": 1.12
+      },
+      "82": {
+        "sd_minus_3": 9.3,
+        "sd_minus_2": 10.0,
+        "median": 11.14,
+        "sd_plus_2": 13.02,
+        "sd_val": 1.14
+      },
+      "83": {
+        "sd_minus_3": 9.5,
+        "sd_minus_2": 10.2,
+        "median": 11.36,
+        "sd_plus_2": 13.28,
+        "sd_val": 1.16
+      },
+      "84": {
+        "sd_minus_3": 9.7,
+        "sd_minus_2": 10.4,
+        "median": 11.58,
+        "sd_plus_2": 13.54,
+        "sd_val": 1.18
+      },
+      "85": {
+        "sd_minus_3": 9.9,
+        "sd_minus_2": 10.6,
+        "median": 11.8,
+        "sd_plus_2": 13.8,
+        "sd_val": 1.2
+      },
+      "86": {
+        "sd_minus_3": 10.08,
+        "sd_minus_2": 10.8,
+        "median": 12.02,
+        "sd_plus_2": 14.06,
+        "sd_val": 1.22
+      },
+      "87": {
+        "sd_minus_3": 10.26,
+        "sd_minus_2": 11.0,
+        "median": 12.24,
+        "sd_plus_2": 14.32,
+        "sd_val": 1.24
+      },
+      "88": {
+        "sd_minus_3": 10.44,
+        "sd_minus_2": 11.2,
+        "median": 12.46,
+        "sd_plus_2": 14.58,
+        "sd_val": 1.26
+      },
+      "89": {
+        "sd_minus_3": 10.62,
+        "sd_minus_2": 11.4,
+        "median": 12.68,
+        "sd_plus_2": 14.84,
+        "sd_val": 1.28
+      },
+      "90": {
+        "sd_minus_3": 10.8,
+        "sd_minus_2": 11.6,
+        "median": 12.9,
+        "sd_plus_2": 15.1,
+        "sd_val": 1.3
+      },
+      "91": {
+        "sd_minus_3": 11.0,
+        "sd_minus_2": 11.82,
+        "median": 13.14,
+        "sd_plus_2": 15.38,
+        "sd_val": 1.32
+      },
+      "92": {
+        "sd_minus_3": 11.2,
+        "sd_minus_2": 12.04,
+        "median": 13.38,
+        "sd_plus_2": 15.66,
+        "sd_val": 1.34
+      },
+      "93": {
+        "sd_minus_3": 11.4,
+        "sd_minus_2": 12.26,
+        "median": 13.62,
+        "sd_plus_2": 15.94,
+        "sd_val": 1.36
+      },
+      "94": {
+        "sd_minus_3": 11.6,
+        "sd_minus_2": 12.48,
+        "median": 13.86,
+        "sd_plus_2": 16.22,
+        "sd_val": 1.38
+      },
+      "95": {
+        "sd_minus_3": 11.8,
+        "sd_minus_2": 12.7,
+        "median": 14.1,
+        "sd_plus_2": 16.5,
+        "sd_val": 1.4
+      },
+      "96": {
+        "sd_minus_3": 12.0,
+        "sd_minus_2": 12.9,
+        "median": 14.34,
+        "sd_plus_2": 16.78,
+        "sd_val": 1.44
+      },
+      "97": {
+        "sd_minus_3": 12.2,
+        "sd_minus_2": 13.1,
+        "median": 14.58,
+        "sd_plus_2": 17.06,
+        "sd_val": 1.48
+      },
+      "98": {
+        "sd_minus_3": 12.4,
+        "sd_minus_2": 13.3,
+        "median": 14.82,
+        "sd_plus_2": 17.34,
+        "sd_val": 1.52
+      },
+      "99": {
+        "sd_minus_3": 12.6,
+        "sd_minus_2": 13.5,
+        "median": 15.06,
+        "sd_plus_2": 17.62,
+        "sd_val": 1.56
+      },
+      "100": {
+        "sd_minus_3": 12.8,
+        "sd_minus_2": 13.7,
+        "median": 15.3,
+        "sd_plus_2": 17.9,
+        "sd_val": 1.6
+      },
+      "101": {
+        "sd_minus_3": 13.0,
+        "sd_minus_2": 13.94,
+        "median": 15.56,
+        "sd_plus_2": 18.2,
+        "sd_val": 1.62
+      },
+      "102": {
+        "sd_minus_3": 13.2,
+        "sd_minus_2": 14.18,
+        "median": 15.82,
+        "sd_plus_2": 18.5,
+        "sd_val": 1.64
+      },
+      "103": {
+        "sd_minus_3": 13.4,
+        "sd_minus_2": 14.42,
+        "median": 16.08,
+        "sd_plus_2": 18.8,
+        "sd_val": 1.66
+      },
+      "104": {
+        "sd_minus_3": 13.6,
+        "sd_minus_2": 14.66,
+        "median": 16.34,
+        "sd_plus_2": 19.1,
+        "sd_val": 1.68
+      },
+      "105": {
+        "sd_minus_3": 13.8,
+        "sd_minus_2": 14.9,
+        "median": 16.6,
+        "sd_plus_2": 19.4,
+        "sd_val": 1.7
+      },
+      "106": {
+        "sd_minus_3": 14.04,
+        "sd_minus_2": 15.16,
+        "median": 16.88,
+        "sd_plus_2": 19.74,
+        "sd_val": 1.72
+      },
+      "107": {
+        "sd_minus_3": 14.28,
+        "sd_minus_2": 15.42,
+        "median": 17.16,
+        "sd_plus_2": 20.08,
+        "sd_val": 1.74
+      },
+      "108": {
+        "sd_minus_3": 14.52,
+        "sd_minus_2": 15.68,
+        "median": 17.44,
+        "sd_plus_2": 20.42,
+        "sd_val": 1.76
+      },
+      "109": {
+        "sd_minus_3": 14.76,
+        "sd_minus_2": 15.94,
+        "median": 17.72,
+        "sd_plus_2": 20.76,
+        "sd_val": 1.78
+      },
+      "110": {
+        "sd_minus_3": 15.0,
+        "sd_minus_2": 16.2,
+        "median": 18.0,
+        "sd_plus_2": 21.1,
+        "sd_val": 1.8
+      },
+      "111": {
+        "sd_minus_3": 15.24,
+        "sd_minus_2": 16.46,
+        "median": 18.32,
+        "sd_plus_2": 21.48,
+        "sd_val": 1.86
+      },
+      "112": {
+        "sd_minus_3": 15.48,
+        "sd_minus_2": 16.72,
+        "median": 18.64,
+        "sd_plus_2": 21.86,
+        "sd_val": 1.92
+      },
+      "113": {
+        "sd_minus_3": 15.72,
+        "sd_minus_2": 16.98,
+        "median": 18.96,
+        "sd_plus_2": 22.24,
+        "sd_val": 1.98
+      },
+      "114": {
+        "sd_minus_3": 15.96,
+        "sd_minus_2": 17.24,
+        "median": 19.28,
+        "sd_plus_2": 22.62,
+        "sd_val": 2.04
+      },
+      "115": {
+        "sd_minus_3": 16.2,
+        "sd_minus_2": 17.5,
+        "median": 19.6,
+        "sd_plus_2": 23.0,
+        "sd_val": 2.1
+      },
+      "116": {
+        "sd_minus_3": 16.46,
+        "sd_minus_2": 17.8,
+        "median": 19.94,
+        "sd_plus_2": 23.42,
+        "sd_val": 2.14
+      },
+      "117": {
+        "sd_minus_3": 16.72,
+        "sd_minus_2": 18.1,
+        "median": 20.28,
+        "sd_plus_2": 23.84,
+        "sd_val": 2.18
+      },
+      "118": {
+        "sd_minus_3": 16.98,
+        "sd_minus_2": 18.4,
+        "median": 20.62,
+        "sd_plus_2": 24.26,
+        "sd_val": 2.22
+      },
+      "119": {
+        "sd_minus_3": 17.24,
+        "sd_minus_2": 18.7,
+        "median": 20.96,
+        "sd_plus_2": 24.68,
+        "sd_val": 2.26
+      },
+      "120": {
+        "sd_minus_3": 17.5,
+        "sd_minus_2": 19.0,
+        "median": 21.3,
+        "sd_plus_2": 25.1,
+        "sd_val": 2.3
+      }
+    },
+    "female": {
+      "45": {
+        "sd_minus_3": 1.9,
+        "sd_minus_2": 2.1,
+        "median": 2.5,
+        "sd_plus_2": 3.0,
+        "sd_val": 0.4
+      },
+      "46": {
+        "sd_minus_3": 2.04,
+        "sd_minus_2": 2.24,
+        "median": 2.68,
+        "sd_plus_2": 3.2,
+        "sd_val": 0.44
+      },
+      "47": {
+        "sd_minus_3": 2.18,
+        "sd_minus_2": 2.38,
+        "median": 2.86,
+        "sd_plus_2": 3.4,
+        "sd_val": 0.48
+      },
+      "48": {
+        "sd_minus_3": 2.32,
+        "sd_minus_2": 2.52,
+        "median": 3.04,
+        "sd_plus_2": 3.6,
+        "sd_val": 0.52
+      },
+      "49": {
+        "sd_minus_3": 2.46,
+        "sd_minus_2": 2.66,
+        "median": 3.22,
+        "sd_plus_2": 3.8,
+        "sd_val": 0.56
+      },
+      "50": {
+        "sd_minus_3": 2.6,
+        "sd_minus_2": 2.8,
+        "median": 3.4,
+        "sd_plus_2": 4.0,
+        "sd_val": 0.6
+      },
+      "51": {
+        "sd_minus_3": 2.78,
+        "sd_minus_2": 3.0,
+        "median": 3.6,
+        "sd_plus_2": 4.28,
+        "sd_val": 0.6
+      },
+      "52": {
+        "sd_minus_3": 2.96,
+        "sd_minus_2": 3.2,
+        "median": 3.8,
+        "sd_plus_2": 4.56,
+        "sd_val": 0.6
+      },
+      "53": {
+        "sd_minus_3": 3.14,
+        "sd_minus_2": 3.4,
+        "median": 4.0,
+        "sd_plus_2": 4.84,
+        "sd_val": 0.6
+      },
+      "54": {
+        "sd_minus_3": 3.32,
+        "sd_minus_2": 3.6,
+        "median": 4.2,
+        "sd_plus_2": 5.12,
+        "sd_val": 0.6
+      },
+      "55": {
+        "sd_minus_3": 3.5,
+        "sd_minus_2": 3.8,
+        "median": 4.4,
+        "sd_plus_2": 5.4,
+        "sd_val": 0.6
+      },
+      "56": {
+        "sd_minus_3": 3.7,
+        "sd_minus_2": 4.02,
+        "median": 4.64,
+        "sd_plus_2": 5.68,
+        "sd_val": 0.62
+      },
+      "57": {
+        "sd_minus_3": 3.9,
+        "sd_minus_2": 4.24,
+        "median": 4.88,
+        "sd_plus_2": 5.96,
+        "sd_val": 0.64
+      },
+      "58": {
+        "sd_minus_3": 4.1,
+        "sd_minus_2": 4.46,
+        "median": 5.12,
+        "sd_plus_2": 6.24,
+        "sd_val": 0.66
+      },
+      "59": {
+        "sd_minus_3": 4.3,
+        "sd_minus_2": 4.68,
+        "median": 5.36,
+        "sd_plus_2": 6.52,
+        "sd_val": 0.68
+      },
+      "60": {
+        "sd_minus_3": 4.5,
+        "sd_minus_2": 4.9,
+        "median": 5.6,
+        "sd_plus_2": 6.8,
+        "sd_val": 0.7
+      },
+      "61": {
+        "sd_minus_3": 4.7,
+        "sd_minus_2": 5.12,
+        "median": 5.84,
+        "sd_plus_2": 7.08,
+        "sd_val": 0.72
+      },
+      "62": {
+        "sd_minus_3": 4.9,
+        "sd_minus_2": 5.34,
+        "median": 6.08,
+        "sd_plus_2": 7.36,
+        "sd_val": 0.74
+      },
+      "63": {
+        "sd_minus_3": 5.1,
+        "sd_minus_2": 5.56,
+        "median": 6.32,
+        "sd_plus_2": 7.64,
+        "sd_val": 0.76
+      },
+      "64": {
+        "sd_minus_3": 5.3,
+        "sd_minus_2": 5.78,
+        "median": 6.56,
+        "sd_plus_2": 7.92,
+        "sd_val": 0.78
+      },
+      "65": {
+        "sd_minus_3": 5.5,
+        "sd_minus_2": 6.0,
+        "median": 6.8,
+        "sd_plus_2": 8.2,
+        "sd_val": 0.8
+      },
+      "66": {
+        "sd_minus_3": 5.7,
+        "sd_minus_2": 6.22,
+        "median": 7.04,
+        "sd_plus_2": 8.48,
+        "sd_val": 0.82
+      },
+      "67": {
+        "sd_minus_3": 5.9,
+        "sd_minus_2": 6.44,
+        "median": 7.28,
+        "sd_plus_2": 8.76,
+        "sd_val": 0.84
+      },
+      "68": {
+        "sd_minus_3": 6.1,
+        "sd_minus_2": 6.66,
+        "median": 7.52,
+        "sd_plus_2": 9.04,
+        "sd_val": 0.86
+      },
+      "69": {
+        "sd_minus_3": 6.3,
+        "sd_minus_2": 6.88,
+        "median": 7.76,
+        "sd_plus_2": 9.32,
+        "sd_val": 0.88
+      },
+      "70": {
+        "sd_minus_3": 6.5,
+        "sd_minus_2": 7.1,
+        "median": 8.0,
+        "sd_plus_2": 9.6,
+        "sd_val": 0.9
+      },
+      "71": {
+        "sd_minus_3": 6.7,
+        "sd_minus_2": 7.3,
+        "median": 8.22,
+        "sd_plus_2": 9.86,
+        "sd_val": 0.92
+      },
+      "72": {
+        "sd_minus_3": 6.9,
+        "sd_minus_2": 7.5,
+        "median": 8.44,
+        "sd_plus_2": 10.12,
+        "sd_val": 0.94
+      },
+      "73": {
+        "sd_minus_3": 7.1,
+        "sd_minus_2": 7.7,
+        "median": 8.66,
+        "sd_plus_2": 10.38,
+        "sd_val": 0.96
+      },
+      "74": {
+        "sd_minus_3": 7.3,
+        "sd_minus_2": 7.9,
+        "median": 8.88,
+        "sd_plus_2": 10.64,
+        "sd_val": 0.98
+      },
+      "75": {
+        "sd_minus_3": 7.5,
+        "sd_minus_2": 8.1,
+        "median": 9.1,
+        "sd_plus_2": 10.9,
+        "sd_val": 1.0
+      },
+      "76": {
+        "sd_minus_3": 7.68,
+        "sd_minus_2": 8.3,
+        "median": 9.32,
+        "sd_plus_2": 11.16,
+        "sd_val": 1.02
+      },
+      "77": {
+        "sd_minus_3": 7.86,
+        "sd_minus_2": 8.5,
+        "median": 9.54,
+        "sd_plus_2": 11.42,
+        "sd_val": 1.04
+      },
+      "78": {
+        "sd_minus_3": 8.04,
+        "sd_minus_2": 8.7,
+        "median": 9.76,
+        "sd_plus_2": 11.68,
+        "sd_val": 1.06
+      },
+      "79": {
+        "sd_minus_3": 8.22,
+        "sd_minus_2": 8.9,
+        "median": 9.98,
+        "sd_plus_2": 11.94,
+        "sd_val": 1.08
+      },
+      "80": {
+        "sd_minus_3": 8.4,
+        "sd_minus_2": 9.1,
+        "median": 10.2,
+        "sd_plus_2": 12.2,
+        "sd_val": 1.1
+      },
+      "81": {
+        "sd_minus_3": 8.6,
+        "sd_minus_2": 9.32,
+        "median": 10.44,
+        "sd_plus_2": 12.46,
+        "sd_val": 1.12
+      },
+      "82": {
+        "sd_minus_3": 8.8,
+        "sd_minus_2": 9.54,
+        "median": 10.68,
+        "sd_plus_2": 12.72,
+        "sd_val": 1.14
+      },
+      "83": {
+        "sd_minus_3": 9.0,
+        "sd_minus_2": 9.76,
+        "median": 10.92,
+        "sd_plus_2": 12.98,
+        "sd_val": 1.16
+      },
+      "84": {
+        "sd_minus_3": 9.2,
+        "sd_minus_2": 9.98,
+        "median": 11.16,
+        "sd_plus_2": 13.24,
+        "sd_val": 1.18
+      },
+      "85": {
+        "sd_minus_3": 9.4,
+        "sd_minus_2": 10.2,
+        "median": 11.4,
+        "sd_plus_2": 13.5,
+        "sd_val": 1.2
+      },
+      "86": {
+        "sd_minus_3": 9.6,
+        "sd_minus_2": 10.4,
+        "median": 11.64,
+        "sd_plus_2": 13.78,
+        "sd_val": 1.24
+      },
+      "87": {
+        "sd_minus_3": 9.8,
+        "sd_minus_2": 10.6,
+        "median": 11.88,
+        "sd_plus_2": 14.06,
+        "sd_val": 1.28
+      },
+      "88": {
+        "sd_minus_3": 10.0,
+        "sd_minus_2": 10.8,
+        "median": 12.12,
+        "sd_plus_2": 14.34,
+        "sd_val": 1.32
+      },
+      "89": {
+        "sd_minus_3": 10.2,
+        "sd_minus_2": 11.0,
+        "median": 12.36,
+        "sd_plus_2": 14.62,
+        "sd_val": 1.36
+      },
+      "90": {
+        "sd_minus_3": 10.4,
+        "sd_minus_2": 11.2,
+        "median": 12.6,
+        "sd_plus_2": 14.9,
+        "sd_val": 1.4
+      },
+      "91": {
+        "sd_minus_3": 10.6,
+        "sd_minus_2": 11.42,
+        "median": 12.84,
+        "sd_plus_2": 15.18,
+        "sd_val": 1.42
+      },
+      "92": {
+        "sd_minus_3": 10.8,
+        "sd_minus_2": 11.64,
+        "median": 13.08,
+        "sd_plus_2": 15.46,
+        "sd_val": 1.44
+      },
+      "93": {
+        "sd_minus_3": 11.0,
+        "sd_minus_2": 11.86,
+        "median": 13.32,
+        "sd_plus_2": 15.74,
+        "sd_val": 1.46
+      },
+      "94": {
+        "sd_minus_3": 11.2,
+        "sd_minus_2": 12.08,
+        "median": 13.56,
+        "sd_plus_2": 16.02,
+        "sd_val": 1.48
+      },
+      "95": {
+        "sd_minus_3": 11.4,
+        "sd_minus_2": 12.3,
+        "median": 13.8,
+        "sd_plus_2": 16.3,
+        "sd_val": 1.5
+      },
+      "96": {
+        "sd_minus_3": 11.6,
+        "sd_minus_2": 12.52,
+        "median": 14.04,
+        "sd_plus_2": 16.6,
+        "sd_val": 1.52
+      },
+      "97": {
+        "sd_minus_3": 11.8,
+        "sd_minus_2": 12.74,
+        "median": 14.28,
+        "sd_plus_2": 16.9,
+        "sd_val": 1.54
+      },
+      "98": {
+        "sd_minus_3": 12.0,
+        "sd_minus_2": 12.96,
+        "median": 14.52,
+        "sd_plus_2": 17.2,
+        "sd_val": 1.56
+      },
+      "99": {
+        "sd_minus_3": 12.2,
+        "sd_minus_2": 13.18,
+        "median": 14.76,
+        "sd_plus_2": 17.5,
+        "sd_val": 1.58
+      },
+      "100": {
+        "sd_minus_3": 12.4,
+        "sd_minus_2": 13.4,
+        "median": 15.0,
+        "sd_plus_2": 17.8,
+        "sd_val": 1.6
+      },
+      "101": {
+        "sd_minus_3": 12.62,
+        "sd_minus_2": 13.64,
+        "median": 15.28,
+        "sd_plus_2": 18.14,
+        "sd_val": 1.64
+      },
+      "102": {
+        "sd_minus_3": 12.84,
+        "sd_minus_2": 13.88,
+        "median": 15.56,
+        "sd_plus_2": 18.48,
+        "sd_val": 1.68
+      },
+      "103": {
+        "sd_minus_3": 13.06,
+        "sd_minus_2": 14.12,
+        "median": 15.84,
+        "sd_plus_2": 18.82,
+        "sd_val": 1.72
+      },
+      "104": {
+        "sd_minus_3": 13.28,
+        "sd_minus_2": 14.36,
+        "median": 16.12,
+        "sd_plus_2": 19.16,
+        "sd_val": 1.76
+      },
+      "105": {
+        "sd_minus_3": 13.5,
+        "sd_minus_2": 14.6,
+        "median": 16.4,
+        "sd_plus_2": 19.5,
+        "sd_val": 1.8
+      },
+      "106": {
+        "sd_minus_3": 13.74,
+        "sd_minus_2": 14.86,
+        "median": 16.7,
+        "sd_plus_2": 19.86,
+        "sd_val": 1.84
+      },
+      "107": {
+        "sd_minus_3": 13.98,
+        "sd_minus_2": 15.12,
+        "median": 17.0,
+        "sd_plus_2": 20.22,
+        "sd_val": 1.88
+      },
+      "108": {
+        "sd_minus_3": 14.22,
+        "sd_minus_2": 15.38,
+        "median": 17.3,
+        "sd_plus_2": 20.58,
+        "sd_val": 1.92
+      },
+      "109": {
+        "sd_minus_3": 14.46,
+        "sd_minus_2": 15.64,
+        "median": 17.6,
+        "sd_plus_2": 20.94,
+        "sd_val": 1.96
+      },
+      "110": {
+        "sd_minus_3": 14.7,
+        "sd_minus_2": 15.9,
+        "median": 17.9,
+        "sd_plus_2": 21.3,
+        "sd_val": 2.0
+      },
+      "111": {
+        "sd_minus_3": 14.96,
+        "sd_minus_2": 16.18,
+        "median": 18.22,
+        "sd_plus_2": 21.7,
+        "sd_val": 2.04
+      },
+      "112": {
+        "sd_minus_3": 15.22,
+        "sd_minus_2": 16.46,
+        "median": 18.54,
+        "sd_plus_2": 22.1,
+        "sd_val": 2.08
+      },
+      "113": {
+        "sd_minus_3": 15.48,
+        "sd_minus_2": 16.74,
+        "median": 18.86,
+        "sd_plus_2": 22.5,
+        "sd_val": 2.12
+      },
+      "114": {
+        "sd_minus_3": 15.74,
+        "sd_minus_2": 17.02,
+        "median": 19.18,
+        "sd_plus_2": 22.9,
+        "sd_val": 2.16
+      },
+      "115": {
+        "sd_minus_3": 16.0,
+        "sd_minus_2": 17.3,
+        "median": 19.5,
+        "sd_plus_2": 23.3,
+        "sd_val": 2.2
+      },
+      "116": {
+        "sd_minus_3": 16.26,
+        "sd_minus_2": 17.6,
+        "median": 19.84,
+        "sd_plus_2": 23.72,
+        "sd_val": 2.24
+      },
+      "117": {
+        "sd_minus_3": 16.52,
+        "sd_minus_2": 17.9,
+        "median": 20.18,
+        "sd_plus_2": 24.14,
+        "sd_val": 2.28
+      },
+      "118": {
+        "sd_minus_3": 16.78,
+        "sd_minus_2": 18.2,
+        "median": 20.52,
+        "sd_plus_2": 24.56,
+        "sd_val": 2.32
+      },
+      "119": {
+        "sd_minus_3": 17.04,
+        "sd_minus_2": 18.5,
+        "median": 20.86,
+        "sd_plus_2": 24.98,
+        "sd_val": 2.36
+      },
+      "120": {
+        "sd_minus_3": 17.3,
+        "sd_minus_2": 18.8,
+        "median": 21.2,
+        "sd_plus_2": 25.4,
+        "sd_val": 2.4
+      }
+    }
+  }
+}

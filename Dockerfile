@@ -58,7 +58,9 @@ RUN apk add --no-cache \
     php83-session \
     php83-dom \
     php83-fileinfo \
-    php83-ctype
+    php83-ctype \
+    php83-pdo_sqlite \
+    php83-sqlite3
 
 # Symlink php83 and php-fpm83 to standard names, configure PHP-FPM to run as user nginx
 RUN ln -sf /usr/bin/php83 /usr/bin/php && \

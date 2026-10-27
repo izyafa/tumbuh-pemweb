@@ -17,12 +17,18 @@ class WhoGrowthService
 
     protected function loadStandards(): void
     {
-        $path = function_exists('storage_path')
-            ? storage_path('app/who_standards/growth_standards.json')
-            : dirname(__DIR__, 2) . '/storage/app/who_standards/growth_standards.json';
+        $candidates = [
+            function_exists('storage_path') ? storage_path('app/who_standards/growth_standards.json') : null,
+            function_exists('resource_path') ? resource_path('data/who_standards/growth_standards.json') : null,
+            dirname(__DIR__, 2) . '/storage/app/who_standards/growth_standards.json',
+            dirname(__DIR__, 2) . '/resources/data/who_standards/growth_standards.json',
+        ];
 
-        if (File::exists($path)) {
-            $this->standards = json_decode(File::get($path), true);
+        foreach (array_filter($candidates) as $path) {
+            if (File::exists($path)) {
+                $this->standards = json_decode(File::get($path), true);
+                return;
+            }
         }
     }
 

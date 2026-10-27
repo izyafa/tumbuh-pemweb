@@ -1,4 +1,6 @@
 *
 !private/
 !public/
+!who_standards/
+!who_standards/**
 !.gitignore

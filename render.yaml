@@ -23,6 +23,8 @@ services:
         value: require
       - key: RUN_MIGRATIONS
         value: "true"
+      - key: RUN_SEEDER
+        value: "false"
       - key: AI_PROVIDER
         value: gemini
       - key: GEMINI_API_KEY
