@@ -171,22 +171,26 @@ class DatabaseSeeder extends Seeder
                 }
                 $prevWeight = (float) $log['weight'];
 
-                MeasurementRecord::create([
-                    'child_id' => $child->id,
-                    'measured_by_id' => $kader1->id,
-                    'measurement_date' => $measurementDate,
-                    'age_in_months' => $ageInMonths,
-                    'weight' => $log['weight'],
-                    'height' => $log['height'],
-                    'head_circum' => $log['head'],
-                    'arm_circum' => $log['arm'],
-                    'zscore_tb_u' => $tbResult['zScore'],
-                    'zscore_bb_u' => $bbResult['zScore'],
-                    'zscore_bb_tb' => $bbtbResult['zScore'],
-                    'stunting_status' => $tbResult['status'],
-                    'is_weight_stagnant' => $isStagnant,
-                    'notes' => $log['notes'],
-                ]);
+                MeasurementRecord::updateOrCreate(
+                    [
+                        'child_id' => $child->id,
+                        'measurement_date' => $measurementDate,
+                    ],
+                    [
+                        'measured_by_id' => $kader1->id,
+                        'age_in_months' => $ageInMonths,
+                        'weight' => $log['weight'],
+                        'height' => $log['height'],
+                        'head_circum' => $log['head'],
+                        'arm_circum' => $log['arm'],
+                        'zscore_tb_u' => $tbResult['zScore'],
+                        'zscore_bb_u' => $bbResult['zScore'],
+                        'zscore_bb_tb' => $bbtbResult['zScore'],
+                        'stunting_status' => $tbResult['status'],
+                        'is_weight_stagnant' => $isStagnant,
+                        'notes' => $log['notes'],
+                    ]
+                );
             }
 
             // Seed typical immunization milestones for this child
@@ -213,15 +217,19 @@ class DatabaseSeeder extends Seeder
             foreach ($sampleVaccines as $vac) {
                 $vacDate = $dob->copy()->addDays($vac['days']);
                 if ($vacDate->isPast()) {
-                    ImmunizationRecord::create([
-                        'child_id' => $child->id,
-                        'recorded_by_id' => $kader1->id,
-                        'vaccine_name' => $vac['name'],
-                        'category' => $vac['cat'],
-                        'administered_date' => $vacDate,
-                        'batch_number' => 'BIO-' . rand(1000, 9999),
-                        'notes' => 'Diberikan sesuai jadwal rutin di Posyandu Melati.',
-                    ]);
+                    ImmunizationRecord::updateOrCreate(
+                        [
+                            'child_id' => $child->id,
+                            'vaccine_name' => $vac['name'],
+                        ],
+                        [
+                            'recorded_by_id' => $kader1->id,
+                            'category' => $vac['cat'],
+                            'administered_date' => $vacDate,
+                            'batch_number' => 'BIO-' . ($dob->year . $vac['days']),
+                            'notes' => 'Diberikan sesuai jadwal rutin di Posyandu Melati.',
+                        ]
+                    );
                 }
             }
         }
@@ -411,7 +419,10 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($videos as $video) {
-            EducationalVideo::create($video);
+            EducationalVideo::updateOrCreate(
+                ['title' => $video['title']],
+                $video
+            );
         }
     }
 }
