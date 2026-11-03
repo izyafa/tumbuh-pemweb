@@ -36,6 +36,11 @@ class Child extends Model
         'birth_height' => 'float',
     ];
 
+    protected $appends = [
+        'age_in_months',
+        'gender_label',
+    ];
+
     protected static function booted(): void
     {
         static::creating(function (Child $child) {

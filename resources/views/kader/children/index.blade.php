@@ -75,7 +75,7 @@
                         <th class="py-3 px-3">Orang Tua / Kontak</th>
                         <th class="py-3 px-3 text-right">TB Terakhir</th>
                         <th class="py-3 px-3 text-right">BB Terakhir</th>
-                        <th class="py-3 px-3 text-center">Status Stunting</th>
+                        <th class="py-3 px-3 text-center">Status Gizi &amp; Stunting</th>
                         <th class="py-3 px-3 text-center">Portal Publik</th>
                         <th class="py-3 px-4 text-right">Aksi</th>
                     </tr>
@@ -116,12 +116,17 @@
                                 {{ $latest ? number_format($latest->weight, 2) . ' kg' : '-' }}
                             </td>
 
-                            <!-- Status Badge -->
+                            <!-- Status Badges: Gizi (BB/TB) & Stunting (TB/U) -->
                             <td class="py-3 px-3 text-center">
                                 @if($latest)
-                                    <span class="inline-block px-2 py-0.5 rounded text-[11px] font-medium border {{ $latest->badge_class }}">
-                                        {{ $latest->stunting_status_label }}
-                                    </span>
+                                    <div class="inline-flex flex-col items-center gap-1">
+                                        <span class="inline-block px-2 py-0.5 rounded text-[10px] font-semibold border {{ $latest->wasting_badge_class }} whitespace-nowrap" title="Status Proporsi Gizi BB/TB (Wasting)">
+                                            {{ $latest->wasting_status_label }}
+                                        </span>
+                                        <span class="inline-block px-2 py-0.5 rounded text-[10px] font-semibold border {{ $latest->badge_class }} whitespace-nowrap" title="Status Pertumbuhan TB/U (Stunting)">
+                                            {{ $latest->stunting_status_label }}
+                                        </span>
+                                    </div>
                                 @else
                                     <span class="text-slate-400 text-[10px]">Belum diukur</span>
                                 @endif

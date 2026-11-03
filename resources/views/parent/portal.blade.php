@@ -72,12 +72,17 @@
 
         <!-- Status Growth -->
         <div class="bg-white border border-slate-200 rounded-lg p-3.5 shadow-sm text-center col-span-2 sm:col-span-2">
-            <span class="text-[10px] font-semibold uppercase tracking-wider text-slate-400 block mb-1">Status Gizi & Stunting</span>
+            <span class="text-[10px] font-semibold uppercase tracking-wider text-slate-400 block mb-1.5">Status Gizi &amp; Stunting</span>
             @if($latestMeasurement)
-                <span class="inline-block px-3 py-1 rounded-full text-xs font-bold border {{ $latestMeasurement->badge_class }}">
-                    {{ $latestMeasurement->stunting_status_label }}
-                </span>
-                <span class="text-[11px] text-slate-500 block mt-1">
+                <div class="flex flex-wrap items-center justify-center gap-1.5">
+                    <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-bold border {{ $latestMeasurement->wasting_badge_class }}">
+                        {{ $latestMeasurement->wasting_status_label }}
+                    </span>
+                    <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-bold border {{ $latestMeasurement->badge_class }}">
+                        {{ $latestMeasurement->stunting_status_label }}
+                    </span>
+                </div>
+                <span class="text-[11px] text-slate-500 block mt-1.5">
                     {{ $latestMeasurement->is_weight_stagnant ? '⚠️ Perhatian: Kenaikan BB Stagnan (2T)' : '✅ Kenaikan BB Normal' }}
                 </span>
             @else

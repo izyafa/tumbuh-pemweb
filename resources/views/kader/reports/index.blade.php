@@ -13,8 +13,8 @@
 <div class="space-y-6">
 
     <!-- Top Action & Month Filter Bar -->
-    <div class="bg-white border border-slate-200 rounded-lg p-5 shadow-sm">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-xs">
+        <div class="flex flex-col xl:flex-row xl:items-center justify-between gap-4">
             <div>
                 <h2 class="text-base font-bold text-slate-900">Rekapitulasi Kinerja SKDN & Deteksi Stunting</h2>
                 <p class="text-xs text-slate-500 mt-0.5">
@@ -22,23 +22,31 @@
                 </p>
             </div>
 
-            <!-- Month Selector & Export Buttons -->
-            <div class="flex flex-wrap items-center gap-2.5">
-                <form method="GET" action="{{ route('kader.reports.index') }}" class="flex items-center space-x-2">
-                    <label for="month" class="text-xs font-semibold uppercase tracking-wider text-slate-600">Bulan:</label>
-                    <input type="month" name="month" id="month" value="{{ $selectedMonth }}" onchange="this.form.submit()"
-                           class="px-3 py-1.5 rounded-md border border-slate-300 text-xs font-mono text-slate-800 bg-white focus:outline-none focus:border-lime-600 focus:ring-1 focus:ring-lime-600">
+            <!-- Month Selector & Export Buttons (Always Inline & Aligned) -->
+            <div class="flex items-center gap-2 sm:gap-2.5 shrink-0 flex-nowrap overflow-x-auto pb-1 xl:pb-0">
+                <form method="GET" action="{{ route('kader.reports.index') }}" class="flex items-center space-x-2 shrink-0">
+                    <label for="month" class="text-xs font-semibold uppercase tracking-wider text-slate-600 shrink-0 whitespace-nowrap">
+                        Bulan:
+                    </label>
+                    <div class="calendar-input-wrapper relative flex items-center shrink-0">
+                        <input type="month" name="month" id="month" value="{{ $selectedMonth }}" onchange="this.form.submit()"
+                               onclick="this.showPicker && this.showPicker()"
+                               class="w-[150px] sm:w-[160px] pl-3 pr-8 py-1.5 rounded-lg border border-slate-300 text-xs font-mono text-slate-800 bg-white focus:outline-none focus:border-lime-600 focus:ring-1 focus:ring-lime-600 shrink-0 cursor-pointer shadow-2xs">
+                        <div class="absolute right-2.5 pointer-events-none text-slate-500 flex items-center justify-center">
+                            <i data-lucide="calendar-days" class="w-4 h-4"></i>
+                        </div>
+                    </div>
                 </form>
 
                 <a href="{{ route('kader.reports.export-csv', ['month' => $selectedMonth]) }}"
-                   class="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-md bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold shadow-sm transition">
-                    <i data-lucide="sheet" class="w-4 h-4"></i>
+                   class="inline-flex items-center space-x-1.5 px-3.5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold shadow-xs whitespace-nowrap shrink-0 transition">
+                    <i data-lucide="sheet" class="w-4 h-4 shrink-0"></i>
                     <span>Unduh Excel (.CSV)</span>
                 </a>
 
                 <a href="{{ route('kader.reports.print', ['month' => $selectedMonth]) }}" target="_blank"
-                   class="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-md border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold shadow-sm transition">
-                    <i data-lucide="printer" class="w-4 h-4 text-slate-500"></i>
+                   class="inline-flex items-center space-x-1.5 px-3.5 py-2 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold shadow-2xs whitespace-nowrap shrink-0 transition">
+                    <i data-lucide="printer" class="w-4 h-4 text-slate-500 shrink-0"></i>
                     <span>Cetak PDF</span>
                 </a>
             </div>

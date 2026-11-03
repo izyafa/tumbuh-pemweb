@@ -122,9 +122,65 @@ class AdminController extends Controller
             ->with('success', "Pengguna {$name} telah dihapus.");
     }
 
-    public function videos(): View
+    public function videos(Request $request): View
     {
-        $videos = EducationalVideo::orderBy('created_at', 'desc')->paginate(10);
-        return view('admin.videos', compact('videos'));
+        $categories = [
+            'Semua Kategori',
+            'MPASI 6-23 Bln',
+            'ASI Eksklusif 0-6 Bln',
+            'PHBS & Sanitasi',
+            'Gizi Ibu Hamil',
+        ];
+
+        $selectedCategory = $request->input('category', 'Semua Kategori');
+        $quizStatus = $request->input('quiz_status', 'all');
+        $search = trim((string) $request->input('search', $request->input('q', '')));
+
+        $query = EducationalVideo::query();
+
+        if ($selectedCategory && $selectedCategory !== 'Semua Kategori') {
+            $query->where('category', $selectedCategory);
+        }
+
+        if ($search !== '') {
+            $searchTerm = '%' . strtolower($search) . '%';
+            $query->where(function ($q) use ($searchTerm) {
+                $q->whereRaw('LOWER(title) LIKE ?', [$searchTerm])
+                  ->orWhereRaw('LOWER(summary) LIKE ?', [$searchTerm])
+                  ->orWhereRaw('LOWER(category) LIKE ?', [$searchTerm]);
+            });
+        }
+
+        if ($quizStatus === 'has_quiz') {
+            $query->whereNotNull('quiz_data')
+                  ->where('quiz_data', '!=', '[]')
+                  ->where('quiz_data', '!=', 'null');
+        } elseif ($quizStatus === 'no_quiz') {
+            $query->where(function ($q) {
+                $q->whereNull('quiz_data')
+                  ->orWhere('quiz_data', '[]')
+                  ->orWhere('quiz_data', 'null');
+            });
+        }
+
+        $totalCount = EducationalVideo::count();
+        $quizCount = EducationalVideo::whereNotNull('quiz_data')
+            ->where('quiz_data', '!=', '[]')
+            ->where('quiz_data', '!=', 'null')
+            ->count();
+        $noQuizCount = max(0, $totalCount - $quizCount);
+
+        $videos = $query->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
+
+        return view('admin.videos', compact(
+            'videos',
+            'categories',
+            'selectedCategory',
+            'quizStatus',
+            'search',
+            'totalCount',
+            'quizCount',
+            'noQuizCount'
+        ));
     }
 }

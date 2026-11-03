@@ -35,3 +35,15 @@ input[type="number"] {
     -moz-appearance: textfield;
     appearance: textfield;
 }
+
+/* Custom calendar input: hide native browser calendar icon to display custom Lucide calendar-days icon */
+.calendar-input-wrapper input[type="month"]::-webkit-calendar-picker-indicator,
+.calendar-input-wrapper input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 2.25rem;
+    height: 100%;
+}

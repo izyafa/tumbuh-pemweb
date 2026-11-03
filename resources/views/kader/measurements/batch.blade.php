@@ -17,8 +17,14 @@
             </div>
             <div class="flex items-center space-x-3 shrink-0">
                 <label for="batch_date" class="text-xs font-semibold uppercase tracking-wider text-slate-600">Tanggal Pemeriksaan:</label>
-                <input type="date" name="measurement_date" id="batch_date" x-model="measurementDate"
-                       class="px-3 py-1.5 rounded-md border border-slate-300 text-xs text-slate-800 bg-white focus:outline-none focus:border-lime-600 focus:ring-1 focus:ring-lime-600">
+                <div class="calendar-input-wrapper relative flex items-center">
+                    <input type="date" name="measurement_date" id="batch_date" x-model="measurementDate"
+                           onclick="this.showPicker && this.showPicker()"
+                           class="pl-3 pr-9 py-1.5 rounded-md border border-slate-300 text-xs text-slate-800 bg-white focus:outline-none focus:border-lime-600 focus:ring-1 focus:ring-lime-600 cursor-pointer">
+                    <div class="absolute right-2.5 pointer-events-none text-slate-400 flex items-center justify-center">
+                        <i data-lucide="calendar-days" class="w-4 h-4"></i>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

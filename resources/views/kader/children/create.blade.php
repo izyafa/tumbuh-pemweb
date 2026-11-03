@@ -52,9 +52,15 @@
                     <label for="date_of_birth" class="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1">
                         Tanggal Lahir <span class="text-rose-500">*</span>
                     </label>
-                    <input type="date" name="date_of_birth" id="date_of_birth" required max="{{ date('Y-m-d') }}"
-                           value="{{ old('date_of_birth') }}"
-                           class="w-full px-3 py-2 text-xs rounded-md border border-slate-300 bg-white text-slate-800 focus:outline-none focus:border-lime-600 focus:ring-1 focus:ring-lime-600">
+                    <div class="calendar-input-wrapper relative flex items-center">
+                        <input type="date" name="date_of_birth" id="date_of_birth" required max="{{ date('Y-m-d') }}"
+                               value="{{ old('date_of_birth') }}"
+                               onclick="this.showPicker && this.showPicker()"
+                               class="w-full pl-3 pr-9 py-2 text-xs rounded-md border border-slate-300 bg-white text-slate-800 focus:outline-none focus:border-lime-600 focus:ring-1 focus:ring-lime-600 cursor-pointer">
+                        <div class="absolute right-2.5 pointer-events-none text-slate-400 flex items-center justify-center">
+                            <i data-lucide="calendar-days" class="w-4 h-4"></i>
+                        </div>
+                    </div>
                     @error('date_of_birth') <p class="mt-1 text-xs text-rose-600">{{ $message }}</p> @enderror
                 </div>
 
