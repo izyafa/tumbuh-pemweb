@@ -79,7 +79,6 @@ class ChildController extends Controller
     {
         $child = Child::with([
             'measurementRecords.measuredBy',
-            'immunizationRecords.recordedBy',
             'aiConsultations' => function ($q) {
                 $q->orderBy('created_at', 'desc');
             }
@@ -101,6 +100,24 @@ class ChildController extends Controller
             $childWeightPoints[$age] = (float) $rec->weight;
         }
 
+        // Paginate measurement records (10 per page)
+        $measurementRecords = $child->measurementRecords()
+            ->with('measuredBy')
+            ->orderBy('measurement_date', 'desc')
+            ->paginate(10, ['*'], 'measurements_page')
+            ->withQueryString();
+
+        // Paginate immunization records (10 per page)
+        $immunizationRecords = $child->immunizationRecords()
+            ->with('recordedBy')
+            ->orderBy('administered_date', 'desc')
+            ->paginate(10, ['*'], 'immunizations_page')
+            ->withQueryString()
+            ->fragment('imunisasi');
+
+        $totalMeasurementsCount = $child->measurementRecords->count();
+        $totalImmunizationsCount = $child->immunizationRecords()->count();
+
         // Prepare WhatsApp message string
         $publicUrl = route('parent.portal', ['token' => $child->public_token]);
         $phoneClean = preg_replace('/[^0-9]/', '', $child->parent_phone);
@@ -116,8 +133,9 @@ class ChildController extends Controller
             $waText .= "• Usia: {$latestMeasurement->age_in_months} Bulan\n";
             $waText .= "• Berat Badan: {$latestMeasurement->weight} kg\n";
             $waText .= "• Tinggi Badan: {$latestMeasurement->height} cm\n";
-            $waText .= "• Status TB/U: {$latestMeasurement->stunting_status_label} (Z-Score: {$latestMeasurement->zscore_tb_u})\n";
-            $waText .= "• Status BB: " . ($latestMeasurement->is_weight_stagnant ? '⚠️ Berat Badan Stagnan (Tidak Naik)' : '✅ Kenaikan BB Normal') . "\n\n";
+            $waText .= "• Status Pertumbuhan (TB/U): {$latestMeasurement->stunting_status_label}\n";
+            $waText .= "• Status Gizi (BB/TB): {$latestMeasurement->wasting_status_label}\n";
+            $waText .= "• Status Kenaikan BB: " . ($latestMeasurement->is_weight_stagnant ? '⚠️ Berat Badan Stagnan (Tidak Naik)' : '✅ Kenaikan BB Normal') . "\n\n";
         } else {
             $waText .= "Data balita telah terdaftar di sistem Tumbuh.\n\n";
         }
@@ -134,7 +152,11 @@ class ChildController extends Controller
             'childHeightPoints',
             'childWeightPoints',
             'waText',
-            'waShareUrl'
+            'waShareUrl',
+            'measurementRecords',
+            'immunizationRecords',
+            'totalMeasurementsCount',
+            'totalImmunizationsCount'
         ));
     }
 

@@ -18,18 +18,22 @@ window.globalDeleteModal = function () {
         title: 'Konfirmasi Hapus Data',
         message: 'Apakah Anda yakin ingin menghapus data ini? Tindakan ini tidak dapat dibatalkan.',
         itemDetail: '',
+        itemTag: '',
         confirmText: 'Ya, Hapus Data',
         targetForm: null,
         onConfirmCallback: null,
+        isSubmitting: false,
 
         openFromEvent(event) {
             const detail = event.detail || {};
             this.title = detail.title || 'Konfirmasi Hapus Data';
             this.message = detail.message || 'Apakah Anda yakin ingin menghapus data ini? Tindakan ini tidak dapat dibatalkan.';
-            this.itemDetail = detail.itemDetail || '';
+            this.itemDetail = detail.itemDetail || detail.item || '';
+            this.itemTag = detail.itemTag || '';
             this.confirmText = detail.confirmText || 'Ya, Hapus Data';
             this.targetForm = detail.form || null;
             this.onConfirmCallback = detail.onConfirm || null;
+            this.isSubmitting = false;
             this.isOpen = true;
 
             this.$nextTick(() => {
@@ -40,15 +44,19 @@ window.globalDeleteModal = function () {
         },
 
         close() {
+            if (this.isSubmitting) return;
             this.isOpen = false;
             this.targetForm = null;
             this.onConfirmCallback = null;
+            this.isSubmitting = false;
         },
 
         confirm() {
+            if (this.isSubmitting) return;
+            this.isSubmitting = true;
+
             const form = this.targetForm;
             const callback = this.onConfirmCallback;
-            this.isOpen = false;
 
             if (callback && typeof callback === 'function') {
                 callback();
@@ -75,6 +83,7 @@ window.confirmDelete = function (target, options = {}) {
         title: options.title || 'Konfirmasi Hapus Data',
         message: options.message || 'Apakah Anda yakin ingin menghapus data ini? Tindakan ini tidak dapat dibatalkan.',
         itemDetail: options.itemDetail || options.item || '',
+        itemTag: options.itemTag || '',
         confirmText: options.confirmText || 'Ya, Hapus Data',
         form: form,
         onConfirm: typeof options === 'function' ? options : (options.onConfirm || null)

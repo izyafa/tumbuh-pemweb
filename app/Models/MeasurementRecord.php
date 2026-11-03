@@ -74,4 +74,40 @@ class MeasurementRecord extends Model
             default => 'bg-slate-50 text-slate-700 border-slate-200',
         };
     }
+
+    public function getWastingStatusAttribute(): string
+    {
+        $z = (float) $this->zscore_bb_tb;
+        if ($z < -3.0) return 'severely_wasted';
+        if ($z < -2.0) return 'wasted';
+        if ($z <= 1.0) return 'normal';
+        if ($z <= 2.0) return 'risk_of_overweight';
+        if ($z <= 3.0) return 'overweight';
+        return 'obese';
+    }
+
+    public function getWastingStatusLabelAttribute(): string
+    {
+        return match ($this->wasting_status) {
+            'severely_wasted' => 'Gizi Buruk',
+            'wasted' => 'Gizi Kurang',
+            'normal' => 'Gizi Baik',
+            'risk_of_overweight' => 'Risiko Gizi Lebih',
+            'overweight' => 'Gizi Lebih',
+            'obese' => 'Obesitas',
+            default => 'Gizi Baik',
+        };
+    }
+
+    public function getWastingBadgeClassAttribute(): string
+    {
+        return match ($this->wasting_status) {
+            'normal' => 'bg-emerald-50 text-emerald-700 border-emerald-200',
+            'wasted' => 'bg-amber-50 text-amber-700 border-amber-200',
+            'severely_wasted' => 'bg-rose-50 text-rose-700 border-rose-200',
+            'risk_of_overweight' => 'bg-sky-50 text-sky-700 border-sky-200',
+            'overweight', 'obese' => 'bg-purple-50 text-purple-700 border-purple-200',
+            default => 'bg-slate-50 text-slate-700 border-slate-200',
+        };
+    }
 }

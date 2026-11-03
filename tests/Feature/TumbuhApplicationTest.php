@@ -325,6 +325,23 @@ class TumbuhApplicationTest extends TestCase
         $response->assertDontSee('Data Kuis JSON (2–3 Soal Pilihan Ganda)');
     }
 
+    public function test_admin_videos_search_and_filters(): void
+    {
+        $admin = User::where('role', 'admin')->first();
+
+        $response = $this->actingAs($admin)->get(route('admin.videos'));
+        $response->assertStatus(200);
+        $response->assertSee('Semua Kuis');
+        $response->assertSee('Cari judul modul, ringkasan, atau materi');
+
+        $responseSearch = $this->actingAs($admin)->get(route('admin.videos', ['search' => 'MPASI']));
+        $responseSearch->assertStatus(200);
+        $responseSearch->assertSee('Filter Aktif');
+
+        $responseQuiz = $this->actingAs($admin)->get(route('admin.videos', ['quiz_status' => 'has_quiz']));
+        $responseQuiz->assertStatus(200);
+    }
+
     public function test_admin_can_store_educational_video_with_quiz_data(): void
     {
         $admin = User::where('role', 'admin')->first();
@@ -368,7 +385,7 @@ class TumbuhApplicationTest extends TestCase
             'category' => 'MPASI 6-23 Bln',
         ]);
 
-        $video = EducationalVideo::where('title', 'Edukasi MPASI Kaya Zat Besi')->first();
+        $video = EducationalVideo::where('title', 'Edukasi MPASI Kaya Zat Besi')->latest('created_at')->first();
         $this->assertNotNull($video);
         $this->assertCount(2, $video->quiz_data);
         $this->assertEquals('Mengapa protein hewani sangat penting bagi pertumbuhan anak?', $video->quiz_data[0]['question']);
@@ -439,11 +456,11 @@ class TumbuhApplicationTest extends TestCase
         $response = $this->actingAs($kader)->get(route('kader.broadcast.index'));
         $response->assertStatus(200);
         $response->assertSee('Siaran Pengingat Hari Posyandu');
-        $response->assertSee('Kirim ke Semua Orang');
         $response->assertSee('Bagikan Pengumuman Grup');
-        $response->assertSee('Pengiriman Siaran WhatsApp Massal');
+        $response->assertSee('Daftar Kirim Pesan ke Orang Tua Balita');
         $response->assertDontSee('Salin Nomor HP');
-        $response->assertSee('Pilih Semua Hasil Filter');
+        $response->assertDontSee('Pilih Semua Hasil Filter');
+        $response->assertSee('Kirim WhatsApp');
     }
 
     public function test_kader_can_access_dedicated_ai_consult_page(): void
