@@ -13,19 +13,19 @@
 <div class="space-y-6">
 
     <!-- Top Action Bar -->
-    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-white p-4 rounded-xl border border-slate-200 shadow-2xs">
         <div>
-            <h2 class="text-sm font-semibold text-slate-800">Hari Layanan Penimbangan Posyandu</h2>
-            <p class="text-xs text-slate-500">Gunakan fitur input cepat untuk mencatat puluhan balita secara serentak.</p>
+            <h2 class="text-sm font-bold text-slate-800">Layanan Penimbangan &amp; Pengukuran Balita</h2>
+            <p class="text-xs text-slate-500">Gunakan fitur input cepat untuk mencatat data penimbangan massal atau daftarkan balita baru.</p>
         </div>
         <div class="flex items-center space-x-2">
             <a href="{{ route('kader.measurements.batch') }}" 
-               class="inline-flex items-center space-x-1.5 px-3.5 py-2 rounded-md bg-lime-600 hover:bg-lime-700 text-white text-xs font-semibold shadow-sm transition">
+               class="inline-flex items-center space-x-1.5 px-3.5 py-2 rounded-lg bg-lime-600 hover:bg-lime-700 text-white text-xs font-semibold shadow-xs transition cursor-pointer">
                 <i data-lucide="sparkles" class="w-4 h-4"></i>
                 <span>Input Cepat Batch</span>
             </a>
             <a href="{{ route('kader.children.create') }}" 
-               class="inline-flex items-center space-x-1.5 px-3 py-2 rounded-md border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-medium transition">
+               class="inline-flex items-center space-x-1.5 px-3 py-2 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-medium transition cursor-pointer">
                 <i data-lucide="plus" class="w-3.5 h-3.5"></i>
                 <span>Daftar Balita Baru</span>
             </a>

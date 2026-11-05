@@ -41,14 +41,64 @@ class AiNutritionService
         $costSiang = 'Rp' . number_format($costSiangRaw, 0, ',', '.');
         $costMalam = 'Rp' . number_format($costMalamRaw, 0, ',', '.');
 
-        $systemPrompt = "You are an expert pediatric clinical nutritionist and stunting intervention specialist working under the standards of the Indonesian Ministry of Health (Kemenkes RI) and WHO.
+        // Standard WHO / Kemenkes RI (Permenkes No. 2 Tahun 2020) Status Derivations
+        $tbStatus = 'Normal';
+        if ($zScoreTbU < -3.0) {
+            $tbStatus = 'Sangat Pendek (Severely Stunted)';
+        } elseif ($zScoreTbU < -2.0) {
+            $tbStatus = 'Pendek (Stunted)';
+        } elseif ($zScoreTbU > 2.0) {
+            $tbStatus = 'Tinggi';
+        }
+
+        $bbStatus = 'Berat Badan Normal';
+        if ($zScoreBbU < -3.0) {
+            $bbStatus = 'Berat Badan Sangat Kurang (Severely Underweight)';
+        } elseif ($zScoreBbU < -2.0) {
+            $bbStatus = 'Berat Badan Kurang (Underweight)';
+        } elseif ($zScoreBbU > 1.0) {
+            $bbStatus = 'Risiko Berat Badan Lebih';
+        }
+
+        $giziStatus = 'Gizi Baik (Normal)';
+        if ($zScoreBbTb < -3.0) {
+            $giziStatus = 'Gizi Buruk (Severely Wasted)';
+        } elseif ($zScoreBbTb < -2.0) {
+            $giziStatus = 'Gizi Kurang (Wasted)';
+        } elseif ($zScoreBbTb > 2.0) {
+            $giziStatus = 'Gizi Lebih / Obesitas';
+        }
+
+        $isClinicallyAtRisk = ($zScoreTbU < -2.0) || ($zScoreBbU < -2.0) || ($zScoreBbTb < -2.0) || ($zScoreBbTb > 2.0) || $isWeightStagnant;
+
+        $systemPrompt = "You are an expert pediatric clinical nutritionist and stunting intervention specialist working under the strict standards of the Indonesian Ministry of Health (Kemenkes RI - Permenkes No. 2/2020) and WHO.
 Your job is to generate UNIQUE, DIVERSE, TASTY, and HIGHLY VARIED daily meal plans for an Indonesian toddler, strictly divided across 3 meals (Pagi, Siang, Sore/Malam).
-CRITICAL RULES FOR BUDGET ALLOCATION AND MENU VARIETY:
+
+CRITICAL CLINICAL & DIAGNOSTIC RULES (WHO / KEMENKES RI STANDARDS):
+1. UNDERSTANDING NORMAL THRESHOLDS:
+   - Z-score between -2.0 SD and +2.0 SD (and <= +1.0 SD for BB/TB) is strictly NORMAL / GIZI BAIK.
+   - Stunting ONLY occurs when TB/U < -2.0 SD. Underweight ONLY occurs when BB/U < -2.0 SD. Wasting ONLY occurs when BB/TB < -2.0 SD.
+   - ABSOLUTE BAN: You are STRICTLY FORBIDDEN from stating that a child is at 'risiko stunting', 'underweight ringan', or 'gizi kurang' if their Z-scores are >= -2.0 SD and weight is not stagnant! Never invent pseudo-medical categories like 'Z-score di bawah -1 SD'. That creates false medical alarms and causes unwarranted parental anxiety!
+2. CLINICAL ALERT RULES:
+   - IF THE CHILD IS NORMAL (TB/U >= -2.0 SD, BB/U >= -2.0 SD, BB/TB >= -2.0 SD, and weight not stagnant): The 'clinicalAlert' field in the JSON MUST BE EXACTLY null (null). Do NOT output any warning text!
+   - IF THE CHILD IS AT RISK (TB/U < -2.0 SD, BB/TB < -2.0 SD, BB/U < -2.0 SD, or BB Stagnant/2T): Provide an accurate, empathetic, and actionable clinical alert stating the specific concern and necessary intervention.
+3. STATUS DIAGNOSIS (statusDiagnosis):
+   - If child is normal: State warmly and clearly that the child is growing healthily with good nutritional status and normal height/weight for their age. Write in clear, encouraging, parent-friendly Indonesian (avoid technical jargon like Z-score formulas or standard deviations), and focus recommendations on maintaining dietary diversity and daily animal protein.
+   - If child is at risk: Objectively summarize the growth concern in simple, empathetic language and prioritize high-density animal protein (telur, ikan, daging sapi, hati ayam).
+
+BUDGET ALLOCATION AND MENU VARIETY RULES:
 1. The user's total daily budget is {$formattedBudget}. You MUST divide it across the 3 meals: Pagi is approximately {$costPagi}, Siang is approximately {$costSiang}, and Sore/Malam is approximately {$costMalam}. The 'estimatedCost' field of each meal in the JSON must match these allocated amounts so the sum equals {$formattedBudget}!
 2. NEVER GENERATE THE SAME GENERIC MENU! Every generation must be fresh, creative, and distinct. Freely use diverse protein sources: daging sapi giling/cincang, daging ayam fillet/cincang/ayam kampung, aneka ikan (kembung, tenggiri, lele, kakap, dori, mujair, belut), udang kupas cincang, aneka telur (ayam ras, puyuh, ayam kampung, bebek), hati ayam, tahu sutra, tempe bacem/gurih, edamame, and varied vegetables (brokoli, wortel, bayam, labu siam, daun kelor, jagung manis, kentang, makaroni, tomat) plus healthy cooking fats (santan segar, keju, margarin/mentega, minyak kelapa).
 3. Adjust food quality and ingredients based on the budget: for higher budgets (Rp 50.000 - Rp 150.000+), incorporate premium fresh proteins (daging sapi cincang, ikan kakap/tenggiri, telur puyuh/ayam kampung, keju, buah segar); for modest budgets, maximize affordable nutrient-dense local staples.
 4. Adapt textures to child age: 0-6 months = ASI Eksklusif; 6-8 months = saring/lumat kental; 9-11 months = cincang halus/nasi tim lembek; 12-59 months = makanan keluarga padat gizi.
 5. Return STRICT JSON ONLY without markdown backticks.";
+
+        $clinicalSummary = $isClinicallyAtRisk
+            ? "PERHATIAN: Anak memiliki indikator risiko pertumbuhan klinis. Berikan peringatan yang relevan pada field 'clinicalAlert'."
+            : "STATUS MEDIS: Anak bertumbuh SEHAT & NORMAL sesuai standar WHO (TIDAK stunting, TIDAK underweight, gizi baik). Field 'clinicalAlert' WAJIB BERNILAI null (tanpa teks peringatan)!";
+
+        $promptAlertPlaceholder = $isClinicallyAtRisk ? '"Peringatan medis jika ada risiko stunting atau BB stagnan"' : 'null';
+        $promptReferralPlaceholder = $isClinicallyAtRisk ? 'true' : 'false';
 
         $userPrompt = <<<EOT
 Data Pasien Anak:
@@ -57,20 +107,21 @@ Data Pasien Anak:
 - Jenis Kelamin: {$genderText}
 - Berat Badan: {$weight} kg
 - Tinggi/Panjang Badan: {$height} cm
-- Z-Score TB/U (Stunting): {$zScoreTbU} SD
-- Z-Score BB/U (Underweight): {$zScoreBbU} SD
-- Z-Score BB/TB (Wasting): {$zScoreBbTb} SD
+- Status Pertumbuhan Linier (TB/U): {$tbStatus} (Z-Score: {$zScoreTbU} SD)
+- Status Berat Badan (BB/U): {$bbStatus} (Z-Score: {$zScoreBbU} SD)
+- Status Gizi Wasting (BB/TB): {$giziStatus} (Z-Score: {$zScoreBbTb} SD)
 - Status Kenaikan BB: {$stagnantText}
+- Ringkasan Medis: {$clinicalSummary}
 - Total Anggaran Belanja Makan Harian: {$formattedBudget}
 - Pembagian Target Anggaran (3 Waktu Makan):
   * Pagi: {$costPagi}
   * Siang: {$costSiang}
   * Sore / Malam: {$costMalam}
 
-Hasilkan variasi menu makanan baru yang lezat, segar, dan berbeda dari sebelumnya dengan biaya sesuai pembagian di atas dalam struktur JSON berikut:
+Hasilkan variasi menu makanan baru yang lezat, bernutrisi, dan seimbang dengan biaya sesuai pembagian di atas dalam struktur JSON berikut:
 {
-  "clinicalAlert": "Peringatan medis jika ada risiko stunting atau BB stagnan, atau null jika aman",
-  "statusDiagnosis": "Analisis ringkas status pertumbuhan fisik anak",
+  "clinicalAlert": {$promptAlertPlaceholder},
+  "statusDiagnosis": "Analisis ringkas status pertumbuhan fisik anak sesuai standar WHO",
   "recommendedMenu": [
     {
       "mealTime": "Pagi",
@@ -96,7 +147,7 @@ Hasilkan variasi menu makanan baru yang lezat, segar, dan berbeda dari sebelumny
     "Tips 2 (higienitas & sanitasi)",
     "Tips 3 (densitas energi / pemenuhan nutrisi)"
   ],
-  "shouldReferToPuskesmas": false
+  "shouldReferToPuskesmas": {$promptReferralPlaceholder}
 }
 EOT;
 
@@ -107,7 +158,7 @@ EOT;
             try {
                 $response = $this->callGemini($systemPrompt, $userPrompt);
                 if ($response) {
-                    return $response;
+                    return $this->applyClinicalGuardrails($response, $isClinicallyAtRisk, $childName, $zScoreTbU, $zScoreBbTb, $zScoreBbU, $isWeightStagnant);
                 }
             } catch (Exception $e) {
                 Log::warning('Gemini API error, falling back to algorithmic expert engine: ' . $e->getMessage());
@@ -119,7 +170,7 @@ EOT;
             try {
                 $response = $this->callOpenAi($systemPrompt, $userPrompt);
                 if ($response) {
-                    return $response;
+                    return $this->applyClinicalGuardrails($response, $isClinicallyAtRisk, $childName, $zScoreTbU, $zScoreBbTb, $zScoreBbU, $isWeightStagnant);
                 }
             } catch (Exception $e) {
                 Log::warning('OpenAI API error, falling back to algorithmic expert engine: ' . $e->getMessage());
@@ -127,7 +178,7 @@ EOT;
         }
 
         // Algorithmic clinical fallback compliant with Kemenkes RI guidelines
-        return $this->generateClinicalFallback(
+        $fallback = $this->generateClinicalFallback(
             $childName,
             $ageInMonths,
             $genderText,
@@ -139,6 +190,8 @@ EOT;
             $isWeightStagnant,
             $dailyBudget
         );
+
+        return $this->applyClinicalGuardrails($fallback, $isClinicallyAtRisk, $childName, $zScoreTbU, $zScoreBbTb, $zScoreBbU, $isWeightStagnant);
     }
 
     protected function callGemini(string $systemPrompt, string $userPrompt): ?array
@@ -284,11 +337,10 @@ EOT;
             $clinicalAlert = "PERINGATAN: Anak terindikasi Stunted (Pendek). Diperlukan intervensi protein hewani padat gizi setiap waktu makan.";
         }
 
-        $diagnosis = "Anak {$childName} ({$ageInMonths} bln, {$genderText}) memiliki TB {$height} cm (Z-score {$zScoreTbU} SD), BB {$weight} kg (Z-score {$zScoreBbU} SD). ";
         if ($zScoreTbU < -2.0) {
-            $diagnosis .= "Terdapat hambatan laju pertumbuhan linier (stunting). Prioritas utama adalah penyediaan protein hewani tinggi leusin dan zat besi.";
+            $diagnosis = "Terdapat hambatan pada laju pertumbuhan tinggi badan anak ({$childName}). Prioritas utama adalah penyediaan protein hewani padat gizi (telur, ikan, daging sapi, hati ayam) di setiap waktu makan untuk memicu hormon pertumbuhan.";
         } else {
-            $diagnosis .= "Pertumbuhan linier dalam rentang normal WHO. Pertahankan status gizi dan keberagaman pangan lokal padat mikronutrien.";
+            $diagnosis = "Alhamdulillah, pertumbuhan fisik dan status gizi {$childName} berada dalam rentang sehat dan normal. Berat dan tinggi badan si kecil berkembang baik sesuai usianya. Pertahankan variasi menu makanan bergizi seimbang dan cukupi kebutuhan protein hewani setiap hari.";
         }
 
         // Hitung proporsi 3 waktu makan dari total anggaran
@@ -374,5 +426,59 @@ EOT;
             'parentActionTips' => $tips,
             'shouldReferToPuskesmas' => $shouldRefer,
         ];
+    }
+
+    /**
+     * Apply strict clinical guardrails to AI consultation results according to WHO and Kemenkes RI guidelines.
+     * Prevents LLM hallucinations such as false 'risiko stunting' or 'underweight ringan' on clinically normal children.
+     */
+    protected function applyClinicalGuardrails(
+        array $response,
+        bool $isClinicallyAtRisk,
+        string $childName,
+        float $zScoreTbU,
+        float $zScoreBbTb,
+        float $zScoreBbU = 0.0,
+        bool $isWeightStagnant = false
+    ): array {
+        // Child is clinically normal under WHO / Kemenkes RI standards
+        if (!$isClinicallyAtRisk) {
+            // Absolute ban on false alarm clinical alerts
+            $response['clinicalAlert'] = null;
+            $response['shouldReferToPuskesmas'] = false;
+
+            // Check if status diagnosis contains hallucinated risk terms for a normal child
+            $diagnosis = $response['statusDiagnosis'] ?? '';
+            $hasHallucination = preg_match(
+                '/(risiko stunting|underweight ringan|stunted|pendek|gizi kurang|wasting|gizi buruk|di bawah -1|mengejar ketertinggalan|catch-up|weight faltering)/i',
+                $diagnosis
+            );
+
+            if ($hasHallucination || empty($diagnosis)) {
+                $response['statusDiagnosis'] = "Alhamdulillah, pertumbuhan fisik dan status gizi {$childName} berada dalam rentang sehat dan normal. Berat dan tinggi badan si kecil berkembang baik sesuai usianya. Pertahankan variasi menu makanan bergizi seimbang dan cukupi kebutuhan protein hewani setiap hari.";
+            }
+        } else {
+            // Child is clinically at risk
+            $response['shouldReferToPuskesmas'] = true;
+
+            // If LLM failed to provide a clinical alert, generate one from evidence
+            if (empty($response['clinicalAlert'])) {
+                if ($zScoreTbU < -3.0) {
+                    $response['clinicalAlert'] = "PERINGATAN KLINIS: Anak terindikasi Severely Stunted (TB/U < -3 SD). Segera rujuk ke Puskesmas/Dokter Spesialis Anak untuk tata laksana gizi terpadu.";
+                } elseif ($isWeightStagnant) {
+                    $response['clinicalAlert'] = "PERINGATAN: Berat badan tidak naik (Stagnan / 2T). Risiko tinggi weight faltering menuju stunting, perlu konfirmasi asupan dan pemeriksaan klinis Puskesmas.";
+                } elseif ($zScoreTbU < -2.0) {
+                    $response['clinicalAlert'] = "PERINGATAN: Anak terindikasi Stunted (Pendek). Diperlukan intervensi protein hewani padat gizi setiap waktu makan.";
+                } elseif ($zScoreBbTb < -3.0) {
+                    $response['clinicalAlert'] = "PERINGATAN KLINIS: Anak terindikasi Gizi Buruk (BB/TB < -3 SD). Segera rujuk ke Puskesmas/fasilitas kesehatan terdekat.";
+                } elseif ($zScoreBbTb < -2.0) {
+                    $response['clinicalAlert'] = "PERINGATAN: Anak terindikasi Gizi Kurang (Wasted). Tingkatkan asupan kalori dan protein hewani berkualitas.";
+                } elseif ($zScoreBbU < -2.0) {
+                    $response['clinicalAlert'] = "PERINGATAN: Anak terindikasi Berat Badan Kurang (Underweight). Perhatikan frekuensi dan kepadatan kalori MPASI/makanan anak.";
+                }
+            }
+        }
+
+        return $response;
     }
 }

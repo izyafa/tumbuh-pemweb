@@ -108,12 +108,23 @@ class ParentPortalController extends Controller
         $latestMeasurement = $child->latestMeasurement;
         $latestConsultation = $child->aiConsultations->first();
 
+        // Clinical status validation under WHO & Kemenkes RI standards (Permenkes No. 2/2020)
+        $isClinicallyAtRisk = false;
+        if ($latestMeasurement) {
+            $isClinicallyAtRisk = ($latestMeasurement->zscore_tb_u < -2.0)
+                || ($latestMeasurement->zscore_bb_u < -2.0)
+                || ($latestMeasurement->zscore_bb_tb < -2.0)
+                || ($latestMeasurement->zscore_bb_tb > 2.0)
+                || (bool) $latestMeasurement->is_weight_stagnant;
+        }
+
         $parentPortalUrl = route('parent.portal', ['token' => $child->public_token]);
 
         return view('parent.menu_gizi', compact(
             'child',
             'latestMeasurement',
             'latestConsultation',
+            'isClinicallyAtRisk',
             'parentPortalUrl'
         ));
     }

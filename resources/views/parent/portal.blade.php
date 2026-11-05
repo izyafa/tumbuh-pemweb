@@ -157,14 +157,14 @@
                 </div>
                 <div>
                     <div class="flex items-center space-x-2">
-                        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-900">Panduan Nutrisi &amp; Rekomendasi Menu Makan (AI)</h3>
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-900">Panduan Nutrisi &amp; Rekomendasi Menu Makan</h3>
                         <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-lime-100 text-lime-800 font-semibold border border-lime-200">Gemini AI</span>
                     </div>
                     <p class="text-xs text-slate-600 mt-1">
                         @if($latestConsultation)
-                            Menu gizi harian si kecil telah tersedia. Ibu bisa meracik variasi menu harian baru sesuai anggaran belanja keluarga melalui tombol <strong>Racik Menu AI</strong> di navbar atas.
+                            Menu gizi harian si kecil telah tersedia. Ibu bisa meracik variasi menu harian baru sesuai anggaran belanja keluarga melalui tombol <strong>Racik Menu</strong> di navbar atas.
                         @else
-                            Bingung menyusun menu makan si kecil hari ini? Racik menu harian bergizi seimbang dari bahan pangan lokal sesuai anggaran keluarga dengan memilih menu <strong>Racik Menu AI</strong> di navbar atas.
+                            Bingung menyusun menu makan si kecil hari ini? Racik menu harian bergizi seimbang dari bahan pangan lokal sesuai anggaran keluarga dengan memilih menu <strong>Racik Menu</strong> di navbar atas.
                         @endif
                     </p>
                 </div>

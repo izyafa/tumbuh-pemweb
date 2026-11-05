@@ -85,9 +85,9 @@ class DatabaseSeeder extends Seeder
                 'parent_phone' => '081288776655',
                 'address' => 'Jl. Dahlia No. 4, RT 01/RW 03, Kel. Sukamaju',
                 'logs' => [
-                    ['months_ago' => 2, 'weight' => 8.2, 'height' => 74.0, 'head' => 44.0, 'arm' => 13.0, 'notes' => 'Tinggi badan di bawah garis -2 SD, perlu perhatian.'],
-                    ['months_ago' => 1, 'weight' => 8.4, 'height' => 75.2, 'head' => 44.3, 'arm' => 13.2, 'notes' => 'Diberikan edukasi menu kaya hati ayam.'],
-                    ['months_ago' => 0, 'weight' => 8.6, 'height' => 76.0, 'head' => 44.5, 'arm' => 13.3, 'notes' => 'Masih tergolong stunting, rujuk konsultasi gizi.'],
+                    ['months_ago' => 2, 'weight' => 8.2, 'height' => 74.0, 'head' => 44.0, 'arm' => 13.0, 'notes' => 'Tumbuh sehat, nafsu makan baik.'],
+                    ['months_ago' => 1, 'weight' => 8.4, 'height' => 75.2, 'head' => 44.3, 'arm' => 13.2, 'notes' => 'Diberikan edukasi menu kaya gizi seimbang.'],
+                    ['months_ago' => 0, 'weight' => 8.6, 'height' => 76.0, 'head' => 44.5, 'arm' => 13.3, 'notes' => 'Tumbuh sehat, status gizi dan tinggi badan normal sesuai kurva WHO.'],
                 ],
             ],
             [

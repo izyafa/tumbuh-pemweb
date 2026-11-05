@@ -503,6 +503,7 @@ class TumbuhApplicationTest extends TestCase
         $response->assertSee('Racik Menu Makan Harian Sesuai Anggaran');
         $response->assertSee('Anggaran Belanja Makan Hari Ini');
         $response->assertSee('Kembali ke Grafik Pemantauan KMS');
+        $response->assertDontSee('Cetak KMS');
     }
 
     public function test_parent_portal_monitoring_page_is_unbloated_and_links_to_menu_gizi(): void
@@ -511,14 +512,55 @@ class TumbuhApplicationTest extends TestCase
 
         $response = $this->get(route('parent.portal', ['token' => $child->public_token]));
         $response->assertStatus(200);
-        $response->assertSee('Grafik Digital KMS Balita');
-        $response->assertSee('Panduan Nutrisi &amp; Rekomendasi Menu Makan (AI)', false);
+        $response->assertSee('Grafik Pertumbuhan KMS');
+        $response->assertSee('Racik Menu');
         $response->assertSee(route('parent.menu-gizi', $child->public_token));
         $response->assertSee(route('kalkulator.index'));
         $response->assertSee(route('edukasi.index'));
         $response->assertDontSee('id="parent_budget"', false);
         $response->assertDontSee('parentAiWidget()', false);
-        $response->assertDontSee('Meracik Menu AI...', false);
+        $response->assertDontSee('Meracik Menu...', false);
+    }
+
+    public function test_menu_gizi_for_normal_child_does_not_display_hallucinated_clinical_alert(): void
+    {
+        $child = Child::where('public_token', '342c0b30-b44b-45a8-8414-0c5bbca46cfe')->first();
+        if (!$child) {
+            $child = Child::whereHas('latestMeasurement', function ($q) {
+                $q->where('zscore_tb_u', '>=', -2.0)
+                  ->where('zscore_bb_u', '>=', -2.0)
+                  ->where('zscore_bb_tb', '>=', -2.0);
+            })->first();
+        }
+
+        $response = $this->get(route('parent.menu-gizi', ['token' => $child->public_token]));
+        $response->assertStatus(200);
+        $response->assertDontSee('Cetak KMS');
+        $response->assertDontSee('risiko stunting dan underweight ringan');
+        $response->assertDontSee('Z-score di bawah -1 SD');
+    }
+
+    public function test_ai_nutrition_service_guardrails_sanitize_normal_child_consultation(): void
+    {
+        $service = new AiNutritionService();
+        $result = $service->generateConsultation(
+            childName: 'Aisyah Nur Salsabila',
+            ageInMonths: 18,
+            gender: 'female',
+            weight: 8.6,
+            height: 76.0,
+            zScoreTbU: -1.62,
+            zScoreBbU: -1.52,
+            zScoreBbTb: -1.41,
+            isWeightStagnant: false,
+            dailyBudget: 35000
+        );
+
+        $this->assertNull($result['clinicalAlert']);
+        $this->assertFalse($result['shouldReferToPuskesmas']);
+        $this->assertStringNotContainsString('risiko stunting', $result['statusDiagnosis']);
+        $this->assertStringNotContainsString('underweight ringan', $result['statusDiagnosis']);
+        $this->assertStringNotContainsString('di bawah -1', $result['statusDiagnosis']);
     }
 
     public function test_parent_ai_consult_get_redirects_to_menu_gizi(): void

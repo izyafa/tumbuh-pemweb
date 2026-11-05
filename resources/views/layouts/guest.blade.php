@@ -41,7 +41,7 @@
                     <a href="{{ route('parent.menu-gizi', $child->public_token) }}"
                        class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-md text-xs font-bold transition shadow-2xs {{ request()->routeIs('parent.menu-gizi') ? 'bg-lime-700 text-white shadow-xs' : 'bg-lime-600 hover:bg-lime-700 text-white' }}">
                         <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-                        <span>Racik Menu AI</span>
+                        <span>Racik Menu</span>
                     </a>
 
                     <a href="{{ route('kalkulator.index') }}" class="text-slate-600 hover:text-lime-700 font-medium flex items-center space-x-1.5 px-2 py-1.5 rounded-md {{ request()->routeIs('kalkulator.*') ? 'text-lime-700 font-bold' : '' }}">
