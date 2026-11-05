@@ -72,4 +72,62 @@ class WhoGrowthServiceTest extends TestCase
         $this->assertCount(61, $curves['minus3SD']);
         $this->assertCount(61, $curves['plus2SD']);
     }
+
+    public function test_calculate_zscore_bb_tb_obese(): void
+    {
+        // For a 100 cm male, 100 kg is extreme obesity
+        $result = $this->whoService->calculateZScoreBbTb('male', 100.0, 100.0);
+
+        $this->assertEquals('obese', $result['status']);
+        $this->assertEquals('Obesitas', $result['label']);
+        $this->assertGreaterThan(3.0, $result['zScore']);
+    }
+
+    public function test_evaluate_overall_status_flags_extreme_input(): void
+    {
+        // Input: 100 kg & 100 cm (36 months male)
+        $tbResult = $this->whoService->calculateZScoreTbU('male', 36, 100.0);
+        $bbResult = $this->whoService->calculateZScoreBbU('male', 36, 100.0);
+        $bbtbResult = $this->whoService->calculateZScoreBbTb('male', 100.0, 100.0);
+
+        $eval = $this->whoService->evaluateOverallStatus($tbResult, $bbResult, $bbtbResult, false, 100.0, 100.0);
+
+        $this->assertTrue($eval['is_extreme']);
+        $this->assertEquals('red', $eval['badge_type']);
+        $this->assertEquals('danger', $eval['alert_level']);
+        $this->assertEquals('Input Ekstrem / Periksa Ketikan', $eval['badge_text']);
+        $this->assertStringContainsString('Obesitas', $eval['summary_label']);
+        $this->assertStringContainsString('Normal', $eval['summary_label']);
+    }
+
+    public function test_evaluate_overall_status_identifies_clinical_obesity(): void
+    {
+        // Realistic obese toddler (24m male, TB 87 cm, BB 16.5 kg, Z = +4.1 SD)
+        $tbResult = $this->whoService->calculateZScoreTbU('male', 24, 87.0);
+        $bbResult = $this->whoService->calculateZScoreBbU('male', 24, 16.5);
+        $bbtbResult = $this->whoService->calculateZScoreBbTb('male', 87.0, 16.5);
+
+        $eval = $this->whoService->evaluateOverallStatus($tbResult, $bbResult, $bbtbResult, false, 16.5, 87.0);
+
+        $this->assertFalse($eval['is_extreme']);
+        $this->assertEquals('red', $eval['badge_type']);
+        $this->assertEquals('danger', $eval['alert_level']);
+        $this->assertEquals('obese', $bbtbResult['status']);
+        $this->assertStringContainsString('Obesitas', $eval['badge_text']);
+    }
+
+    public function test_evaluate_overall_status_identifies_normal_child(): void
+    {
+        // Normal 12m male: 75.7 cm, 9.6 kg
+        $tbResult = $this->whoService->calculateZScoreTbU('male', 12, 75.7);
+        $bbResult = $this->whoService->calculateZScoreBbU('male', 12, 9.6);
+        $bbtbResult = $this->whoService->calculateZScoreBbTb('male', 75.7, 9.6);
+
+        $eval = $this->whoService->evaluateOverallStatus($tbResult, $bbResult, $bbtbResult, false, 9.6, 75.7);
+
+        $this->assertFalse($eval['is_extreme']);
+        $this->assertEquals('green', $eval['badge_type']);
+        $this->assertEquals('normal', $eval['alert_level']);
+        $this->assertEquals('Normal & Gizi Baik', $eval['badge_text']);
+    }
 }

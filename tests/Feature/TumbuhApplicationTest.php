@@ -554,5 +554,85 @@ class TumbuhApplicationTest extends TestCase
         $response->assertSee('x-show="activeTab === \'penimbangan\'"', false);
         $response->assertSee('x-show="activeTab === \'imunisasi\'"', false);
     }
+
+    public function test_kader_can_access_batch_measurement_page(): void
+    {
+        $kader = User::where('role', 'kader')->first();
+
+        $response = $this->actingAs($kader)->get(route('kader.measurements.batch'));
+        $response->assertStatus(200);
+        $response->assertSee('Pencatatan Penimbangan Massal (Batch Mode)');
+        $response->assertSee('Hasil Analisis WHO (Gizi & Stunting)');
+    }
+
+    public function test_batch_preview_flags_extreme_weight_and_shows_obesity(): void
+    {
+        $kader = User::where('role', 'kader')->first();
+        $child = Child::first();
+
+        $response = $this->actingAs($kader)->postJson(route('measurements.preview'), [
+            'child_id' => $child->id,
+            'weight' => 100.0,
+            'height' => 100.0,
+            'measurement_date' => Carbon::today()->toDateString(),
+        ]);
+
+        $response->assertStatus(200);
+        $response->assertJson([
+            'is_extreme' => true,
+            'badge_type' => 'red',
+            'alert_level' => 'danger',
+            'badge_text' => 'Input Ekstrem / Periksa Ketikan',
+            'bb_tb' => [
+                'status' => 'obese',
+                'label' => 'Obesitas',
+            ],
+        ]);
+        $this->assertNotEquals('green', $response->json('badge_type'));
+    }
+
+    public function test_batch_preview_correctly_identifies_normal_child(): void
+    {
+        $kader = User::where('role', 'kader')->first();
+
+        $child = Child::create([
+            'nik' => '3201999999990001',
+            'full_name' => 'Bayi Uji Coba Normal',
+            'gender' => 'male',
+            'date_of_birth' => Carbon::now()->subMonths(12)->toDateString(),
+            'birth_weight' => 3.2,
+            'birth_height' => 50.0,
+            'parent_name' => 'Ibu Uji',
+            'parent_phone' => '081234567899',
+            'address' => 'Jl. Mawar No. 12',
+        ]);
+
+        try {
+            $measDate = Carbon::parse($child->date_of_birth)->addMonths(12);
+
+            $response = $this->actingAs($kader)->postJson(route('measurements.preview'), [
+                'child_id' => $child->id,
+                'weight' => 9.6,
+                'height' => 75.7,
+                'measurement_date' => $measDate->toDateString(),
+            ]);
+
+            $response->assertStatus(200);
+            $response->assertJson([
+                'is_extreme' => false,
+                'badge_type' => 'green',
+                'alert_level' => 'normal',
+                'badge_text' => 'Normal & Gizi Baik',
+                'tb_u' => [
+                    'status' => 'normal',
+                ],
+                'bb_tb' => [
+                    'status' => 'normal',
+                ],
+            ]);
+        } finally {
+            $child->delete();
+        }
+    }
 }
 

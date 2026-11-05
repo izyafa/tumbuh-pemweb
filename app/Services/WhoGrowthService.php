@@ -75,6 +75,7 @@ class WhoGrowthService
 
         $sd = $sd > 0 ? $sd : 1.0;
         $zScore = round(($height - $median) / $sd, 2);
+        $zScore = max(-99.99, min(99.99, $zScore));
 
         $status = 'normal';
         $label = 'Normal';
@@ -130,6 +131,7 @@ class WhoGrowthService
 
         $sd = $sd > 0 ? $sd : 1.0;
         $zScore = round(($weight - $median) / $sd, 2);
+        $zScore = max(-99.99, min(99.99, $zScore));
 
         $status = 'normal';
         $label = 'Berat Badan Normal';
@@ -187,6 +189,7 @@ class WhoGrowthService
 
         $sd = $sd > 0 ? $sd : 1.0;
         $zScore = round(($weight - $median) / $sd, 2);
+        $zScore = max(-99.99, min(99.99, $zScore));
 
         $status = 'normal';
         $label = 'Gizi Baik (Normal)';
@@ -215,6 +218,160 @@ class WhoGrowthService
             'zScore' => $zScore,
             'status' => $status,
             'label' => $label,
+        ];
+    }
+
+    /**
+     * Comprehensive evaluation of growth and nutritional status.
+     * Evaluates Stunting (TB/U), Wasting/Obesity (BB/TB), Underweight (BB/U), and Stagnation (2T).
+     *
+     * @param array $tbResult Result from calculateZScoreTbU
+     * @param array $bbResult Result from calculateZScoreBbU
+     * @param array $bbtbResult Result from calculateZScoreBbTb
+     * @param bool $isStagnant Stagnation flag (2T)
+     * @param float $weight Current weight in kg
+     * @param float $height Current height in cm
+     * @return array
+     */
+    public function evaluateOverallStatus(
+        array $tbResult,
+        array $bbResult,
+        array $bbtbResult,
+        bool $isStagnant = false,
+        float $weight = 0.0,
+        float $height = 0.0
+    ): array {
+        // Biological Plausibility Checks (WHO Anthro extreme flags for balita 0-60 months)
+        $isExtreme = false;
+        $extremeWarnings = [];
+
+        if ($weight > 35.0) {
+            $isExtreme = true;
+            $extremeWarnings[] = "Berat badan ({$weight} kg) di atas batas fisiologis wajar balita (>35 kg).";
+        } elseif ($weight > 0 && $weight < 1.0) {
+            $isExtreme = true;
+            $extremeWarnings[] = "Berat badan ({$weight} kg) di bawah batas hidup minimal (<1 kg).";
+        }
+
+        if ($height > 130.0) {
+            $isExtreme = true;
+            $extremeWarnings[] = "Tinggi badan ({$height} cm) di atas batas kurva balita (>130 cm).";
+        } elseif ($height > 0 && $height < 40.0) {
+            $isExtreme = true;
+            $extremeWarnings[] = "Panjang badan ({$height} cm) di bawah batas kurva minimal (<40 cm).";
+        }
+
+        if (abs($tbResult['zScore']) >= 6.0 || abs($bbtbResult['zScore']) >= 6.0 || abs($bbResult['zScore']) >= 6.0) {
+            $isExtreme = true;
+            $extremeWarnings[] = "Z-Score ekstrem (|Z| >= 6.0 SD).";
+        }
+
+        // Badge styling for individual indicators
+        $tbBadgeClass = match ($tbResult['status']) {
+            'severely_stunted' => 'bg-rose-50 text-rose-700 border-rose-200',
+            'stunted' => 'bg-amber-50 text-amber-700 border-amber-200',
+            'normal' => 'bg-emerald-50 text-emerald-700 border-emerald-200',
+            'tall' => 'bg-sky-50 text-sky-700 border-sky-200',
+            default => 'bg-slate-50 text-slate-700 border-slate-200',
+        };
+
+        $bbtbBadgeClass = match ($bbtbResult['status']) {
+            'severely_wasted' => 'bg-rose-50 text-rose-700 border-rose-200',
+            'wasted' => 'bg-amber-50 text-amber-700 border-amber-200',
+            'normal' => 'bg-emerald-50 text-emerald-700 border-emerald-200',
+            'risk_of_overweight' => 'bg-sky-50 text-sky-700 border-sky-200',
+            'overweight' => 'bg-amber-50 text-amber-700 border-amber-200',
+            'obese' => 'bg-rose-50 text-rose-700 border-rose-200 font-bold',
+            default => 'bg-slate-50 text-slate-700 border-slate-200',
+        };
+
+        $bbBadgeClass = match ($bbResult['status']) {
+            'severely_underweight' => 'bg-rose-50 text-rose-700 border-rose-200',
+            'underweight' => 'bg-amber-50 text-amber-700 border-amber-200',
+            'normal' => 'bg-emerald-50 text-emerald-700 border-emerald-200',
+            'risk_of_overweight' => 'bg-sky-50 text-sky-700 border-sky-200',
+            default => 'bg-slate-50 text-slate-700 border-slate-200',
+        };
+
+        // Determine Overall Risk Level & Badge
+        $isDanger = (
+            $tbResult['status'] === 'severely_stunted' ||
+            $bbtbResult['status'] === 'severely_wasted' ||
+            $bbtbResult['status'] === 'obese' ||
+            $bbResult['status'] === 'severely_underweight'
+        );
+
+        $isWarning = (
+            $tbResult['status'] === 'stunted' ||
+            $bbtbResult['status'] === 'wasted' ||
+            $bbtbResult['status'] === 'overweight' ||
+            $bbtbResult['status'] === 'risk_of_overweight' ||
+            $bbResult['status'] === 'underweight' ||
+            $bbResult['status'] === 'risk_of_overweight' ||
+            $isStagnant
+        );
+
+        if ($isExtreme) {
+            $badgeType = 'red';
+            $alertLevel = 'danger';
+            $badgeText = 'Input Ekstrem / Periksa Ketikan';
+            $recommendation = 'Periksa kembali nilai BB dan TB yang dimasukkan. Angka berada di luar rentang biologis balita normal.';
+        } elseif ($isDanger) {
+            $badgeType = 'red';
+            $alertLevel = 'danger';
+            if ($bbtbResult['status'] === 'obese') {
+                $badgeText = 'Bahaya: Obesitas Balita (Z > +3 SD)';
+                $recommendation = 'Rujuk ke Puskesmas / Dokter Spesialis Anak untuk evaluasi diet dan metabolik anak segera.';
+            } elseif ($bbtbResult['status'] === 'severely_wasted') {
+                $badgeText = 'Bahaya: Gizi Buruk Akut (Z < -3 SD)';
+                $recommendation = 'Segera rujuk ke Puskesmas / RS untuk tata laksana gizi buruk (F-75/F-100 / RUTF).';
+            } elseif ($tbResult['status'] === 'severely_stunted') {
+                $badgeText = 'Bahaya: Sangat Pendek (Severely Stunted)';
+                $recommendation = 'Intervensi gizi intensif dan evaluasi medis Puskesmas untuk defisit pertumbuhan kronis berat.';
+            } else {
+                $badgeText = 'Bahaya: Berat Badan Sangat Kurang';
+                $recommendation = 'Segera konsultasikan dengan tenaga kesehatan untuk evaluasi asupan kalori dan penyakit penyerta.';
+            }
+        } elseif ($isWarning) {
+            $badgeType = 'yellow';
+            $alertLevel = 'warning';
+            if ($bbtbResult['status'] === 'overweight') {
+                $badgeText = 'Waspada: Gizi Lebih';
+                $recommendation = 'Atur pola makan gizi seimbang, kurangi konsumsi gula berlebih, dan tingkatkan aktivitas fisik balita.';
+            } elseif ($tbResult['status'] === 'stunted') {
+                $badgeText = 'Waspada: Terindikasi Stunting';
+                $recommendation = 'Prioritaskan konsumsi protein hewani harian (telur, ikan, daging/hati ayam) dan pantau KMS rutin.';
+            } elseif ($bbtbResult['status'] === 'wasted') {
+                $badgeText = 'Waspada: Gizi Kurang';
+                $recommendation = 'Berikan PMT pemulihan kaya protein hewani dan jadwalkan penimbangan ulang 2 minggu lagi.';
+            } elseif ($isStagnant) {
+                $badgeText = 'Waspada: 2T (BB Stagnan / Turun)';
+                $recommendation = 'Berat badan tidak naik dalam 2 kali penimbangan berturut-turut. Rujuk ke Bidan Desa / Puskesmas.';
+            } else {
+                $badgeText = 'Waspada: Berisiko Masalah Gizi';
+                $recommendation = 'Pantau pola asuh makan dan evaluasi grafik pertumbuhan KMS secara berkala.';
+            }
+        } else {
+            $badgeType = 'green';
+            $alertLevel = 'normal';
+            $badgeText = 'Normal & Gizi Baik';
+            $recommendation = 'Pertahankan pola pemberian makan bergizi seimbang dan lanjutkan pemantauan Posyandu setiap bulan.';
+        }
+
+        // Combined summary label e.g. "Gizi Baik • Normal" or "Obesitas • Normal"
+        $summaryLabel = "{$bbtbResult['label']} • {$tbResult['label']}";
+
+        return [
+            'is_extreme' => $isExtreme,
+            'extreme_warning' => $isExtreme ? implode(' ', $extremeWarnings) : null,
+            'badge_type' => $badgeType,
+            'badge_text' => $badgeText,
+            'alert_level' => $alertLevel,
+            'summary_label' => $summaryLabel,
+            'recommendation' => $recommendation,
+            'tb_badge_class' => $tbBadgeClass,
+            'bbtb_badge_class' => $bbtbBadgeClass,
+            'bb_badge_class' => $bbBadgeClass,
         ];
     }
 

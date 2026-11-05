@@ -171,17 +171,14 @@ class MeasurementController extends Controller
         $bbtbResult = $this->whoService->calculateZScoreBbTb($child->gender, $height, $weight);
         $isStagnant = $this->whoService->checkWeightStagnation($child->id, $weight);
 
-        // Badge level: green (Normal), yellow (Waspada/Risiko), red (Indikasi Masalah Gizi)
-        $badgeType = 'green';
-        $badgeText = 'Normal';
-
-        if ($tbResult['status'] === 'severely_stunted' || $bbtbResult['status'] === 'severely_wasted' || $bbResult['status'] === 'severely_underweight') {
-            $badgeType = 'red';
-            $badgeText = 'Merah (Bahaya / Masalah Akut)';
-        } elseif ($tbResult['status'] === 'stunted' || $bbtbResult['status'] === 'wasted' || $bbResult['status'] === 'underweight' || $isStagnant) {
-            $badgeType = 'yellow';
-            $badgeText = 'Kuning (Waspada / Risiko)';
-        }
+        $evaluation = $this->whoService->evaluateOverallStatus(
+            $tbResult,
+            $bbResult,
+            $bbtbResult,
+            $isStagnant,
+            $weight,
+            $height
+        );
 
         return response()->json([
             'age_in_months' => $ageInMonths,
@@ -189,8 +186,16 @@ class MeasurementController extends Controller
             'bb_u' => $bbResult,
             'bb_tb' => $bbtbResult,
             'is_weight_stagnant' => $isStagnant,
-            'badge_type' => $badgeType,
-            'badge_text' => $badgeText,
+            'is_extreme' => $evaluation['is_extreme'],
+            'extreme_warning' => $evaluation['extreme_warning'],
+            'badge_type' => $evaluation['badge_type'],
+            'badge_text' => $evaluation['badge_text'],
+            'summary_label' => $evaluation['summary_label'],
+            'alert_level' => $evaluation['alert_level'],
+            'recommendation' => $evaluation['recommendation'],
+            'tb_u_badge_class' => $evaluation['tb_badge_class'],
+            'bb_tb_badge_class' => $evaluation['bbtb_badge_class'],
+            'bb_u_badge_class' => $evaluation['bb_badge_class'],
         ]);
     }
 

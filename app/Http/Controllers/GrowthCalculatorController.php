@@ -55,33 +55,26 @@ class GrowthCalculatorController extends Controller
         $bbResult = $this->whoService->calculateZScoreBbU($gender, $age, $weight);
         $bbtbResult = $this->whoService->calculateZScoreBbTb($gender, $height, $weight);
 
-        // Overall risk summary
-        $isStunted = in_array($tbResult['status'], ['stunted', 'severely_stunted']);
-        $isWasted = in_array($bbtbResult['status'], ['wasted', 'severely_wasted']);
-        $isUnderweight = in_array($bbResult['status'], ['underweight', 'severely_underweight']);
-
-        $alertLevel = 'normal';
-        $summaryTitle = 'Pertumbuhan Baik & Sesuai Baku WHO';
-        $recommendation = 'Lanjutkan pemberian gizi seimbang kaya protein hewani dan bawa anak rutin ke Posyandu setiap bulan.';
-
-        if ($tbResult['status'] === 'severely_stunted' || $bbtbResult['status'] === 'severely_wasted') {
-            $alertLevel = 'danger';
-            $summaryTitle = 'Peringatan Medis: Indikasi Masalah Gizi Akut / Kronis Berat';
-            $recommendation = 'Segera bawa balita ke Puskesmas terdekat atau Dokter Spesialis Anak untuk pemeriksaan penanganan gizi klinis intensif.';
-        } elseif ($isStunted || $isWasted || $isUnderweight) {
-            $alertLevel = 'warning';
-            $summaryTitle = 'Perlu Perhatian Khusus: Terindikasi Defisit Pertumbuhan';
-            $recommendation = 'Prioritaskan konsumsi protein hewani (telur, hati ayam, ikan kembung) pada setiap kali makan utama serta konsultasikan dengan kader Posyandu.';
-        }
+        $evaluation = $this->whoService->evaluateOverallStatus(
+            $tbResult,
+            $bbResult,
+            $bbtbResult,
+            false,
+            $weight,
+            $height
+        );
 
         return response()->json([
             'age_in_months' => $age,
             'tb_u' => $tbResult,
             'bb_u' => $bbResult,
             'bb_tb' => $bbtbResult,
-            'alert_level' => $alertLevel,
-            'summary_title' => $summaryTitle,
-            'recommendation' => $recommendation,
+            'alert_level' => $evaluation['alert_level'],
+            'summary_title' => $evaluation['badge_text'],
+            'summary_label' => $evaluation['summary_label'],
+            'recommendation' => $evaluation['recommendation'],
+            'is_extreme' => $evaluation['is_extreme'],
+            'extreme_warning' => $evaluation['extreme_warning'],
         ]);
     }
 }
