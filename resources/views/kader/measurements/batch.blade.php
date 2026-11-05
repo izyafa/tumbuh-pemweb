@@ -38,11 +38,11 @@
             <div class="overflow-x-auto">
                 <table class="w-full text-left text-xs">
                     <thead>
-                        <tr class="border-b border-slate-200 bg-slate-50 text-[11px] font-semibold uppercase tracking-wider text-slate-600">
+                        <tr class="border-b border-slate-200 bg-slate-50 text-[11px] font-semibold uppercase tracking-wider text-slate-600 whitespace-nowrap">
                             <th class="py-3 px-3 w-12 text-center">No.</th>
                             <th class="py-3 px-4 min-w-[200px]">Pilih Balita</th>
                             <th class="py-3 px-3 w-28 text-right">BB (kg)</th>
-                            <th class="py-3 px-3 w-28 text-right">TB / PB (cm)</th>
+                            <th class="py-3 px-3 w-28 text-right">TB/PB (cm)</th>
                             <th class="py-3 px-3 w-24 text-right">LK (cm)</th>
                             <th class="py-3 px-3 w-24 text-right">LiLA (cm)</th>
                             <th class="py-3 px-3 min-w-[140px] text-center">Status Gizi (BB/TB)</th>
@@ -74,7 +74,7 @@
 
                                 <!-- Weight (BB) -->
                                 <td class="py-2.5 px-3">
-                                    <input type="number" step="0.01" min="1" max="50" placeholder="Contoh: 10.5"
+                                    <input type="number" step="0.01" min="1" max="50" placeholder="10.5"
                                            :name="'measurements[' + index + '][weight]'"
                                            x-model="row.weight"
                                            @input.debounce.400ms="calculateRow(index)"
@@ -83,9 +83,9 @@
                                            class="w-full py-1.5 px-2 text-xs text-right font-mono rounded border focus:ring-1 tabular-nums transition">
                                 </td>
 
-                                <!-- Height (TB) -->
+                                <!-- Height (TB/PB) -->
                                 <td class="py-2.5 px-3">
-                                    <input type="number" step="0.1" min="30" max="150" placeholder="Contoh: 78.5"
+                                    <input type="number" step="0.1" min="30" max="150" placeholder="78.5"
                                            :name="'measurements[' + index + '][height]'"
                                            x-model="row.height"
                                            @input.debounce.400ms="calculateRow(index)"
@@ -96,7 +96,7 @@
 
                                 <!-- Head Circumference (LK) -->
                                 <td class="py-2.5 px-3">
-                                    <input type="number" step="0.1" min="20" max="70" placeholder="LK (Opsional)"
+                                    <input type="number" step="0.1" min="20" max="70" placeholder="Opsional"
                                            :name="'measurements[' + index + '][head_circum]'"
                                            x-model="row.head_circum"
                                            class="w-full py-1.5 px-2 text-xs text-right font-mono rounded border border-slate-200 bg-white text-slate-600 focus:border-lime-600 focus:ring-1 focus:ring-lime-600 tabular-nums">
@@ -104,7 +104,7 @@
 
                                 <!-- Arm Circumference (LiLA) -->
                                 <td class="py-2.5 px-3">
-                                    <input type="number" step="0.1" min="5" max="35" placeholder="LiLA (Opsional)"
+                                    <input type="number" step="0.1" min="5" max="35" placeholder="Opsional"
                                            :name="'measurements[' + index + '][arm_circum]'"
                                            x-model="row.arm_circum"
                                            class="w-full py-1.5 px-2 text-xs text-right font-mono rounded border border-slate-200 bg-white text-slate-600 focus:border-lime-600 focus:ring-1 focus:ring-lime-600 tabular-nums">
@@ -113,7 +113,13 @@
                                 <!-- Status Gizi (BB/TB) Column -->
                                 <td class="py-2.5 px-3 text-center align-middle">
                                     <template x-if="row.loading">
-                                        <span class="text-[11px] text-slate-400 italic">Menghitung...</span>
+                                        <span class="inline-flex items-center space-x-1 px-2 py-0.5 rounded text-[10px] font-medium text-slate-500 bg-slate-100 border border-slate-200">
+                                            <svg class="animate-spin h-3 w-3 text-lime-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                                            </svg>
+                                            <span>Menghitung...</span>
+                                        </span>
                                     </template>
                                     <template x-if="!row.loading && row.preview">
                                         <div class="flex flex-col items-center justify-center space-y-1">
@@ -137,14 +143,23 @@
                                         </div>
                                     </template>
                                     <template x-if="!row.loading && !row.preview">
-                                        <span class="text-[11px] text-slate-300">-</span>
+                                        <span class="inline-flex items-center space-x-1 px-2 py-0.5 rounded text-[10px] text-slate-400 bg-slate-50 border border-dashed border-slate-200 font-medium">
+                                            <span class="w-1 h-1 rounded-full bg-slate-300"></span>
+                                            <span>Menunggu input</span>
+                                        </span>
                                     </template>
                                 </td>
 
                                 <!-- Status Stunting (TB/U) Column -->
                                 <td class="py-2.5 px-3 text-center align-middle">
                                     <template x-if="row.loading">
-                                        <span class="text-[11px] text-slate-400 italic">Menghitung...</span>
+                                        <span class="inline-flex items-center space-x-1 px-2 py-0.5 rounded text-[10px] font-medium text-slate-500 bg-slate-100 border border-slate-200">
+                                            <svg class="animate-spin h-3 w-3 text-lime-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                                            </svg>
+                                            <span>Menghitung...</span>
+                                        </span>
                                     </template>
                                     <template x-if="!row.loading && row.preview">
                                         <div class="flex flex-col items-center justify-center space-y-1">
@@ -157,7 +172,10 @@
                                         </div>
                                     </template>
                                     <template x-if="!row.loading && !row.preview">
-                                        <span class="text-[11px] text-slate-300">-</span>
+                                        <span class="inline-flex items-center space-x-1 px-2 py-0.5 rounded text-[10px] text-slate-400 bg-slate-50 border border-dashed border-slate-200 font-medium">
+                                            <span class="w-1 h-1 rounded-full bg-slate-300"></span>
+                                            <span>Menunggu input</span>
+                                        </span>
                                     </template>
                                 </td>
 
