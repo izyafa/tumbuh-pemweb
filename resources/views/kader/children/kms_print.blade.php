@@ -119,7 +119,7 @@
             <table class="w-full text-left text-[11px] border border-slate-300">
                 <thead class="bg-slate-100 border-b border-slate-300 text-slate-700">
                     <tr>
-                        <th class="py-1.5 px-2 text-center border-r border-slate-300">No</th>
+                        <th class="py-1.5 px-2 text-center border-r border-slate-300">No.</th>
                         <th class="py-1.5 px-3 border-r border-slate-300">Tgl Timbang</th>
                         <th class="py-1.5 px-2 text-center border-r border-slate-300">Usia</th>
                         <th class="py-1.5 px-2 text-right border-r border-slate-300">TB (cm)</th>
@@ -160,7 +160,7 @@
             <table class="w-full text-left text-[11px] border border-slate-300">
                 <thead class="bg-slate-100 border-b border-slate-300 text-slate-700">
                     <tr>
-                        <th class="py-1.5 px-2 text-center border-r border-slate-300">No</th>
+                        <th class="py-1.5 px-2 text-center border-r border-slate-300">No.</th>
                         <th class="py-1.5 px-3 border-r border-slate-300">Jenis Vaksin / Suplementasi</th>
                         <th class="py-1.5 px-3 border-r border-slate-300">Kategori</th>
                         <th class="py-1.5 px-3 border-r border-slate-300">Tanggal Diberikan</th>

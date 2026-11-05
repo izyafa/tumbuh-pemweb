@@ -39,13 +39,14 @@
                 <table class="w-full text-left text-xs">
                     <thead>
                         <tr class="border-b border-slate-200 bg-slate-50 text-[11px] font-semibold uppercase tracking-wider text-slate-600">
-                            <th class="py-3 px-3 w-10 text-center">#</th>
-                            <th class="py-3 px-4 min-w-[220px]">Pilih Balita</th>
+                            <th class="py-3 px-3 w-12 text-center">No.</th>
+                            <th class="py-3 px-4 min-w-[200px]">Pilih Balita</th>
                             <th class="py-3 px-3 w-28 text-right">BB (kg)</th>
                             <th class="py-3 px-3 w-28 text-right">TB / PB (cm)</th>
                             <th class="py-3 px-3 w-24 text-right">LK (cm)</th>
                             <th class="py-3 px-3 w-24 text-right">LiLA (cm)</th>
-                            <th class="py-3 px-4 min-w-[260px] text-center">Hasil Analisis WHO (Gizi &amp; Stunting)</th>
+                            <th class="py-3 px-3 min-w-[140px] text-center">Status Gizi (BB/TB)</th>
+                            <th class="py-3 px-3 min-w-[140px] text-center">Status Stunting (TB/U)</th>
                             <th class="py-3 px-3 min-w-[150px]">Catatan Kader</th>
                             <th class="py-3 px-3 w-12 text-center">Hapus</th>
                         </tr>
@@ -109,60 +110,54 @@
                                            class="w-full py-1.5 px-2 text-xs text-right font-mono rounded border border-slate-200 bg-white text-slate-600 focus:border-lime-600 focus:ring-1 focus:ring-lime-600 tabular-nums">
                                 </td>
 
-                                <!-- Instant WHO Z-Score Preview Badge -->
-                                <td class="py-2.5 px-4 text-center">
+                                <!-- Status Gizi (BB/TB) Column -->
+                                <td class="py-2.5 px-3 text-center align-middle">
                                     <template x-if="row.loading">
-                                        <span class="text-[11px] text-slate-400 italic inline-flex items-center space-x-1">
-                                            <svg class="animate-spin h-3.5 w-3.5 text-lime-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
-                                            </svg>
-                                            <span>Menghitung Z-Score...</span>
-                                        </span>
+                                        <span class="text-[11px] text-slate-400 italic">Menghitung...</span>
                                     </template>
                                     <template x-if="!row.loading && row.preview">
-                                        <div class="flex flex-col items-center justify-center space-y-1.5 py-0.5">
-                                            <!-- Biological Plausibility / Extreme Input Flag -->
+                                        <div class="flex flex-col items-center justify-center space-y-1">
                                             <template x-if="row.preview.is_extreme">
-                                                <div class="inline-flex items-center space-x-1 px-2 py-0.5 rounded text-[10px] font-bold bg-rose-100 text-rose-800 border border-rose-300"
-                                                     :title="row.preview.extreme_warning">
-                                                    <span class="inline-block w-1.5 h-1.5 rounded-full bg-rose-600"></span>
-                                                    <span>⚠️ Nilai Ekstrem! Cek Input</span>
-                                                </div>
+                                                <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-bold bg-rose-100 text-rose-800 border border-rose-300 animate-pulse">
+                                                    ⚠️ Ekstrem
+                                                </span>
                                             </template>
-
-                                            <!-- Dual Status Pills: Status Gizi (BB/TB) & Status Pertumbuhan (TB/U) -->
-                                            <div class="flex flex-wrap items-center justify-center gap-1.5">
-                                                <!-- Status Gizi (BB/TB - Wasting / Obesitas) -->
-                                                <span class="px-2 py-0.5 rounded text-[10px] font-semibold border inline-flex items-center shadow-2xs"
-                                                      :class="row.preview.bb_tb_badge_class"
-                                                      :title="'Status Gizi BB/TB: ' + row.preview.bb_tb.label + ' (' + (row.preview.bb_tb.zScore > 0 ? '+' : '') + row.preview.bb_tb.zScore + ' SD)'">
-                                                    <span x-text="'Gizi: ' + row.preview.bb_tb.label"></span>
-                                                </span>
-
-                                                <!-- Status Pertumbuhan / Stunting (TB/U) -->
-                                                <span class="px-2 py-0.5 rounded text-[10px] font-semibold border inline-flex items-center shadow-2xs"
-                                                      :class="row.preview.tb_u_badge_class"
-                                                      :title="'Status Stunting TB/U: ' + row.preview.tb_u.label + ' (' + (row.preview.tb_u.zScore > 0 ? '+' : '') + row.preview.tb_u.zScore + ' SD)'">
-                                                    <span x-text="'TB/U: ' + row.preview.tb_u.label"></span>
-                                                </span>
-                                            </div>
-
-                                            <!-- Quantitative Z-Score Metrics & 2T Indicator -->
-                                            <div class="text-[10px] text-slate-500 font-mono flex flex-wrap items-center justify-center gap-x-2 gap-y-0.5">
-                                                <span>BB/TB: <strong class="text-slate-700" x-text="(row.preview.bb_tb.zScore > 0 ? '+' : '') + row.preview.bb_tb.zScore + ' SD'"></strong></span>
-                                                <span>•</span>
-                                                <span>TB/U: <strong class="text-slate-700" x-text="(row.preview.tb_u.zScore > 0 ? '+' : '') + row.preview.tb_u.zScore + ' SD'"></strong></span>
+                                            <span class="px-2 py-0.5 rounded text-[10px] font-semibold border inline-flex items-center"
+                                                  :class="row.preview.bb_tb_badge_class">
+                                                <span x-text="row.preview.bb_tb.label"></span>
+                                            </span>
+                                            <div class="text-[10px] text-slate-500 font-mono flex items-center space-x-1.5">
+                                                <span x-text="(row.preview.bb_tb.zScore > 0 ? '+' : '') + row.preview.bb_tb.zScore + ' SD'"></span>
                                                 <template x-if="row.preview.is_weight_stagnant">
-                                                    <span class="text-amber-700 font-bold bg-amber-50 px-1.5 py-0.2 rounded border border-amber-200 text-[10px]">
-                                                        ⚠️ 2T Stagnan
+                                                    <span class="text-amber-700 font-bold bg-amber-50 px-1 py-0.2 rounded border border-amber-200 text-[9px]" title="Berat badan tidak naik 2x penimbangan berturut-turut">
+                                                        ⚠️ 2T
                                                     </span>
                                                 </template>
                                             </div>
                                         </div>
                                     </template>
                                     <template x-if="!row.loading && !row.preview">
-                                        <span class="text-[11px] text-slate-400">Isi BB & TB untuk preview</span>
+                                        <span class="text-[11px] text-slate-300">-</span>
+                                    </template>
+                                </td>
+
+                                <!-- Status Stunting (TB/U) Column -->
+                                <td class="py-2.5 px-3 text-center align-middle">
+                                    <template x-if="row.loading">
+                                        <span class="text-[11px] text-slate-400 italic">Menghitung...</span>
+                                    </template>
+                                    <template x-if="!row.loading && row.preview">
+                                        <div class="flex flex-col items-center justify-center space-y-1">
+                                            <span class="px-2 py-0.5 rounded text-[10px] font-semibold border inline-flex items-center"
+                                                  :class="row.preview.tb_u_badge_class">
+                                                <span x-text="row.preview.tb_u.label"></span>
+                                            </span>
+                                            <span class="text-[10px] text-slate-500 font-mono"
+                                                  x-text="(row.preview.tb_u.zScore > 0 ? '+' : '') + row.preview.tb_u.zScore + ' SD'"></span>
+                                        </div>
+                                    </template>
+                                    <template x-if="!row.loading && !row.preview">
+                                        <span class="text-[11px] text-slate-300">-</span>
                                     </template>
                                 </td>
 

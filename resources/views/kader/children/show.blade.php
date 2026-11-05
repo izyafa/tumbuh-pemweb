@@ -463,7 +463,7 @@
                     <table class="w-full text-left text-xs">
                         <thead>
                             <tr class="border-b border-slate-200 bg-slate-50 text-[11px] font-semibold uppercase tracking-wider text-slate-500">
-                                <th class="py-2.5 px-3 text-center w-10">#</th>
+                                <th class="py-2.5 px-3 text-center w-12">No.</th>
                                 <th class="py-2.5 px-4">Nama Vaksin / Suplemen</th>
                                 <th class="py-2.5 px-3">Kategori</th>
                                 <th class="py-2.5 px-3">Tgl Diberikan</th>

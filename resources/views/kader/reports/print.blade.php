@@ -89,7 +89,7 @@
             <table class="w-full text-left text-[11px] border border-slate-300">
                 <thead class="bg-slate-100 border-b border-slate-300 text-slate-700">
                     <tr>
-                        <th class="py-1.5 px-2 text-center w-8 border-r border-slate-300">No</th>
+                        <th class="py-1.5 px-2 text-center w-8 border-r border-slate-300">No.</th>
                         <th class="py-1.5 px-3 border-r border-slate-300">Nama Balita & NIK</th>
                         <th class="py-1.5 px-2 text-center border-r border-slate-300">L/P</th>
                         <th class="py-1.5 px-2 text-center border-r border-slate-300">Usia</th>
