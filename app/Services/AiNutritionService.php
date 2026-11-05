@@ -340,7 +340,7 @@ EOT;
         if ($zScoreTbU < -2.0) {
             $diagnosis = "Terdapat hambatan pada laju pertumbuhan tinggi badan anak ({$childName}). Prioritas utama adalah penyediaan protein hewani padat gizi (telur, ikan, daging sapi, hati ayam) di setiap waktu makan untuk memicu hormon pertumbuhan.";
         } else {
-            $diagnosis = "Alhamdulillah, pertumbuhan fisik dan status gizi {$childName} berada dalam rentang sehat dan normal. Berat dan tinggi badan si kecil berkembang baik sesuai usianya. Pertahankan variasi menu makanan bergizi seimbang dan cukupi kebutuhan protein hewani setiap hari.";
+            $diagnosis = "Pertumbuhan fisik dan status gizi {$childName} berada dalam rentang sehat dan normal. Berat dan tinggi badan si kecil berkembang baik sesuai usianya. Pertahankan variasi menu makanan bergizi seimbang dan cukupi kebutuhan protein hewani setiap hari.";
         }
 
         // Hitung proporsi 3 waktu makan dari total anggaran
@@ -455,7 +455,7 @@ EOT;
             );
 
             if ($hasHallucination || empty($diagnosis)) {
-                $response['statusDiagnosis'] = "Alhamdulillah, pertumbuhan fisik dan status gizi {$childName} berada dalam rentang sehat dan normal. Berat dan tinggi badan si kecil berkembang baik sesuai usianya. Pertahankan variasi menu makanan bergizi seimbang dan cukupi kebutuhan protein hewani setiap hari.";
+                $response['statusDiagnosis'] = "Pertumbuhan fisik dan status gizi {$childName} berada dalam rentang sehat dan normal. Berat dan tinggi badan si kecil berkembang baik sesuai usianya. Pertahankan variasi menu makanan bergizi seimbang dan cukupi kebutuhan protein hewani setiap hari.";
             }
         } else {
             // Child is clinically at risk
