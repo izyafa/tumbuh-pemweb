@@ -562,7 +562,8 @@ class TumbuhApplicationTest extends TestCase
         $response = $this->actingAs($kader)->get(route('kader.measurements.batch'));
         $response->assertStatus(200);
         $response->assertSee('Pencatatan Penimbangan Massal (Batch Mode)');
-        $response->assertSee('Hasil Analisis WHO');
+        $response->assertSee('Status Gizi (BB/TB)');
+        $response->assertSee('Status Stunting (TB/U)');
         $response->assertSee('No.');
     }
 

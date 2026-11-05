@@ -39,24 +39,25 @@
                 <table class="w-full text-left text-xs">
                     <thead>
                         <tr class="border-b border-slate-200 bg-slate-50 text-[11px] font-semibold uppercase tracking-wider text-slate-600 whitespace-nowrap">
-                            <th class="py-2.5 px-2 w-10 text-center">No.</th>
-                            <th class="py-2.5 px-2.5 min-w-[170px] max-w-[210px]">Pilih Balita</th>
-                            <th class="py-2.5 px-2 w-20 text-right">BB (kg)</th>
-                            <th class="py-2.5 px-2 w-20 text-right">TB/PB (cm)</th>
-                            <th class="py-2.5 px-1.5 w-16 text-right">LK (cm)</th>
-                            <th class="py-2.5 px-1.5 w-16 text-right">LiLA (cm)</th>
-                            <th class="py-2.5 px-2.5 w-60 text-center">Hasil Analisis WHO</th>
-                            <th class="py-2.5 px-2 min-w-[110px]">Catatan Kader</th>
-                            <th class="py-2.5 px-1.5 w-10 text-center">Hapus</th>
+                            <th class="py-2.5 px-1.5 w-9 text-center">No.</th>
+                            <th class="py-2.5 px-2 w-44 min-w-[150px]">Pilih Balita</th>
+                            <th class="py-2.5 px-1.5 w-18 text-right">BB (kg)</th>
+                            <th class="py-2.5 px-1.5 w-18 text-right whitespace-nowrap">TB/PB (cm)</th>
+                            <th class="py-2.5 px-1 w-14 text-right">LK (cm)</th>
+                            <th class="py-2.5 px-1 w-14 text-right">LiLA (cm)</th>
+                            <th class="py-2.5 px-2 w-32 text-center">Status Gizi (BB/TB)</th>
+                            <th class="py-2.5 px-2 w-32 text-center">Status Stunting (TB/U)</th>
+                            <th class="py-2.5 px-2 min-w-[100px]">Catatan Kader</th>
+                            <th class="py-2.5 px-1 w-9 text-center">Hapus</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-100">
                         <template x-for="(row, index) in rows" :key="row.id">
                             <tr class="hover:bg-slate-50/50">
-                                <td class="py-2 px-2 text-center text-slate-400 font-mono text-[11px]" x-text="index + 1"></td>
+                                <td class="py-2 px-1.5 text-center text-slate-400 font-mono text-[11px]" x-text="index + 1"></td>
                                 
                                 <!-- Child Selector -->
-                                <td class="py-2 px-2.5">
+                                <td class="py-2 px-2">
                                     <select :name="'measurements[' + index + '][child_id]'" 
                                             x-model="row.child_id"
                                             @change="calculateRow(index)"
@@ -72,29 +73,29 @@
                                 </td>
 
                                 <!-- Weight (BB) -->
-                                <td class="py-2 px-2">
+                                <td class="py-2 px-1.5">
                                     <input type="number" step="0.01" min="1" max="50" placeholder="10.5"
                                            :name="'measurements[' + index + '][weight]'"
                                            x-model="row.weight"
                                            @input.debounce.400ms="calculateRow(index)"
                                            required
                                            :class="parseFloat(row.weight) > 35 ? 'border-rose-400 focus:border-rose-600 focus:ring-rose-600 bg-rose-50/40 text-rose-900 font-bold' : 'border-slate-300 focus:border-lime-600 focus:ring-lime-600 bg-white text-slate-800 font-medium'"
-                                           class="w-full py-1.5 px-1.5 text-xs text-right font-mono rounded border focus:ring-1 tabular-nums transition">
+                                           class="w-full py-1.5 px-1 text-xs text-right font-mono rounded border focus:ring-1 tabular-nums transition">
                                 </td>
 
                                 <!-- Height (TB/PB) -->
-                                <td class="py-2 px-2">
+                                <td class="py-2 px-1.5">
                                     <input type="number" step="0.1" min="30" max="150" placeholder="78.5"
                                            :name="'measurements[' + index + '][height]'"
                                            x-model="row.height"
                                            @input.debounce.400ms="calculateRow(index)"
                                            required
                                            :class="(parseFloat(row.height) > 130 || (parseFloat(row.height) < 40 && parseFloat(row.height) > 0)) ? 'border-rose-400 focus:border-rose-600 focus:ring-rose-600 bg-rose-50/40 text-rose-900 font-bold' : 'border-slate-300 focus:border-lime-600 focus:ring-lime-600 bg-white text-slate-800 font-medium'"
-                                           class="w-full py-1.5 px-1.5 text-xs text-right font-mono rounded border focus:ring-1 tabular-nums transition">
+                                           class="w-full py-1.5 px-1 text-xs text-right font-mono rounded border focus:ring-1 tabular-nums transition">
                                 </td>
 
                                 <!-- Head Circumference (LK) -->
-                                <td class="py-2 px-1.5">
+                                <td class="py-2 px-1">
                                     <input type="number" step="0.1" min="20" max="70" placeholder="LK"
                                            :name="'measurements[' + index + '][head_circum]'"
                                            x-model="row.head_circum"
@@ -102,57 +103,73 @@
                                 </td>
 
                                 <!-- Arm Circumference (LiLA) -->
-                                <td class="py-2 px-1.5">
+                                <td class="py-2 px-1">
                                     <input type="number" step="0.1" min="5" max="35" placeholder="LiLA"
                                            :name="'measurements[' + index + '][arm_circum]'"
                                            x-model="row.arm_circum"
                                            class="w-full py-1.5 px-1 text-xs text-right font-mono rounded border border-slate-200 bg-white text-slate-600 focus:border-lime-600 focus:ring-1 focus:ring-lime-600 tabular-nums">
                                 </td>
 
-                                <!-- Unified Hasil Analisis WHO Column -->
-                                <td class="py-2 px-2.5 text-center align-middle">
+                                <!-- Status Gizi (BB/TB) Column -->
+                                <td class="py-2 px-2 text-center align-middle">
                                     <template x-if="row.loading">
-                                        <span class="inline-flex items-center space-x-1 px-2 py-0.5 rounded text-[10px] font-medium text-slate-500 bg-slate-100 border border-slate-200">
-                                            <svg class="animate-spin h-3 w-3 text-lime-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <span class="inline-flex items-center space-x-1 px-1.5 py-0.5 rounded text-[10px] font-medium text-slate-500 bg-slate-100 border border-slate-200">
+                                            <svg class="animate-spin h-2.5 w-2.5 text-lime-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
                                             </svg>
-                                            <span>Menghitung...</span>
+                                            <span>Hitung...</span>
                                         </span>
                                     </template>
                                     <template x-if="!row.loading && row.preview">
-                                        <div class="flex flex-col items-center justify-center space-y-1 py-0.5">
-                                            <!-- Extreme value flag -->
+                                        <div class="flex flex-col items-center justify-center space-y-0.5 py-0.5">
                                             <template x-if="row.preview.is_extreme">
-                                                <span class="inline-flex items-center px-1.5 py-0.2 rounded text-[9px] font-bold bg-rose-100 text-rose-800 border border-rose-300 animate-pulse">
-                                                    ⚠️ Nilai Ekstrem! Cek Input
+                                                <span class="inline-flex items-center px-1 py-0.2 rounded text-[8px] font-bold bg-rose-100 text-rose-800 border border-rose-300 animate-pulse whitespace-nowrap mb-0.5">
+                                                    ⚠️ Ekstrem!
                                                 </span>
                                             </template>
+                                            <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold border inline-flex items-center whitespace-nowrap"
+                                                  :class="row.preview.bb_tb_badge_class"
+                                                  :title="'BB/TB: ' + (row.preview.bb_tb.zScore > 0 ? '+' : '') + row.preview.bb_tb.zScore + ' SD'">
+                                                <span x-text="row.preview.bb_tb.label"></span>
+                                            </span>
+                                            <span class="text-[9px] text-slate-500 font-mono tabular-nums whitespace-nowrap"
+                                                  x-text="'Z: ' + (row.preview.bb_tb.zScore > 0 ? '+' : '') + row.preview.bb_tb.zScore">
+                                            </span>
+                                        </div>
+                                    </template>
+                                    <template x-if="!row.loading && !row.preview">
+                                        <span class="inline-flex items-center space-x-1 px-2 py-0.5 rounded text-[10px] text-slate-400 bg-slate-50 border border-dashed border-slate-200 font-medium whitespace-nowrap">
+                                            <span class="w-1 h-1 rounded-full bg-slate-300"></span>
+                                            <span>Menunggu</span>
+                                        </span>
+                                    </template>
+                                </td>
 
-                                            <!-- Dual Badges Side-by-Side -->
-                                            <div class="flex items-center justify-center space-x-1.5">
-                                                <!-- Status Gizi (BB/TB) -->
-                                                <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold border inline-flex items-center whitespace-nowrap"
-                                                      :class="row.preview.bb_tb_badge_class"
-                                                      :title="'BB/TB: ' + (row.preview.bb_tb.zScore > 0 ? '+' : '') + row.preview.bb_tb.zScore + ' SD'">
-                                                    <span x-text="'Gizi: ' + row.preview.bb_tb.label"></span>
+                                <!-- Status Stunting (TB/U) Column -->
+                                <td class="py-2 px-2 text-center align-middle">
+                                    <template x-if="row.loading">
+                                        <span class="inline-flex items-center space-x-1 px-1.5 py-0.5 rounded text-[10px] font-medium text-slate-500 bg-slate-100 border border-slate-200">
+                                            <svg class="animate-spin h-2.5 w-2.5 text-lime-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                                            </svg>
+                                            <span>Hitung...</span>
+                                        </span>
+                                    </template>
+                                    <template x-if="!row.loading && row.preview">
+                                        <div class="flex flex-col items-center justify-center space-y-0.5 py-0.5">
+                                            <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold border inline-flex items-center whitespace-nowrap"
+                                                  :class="row.preview.tb_u_badge_class"
+                                                  :title="'TB/U: ' + (row.preview.tb_u.zScore > 0 ? '+' : '') + row.preview.tb_u.zScore + ' SD'">
+                                                <span x-text="row.preview.tb_u.label"></span>
+                                            </span>
+                                            <div class="flex items-center justify-center space-x-1 whitespace-nowrap">
+                                                <span class="text-[9px] text-slate-500 font-mono tabular-nums"
+                                                      x-text="'Z: ' + (row.preview.tb_u.zScore > 0 ? '+' : '') + row.preview.tb_u.zScore">
                                                 </span>
-
-                                                <!-- Status Stunting (TB/U) -->
-                                                <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold border inline-flex items-center whitespace-nowrap"
-                                                      :class="row.preview.tb_u_badge_class"
-                                                      :title="'TB/U: ' + (row.preview.tb_u.zScore > 0 ? '+' : '') + row.preview.tb_u.zScore + ' SD'">
-                                                    <span x-text="'TB/U: ' + row.preview.tb_u.label"></span>
-                                                </span>
-                                            </div>
-
-                                            <!-- Quantitative Z-Score & 2T Alert -->
-                                            <div class="text-[10px] text-slate-500 font-mono flex items-center justify-center space-x-1.5 whitespace-nowrap">
-                                                <span x-text="'BB/TB: ' + (row.preview.bb_tb.zScore > 0 ? '+' : '') + row.preview.bb_tb.zScore"></span>
-                                                <span>•</span>
-                                                <span x-text="'TB/U: ' + (row.preview.tb_u.zScore > 0 ? '+' : '') + row.preview.tb_u.zScore"></span>
                                                 <template x-if="row.preview.is_weight_stagnant">
-                                                    <span class="text-amber-700 font-bold bg-amber-50 px-1 py-0.2 rounded border border-amber-200 text-[9px]" title="Berat badan tidak naik 2x penimbangan">
+                                                    <span class="text-amber-700 font-bold bg-amber-50 px-1 py-0.2 rounded border border-amber-200 text-[8px]" title="Berat badan tidak naik 2x penimbangan">
                                                         ⚠️ 2T
                                                     </span>
                                                 </template>
@@ -160,9 +177,9 @@
                                         </div>
                                     </template>
                                     <template x-if="!row.loading && !row.preview">
-                                        <span class="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded text-[10px] text-slate-400 bg-slate-50 border border-dashed border-slate-200 font-medium whitespace-nowrap">
+                                        <span class="inline-flex items-center space-x-1 px-2 py-0.5 rounded text-[10px] text-slate-400 bg-slate-50 border border-dashed border-slate-200 font-medium whitespace-nowrap">
                                             <span class="w-1 h-1 rounded-full bg-slate-300"></span>
-                                            <span>Menunggu input BB &amp; TB</span>
+                                            <span>Menunggu</span>
                                         </span>
                                     </template>
                                 </td>
@@ -176,7 +193,7 @@
                                 </td>
 
                                 <!-- Remove Button -->
-                                <td class="py-2 px-1.5 text-center">
+                                <td class="py-2 px-1 text-center">
                                     <button type="button" @click="removeRow(index)" 
                                             class="p-1 rounded text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition"
                                             :disabled="rows.length === 1">
