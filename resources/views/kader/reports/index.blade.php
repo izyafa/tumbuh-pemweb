@@ -22,8 +22,8 @@
                 </p>
             </div>
 
-            <!-- Month Selector & Export Buttons (Always Inline & Aligned) -->
-            <div class="flex items-center gap-2 sm:gap-2.5 shrink-0 flex-nowrap overflow-x-auto pb-1 xl:pb-0">
+            <!-- Month Selector & Export Buttons (Clean & Aligned) -->
+            <div class="flex flex-wrap items-center gap-2 sm:gap-2.5 shrink-0">
                 <form method="GET" action="{{ route('kader.reports.index') }}" class="flex items-center space-x-2 shrink-0">
                     <label for="month" class="text-xs font-semibold uppercase tracking-wider text-slate-600 shrink-0 whitespace-nowrap">
                         Bulan:

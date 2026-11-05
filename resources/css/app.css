@@ -24,9 +24,13 @@
     display: none !important;
 }
 
-/* Hide number input spinners / step buttons across all browsers for clean utilitarian inputs */
+/* Hide input spinners / step buttons across all browsers for clean utilitarian inputs */
 input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
+input[type="number"]::-webkit-outer-spin-button,
+input[type="month"]::-webkit-inner-spin-button,
+input[type="month"]::-webkit-outer-spin-button,
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
