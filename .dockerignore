@@ -15,4 +15,3 @@ storage/logs/*
 .env.*
 !.env.example
 *.md
-FIRST OPEN

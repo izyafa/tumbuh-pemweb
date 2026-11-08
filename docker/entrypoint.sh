@@ -8,10 +8,8 @@ echo "==> Configuring Nginx to listen on port ${PORT}..."
 mkdir -p /run/nginx
 envsubst '${PORT}' < /etc/nginx/templates/nginx.conf.template > /etc/nginx/http.d/default.conf
 
-# Clean stale bootstrap caches if any
-rm -f /var/www/html/bootstrap/cache/packages.php \
-      /var/www/html/bootstrap/cache/services.php \
-      /var/www/html/bootstrap/cache/config.php
+# Clean any stale bootstrap cache files
+rm -f /var/www/html/bootstrap/cache/*.php
 
 # Ensure storage directories exist and have proper permissions
 mkdir -p /var/www/html/storage/framework/sessions \
@@ -23,30 +21,32 @@ mkdir -p /var/www/html/storage/framework/sessions \
 chown -R nginx:nginx /var/www/html/storage /var/www/html/bootstrap/cache
 chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Production optimisations and cache
-echo "==> Preparing Laravel cache..."
+# Clear runtime caches so Laravel dynamically reads the latest Render & Neon environment variables
+echo "==> Clearing stale caches for dynamic runtime boot..."
+php artisan config:clear || true
+php artisan route:clear || true
+php artisan view:clear || true
+php artisan cache:clear || true
 php artisan storage:link --force || true
 php artisan package:discover --ansi || true
-php artisan config:cache || true
-php artisan route:cache || true
-php artisan view:cache || true
 
-# Run migrations if enabled (default true)
+# Run database migrations asynchronously so Nginx + PHP-FPM start immediately (<1s).
+# This prevents Render health check (/up) timeouts during cold starts when Neon serverless PostgreSQL is waking up.
 if [ "${RUN_MIGRATIONS:-true}" = "true" ]; then
-    echo "==> Running database migrations..."
-    php artisan migrate --force || echo "Warning: Migration failed or database not ready."
-fi
-
-# Run database seeder if explicitly requested (useful for first-time deploy on Render)
-if [ "${RUN_SEEDER:-false}" = "true" ]; then
-    echo "==> Running database seeders..."
-    php artisan db:seed --force || echo "Warning: Database seeding failed."
+    echo "==> Running database migrations in background..."
+    (
+        php artisan migrate --force || echo "Warning: Migration failed or database not ready."
+        if [ "${RUN_SEEDER:-false}" = "true" ]; then
+            echo "==> Running database seeders..."
+            php artisan db:seed --force || echo "Warning: Database seeding failed."
+        fi
+    ) &
 fi
 
 # Execute CMD passed to container or default to supervisord
 if [ "$#" -gt 0 ]; then
     exec "$@"
 else
-    echo "==> Starting web application via supervisord..."
+    echo "==> Starting web application via supervisord (Nginx + PHP-FPM)..."
     exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
 fi

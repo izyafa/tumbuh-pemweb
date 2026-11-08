@@ -97,6 +97,10 @@ return [
             'prefix_indexes' => true,
             'search_path' => 'public',
             'sslmode' => env('DB_SSLMODE', 'prefer'),
+            'keepalives' => env('DB_KEEPALIVES', 1),
+            'keepalives_idle' => env('DB_KEEPALIVES_IDLE', 60),
+            'keepalives_interval' => env('DB_KEEPALIVES_INTERVAL', 10),
+            'keepalives_count' => env('DB_KEEPALIVES_COUNT', 3),
         ],
 
         'sqlsrv' => [

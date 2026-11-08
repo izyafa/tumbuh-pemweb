@@ -76,7 +76,8 @@ COPY docker/php.ini /etc/php83/conf.d/99-custom.ini
 COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY docker/nginx.conf.template /etc/nginx/templates/nginx.conf.template
 COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh && \
+    ln -sf /usr/local/bin/entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
 # Set application directory
 WORKDIR /var/www/html

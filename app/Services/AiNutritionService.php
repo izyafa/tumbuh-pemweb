@@ -151,7 +151,7 @@ Hasilkan variasi menu makanan baru yang lezat, bernutrisi, dan seimbang dengan b
 }
 EOT;
 
-        $provider = env('AI_PROVIDER', 'gemini');
+        $provider = config('services.ai_provider', 'gemini');
 
         // Try Gemini if selected and key present
         if ($provider === 'gemini' && config('services.gemini.api_key')) {
