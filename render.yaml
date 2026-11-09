@@ -11,6 +11,8 @@ services:
         value: production
       - key: APP_DEBUG
         value: "false"
+      - key: LOG_CHANNEL
+        value: stderr
       - key: APP_KEY
         sync: false
       - key: APP_URL
@@ -34,8 +36,8 @@ services:
       - key: GEMINI_MODEL
         value: gemini-1.5-pro
       - key: SESSION_DRIVER
-        value: database
+        value: file
       - key: CACHE_STORE
-        value: database
+        value: file
       - key: QUEUE_CONNECTION
         value: database

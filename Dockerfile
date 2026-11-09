@@ -66,13 +66,15 @@ RUN apk add --no-cache \
 RUN ln -sf /usr/bin/php83 /usr/bin/php && \
     ln -sf /usr/sbin/php-fpm83 /usr/sbin/php-fpm && \
     sed -i 's/user = nobody/user = nginx/g' /etc/php83/php-fpm.d/www.conf && \
-    sed -i 's/group = nobody/group = nginx/g' /etc/php83/php-fpm.d/www.conf
+    sed -i 's/group = nobody/group = nginx/g' /etc/php83/php-fpm.d/www.conf && \
+    sed -i 's/;clear_env = no/clear_env = no/g' /etc/php83/php-fpm.d/www.conf
 
 # Prepare Nginx & Supervisor folders
-RUN mkdir -p /etc/nginx/templates /etc/nginx/http.d /etc/supervisor/conf.d /etc/php83/conf.d
+RUN mkdir -p /etc/nginx/templates /etc/nginx/http.d /etc/supervisor/conf.d /etc/php83/conf.d /etc/php83/php-fpm.d
 
 # Copy custom configurations
 COPY docker/php.ini /etc/php83/conf.d/99-custom.ini
+COPY docker/zz-docker.conf /etc/php83/php-fpm.d/zz-docker.conf
 COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY docker/nginx.conf.template /etc/nginx/templates/nginx.conf.template
 COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
