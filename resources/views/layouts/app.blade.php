@@ -20,18 +20,23 @@
     toggleSidebar() {
         this.sidebarCollapsed = !this.sidebarCollapsed;
         localStorage.setItem('tumbuh_sidebar_collapsed', this.sidebarCollapsed);
-        setTimeout(() => {
+        this.$nextTick(() => {
             window.dispatchEvent(new Event('resize'));
             if (window.lucide && window.lucide.createIcons) {
                 window.lucide.createIcons();
             }
-        }, 200);
+        });
+        setTimeout(() => {
+            if (window.lucide && window.lucide.createIcons) {
+                window.lucide.createIcons();
+            }
+        }, 50);
     }
 }" class="h-full text-slate-800 antialiased font-sans flex flex-col md:flex-row bg-slate-50">
 
     <!-- Sidebar Navigation -->
     <aside :class="sidebarCollapsed ? 'md:w-16' : 'md:w-64'" 
-           class="w-full bg-white border-r border-slate-200 flex flex-col shrink-0 transition-[width] duration-200 ease-in-out">
+           class="w-full bg-white border-r border-slate-200 flex flex-col shrink-0">
         <!-- Brand Header -->
         <div class="h-16 border-b border-slate-200 px-3 flex items-center justify-between"
              :class="sidebarCollapsed ? 'md:px-2 md:justify-center' : 'md:px-4'">
@@ -74,7 +79,7 @@
                     x-cloak
                     title="Buka Menu Navigasi"
                     class="hidden md:flex w-9 h-9 rounded-md bg-lime-50 hover:bg-lime-100 text-lime-700 items-center justify-center transition-colors cursor-pointer group">
-                <i data-lucide="panel-left-open" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+                <i data-lucide="panel-left-open" class="w-4 h-4"></i>
             </button>
 
             <!-- Mobile Hamburger Toggle -->

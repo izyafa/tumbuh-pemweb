@@ -409,7 +409,8 @@ class TumbuhApplicationTest extends TestCase
     public function test_admin_can_update_educational_video_and_quizzes(): void
     {
         $admin = User::where('role', 'admin')->first();
-        $video = EducationalVideo::first();
+        $video = EducationalVideo::where('title', 'Edukasi MPASI Kaya Zat Besi')->latest('created_at')->first()
+            ?? EducationalVideo::first();
 
         $newQuizzes = [
             [

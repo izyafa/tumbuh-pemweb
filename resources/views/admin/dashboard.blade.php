@@ -92,7 +92,7 @@
                 <!-- Severely Stunted -->
                 <div class="space-y-1">
                     <div class="flex justify-between font-medium">
-                        <span class="text-rose-700">Sangat Pendek (Severely Stunted, &lt; -3 SD)</span>
+                        <span class="text-rose-700">Sangat Pendek (&lt; -3 SD)</span>
                         <span class="font-mono font-bold">{{ $severelyStunted }} anak ({{ $totalChildren > 0 ? round(($severelyStunted / $totalChildren) * 100, 1) : 0 }}%)</span>
                     </div>
                     <div class="w-full bg-slate-100 rounded-full h-2">
@@ -103,7 +103,7 @@
                 <!-- Stunted -->
                 <div class="space-y-1">
                     <div class="flex justify-between font-medium">
-                        <span class="text-amber-700">Pendek (Stunted, -3 s/d -2 SD)</span>
+                        <span class="text-amber-700">Pendek (-3 s/d -2 SD)</span>
                         <span class="font-mono font-bold">{{ $stunted }} anak ({{ $totalChildren > 0 ? round(($stunted / $totalChildren) * 100, 1) : 0 }}%)</span>
                     </div>
                     <div class="w-full bg-slate-100 rounded-full h-2">

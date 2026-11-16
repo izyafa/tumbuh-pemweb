@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kartu Menuju Sehat (KMS) Digital — {{ $child->full_name }}</title>
-    @vite(['resources/css/app.css'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         @media print {
             body { font-size: 11px; background: white !important; color: black !important; }
@@ -23,7 +23,8 @@
         </div>
         <div class="flex items-center space-x-2">
             <button onclick="window.print()" class="px-4 py-2 bg-lime-600 hover:bg-lime-700 text-white font-bold text-xs rounded-md shadow-sm transition flex items-center space-x-1.5 cursor-pointer">
-                <span>🖨️ Cetak / Simpan PDF</span>
+                <i data-lucide="printer" class="w-4 h-4 shrink-0"></i>
+                <span>Cetak / Simpan PDF</span>
             </button>
             <button onclick="window.history.back()" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium text-xs rounded-md transition cursor-pointer">
                 Kembali
@@ -211,5 +212,12 @@
 
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.lucide && window.lucide.createIcons) {
+                window.lucide.createIcons();
+            }
+        });
+    </script>
 </body>
 </html>

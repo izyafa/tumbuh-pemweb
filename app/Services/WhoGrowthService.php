@@ -82,10 +82,10 @@ class WhoGrowthService
 
         if ($zScore < -3.0) {
             $status = 'severely_stunted';
-            $label = 'Sangat Pendek (Severely Stunted)';
+            $label = 'Sangat Pendek';
         } elseif ($zScore < -2.0) {
             $status = 'stunted';
-            $label = 'Pendek (Stunted)';
+            $label = 'Pendek';
         } elseif ($zScore <= 2.0) {
             $status = 'normal';
             $label = 'Normal';
@@ -192,23 +192,23 @@ class WhoGrowthService
         $zScore = max(-99.99, min(99.99, $zScore));
 
         $status = 'normal';
-        $label = 'Gizi Baik (Normal)';
+        $label = 'Gizi Baik';
 
         if ($zScore < -3.0) {
             $status = 'severely_wasted';
-            $label = 'Gizi Buruk (Severely Wasted)';
+            $label = 'Gizi Buruk';
         } elseif ($zScore < -2.0) {
             $status = 'wasted';
-            $label = 'Gizi Kurang (Wasted)';
+            $label = 'Gizi Kurang';
         } elseif ($zScore <= 1.0) {
             $status = 'normal';
-            $label = 'Gizi Baik (Normal)';
+            $label = 'Gizi Baik';
         } elseif ($zScore <= 2.0) {
             $status = 'risk_of_overweight';
             $label = 'Berisiko Gizi Lebih';
         } elseif ($zScore <= 3.0) {
             $status = 'overweight';
-            $label = 'Gizi Lebih (Overweight)';
+            $label = 'Gizi Lebih';
         } else {
             $status = 'obese';
             $label = 'Obesitas';
@@ -326,7 +326,7 @@ class WhoGrowthService
                 $badgeText = 'Bahaya: Gizi Buruk Akut (Z < -3 SD)';
                 $recommendation = 'Segera rujuk ke Puskesmas / RS untuk tata laksana gizi buruk (F-75/F-100 / RUTF).';
             } elseif ($tbResult['status'] === 'severely_stunted') {
-                $badgeText = 'Bahaya: Sangat Pendek (Severely Stunted)';
+                $badgeText = 'Bahaya: Sangat Pendek';
                 $recommendation = 'Intervensi gizi intensif dan evaluasi medis Puskesmas untuk defisit pertumbuhan kronis berat.';
             } else {
                 $badgeText = 'Bahaya: Berat Badan Sangat Kurang';
@@ -339,7 +339,7 @@ class WhoGrowthService
                 $badgeText = 'Waspada: Gizi Lebih';
                 $recommendation = 'Atur pola makan gizi seimbang, kurangi konsumsi gula berlebih, dan tingkatkan aktivitas fisik balita.';
             } elseif ($tbResult['status'] === 'stunted') {
-                $badgeText = 'Waspada: Terindikasi Stunting';
+                $badgeText = 'Waspada: Pendek';
                 $recommendation = 'Prioritaskan konsumsi protein hewani harian (telur, ikan, daging/hati ayam) dan pantau KMS rutin.';
             } elseif ($bbtbResult['status'] === 'wasted') {
                 $badgeText = 'Waspada: Gizi Kurang';

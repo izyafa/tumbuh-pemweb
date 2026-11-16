@@ -30,10 +30,12 @@
         <!-- Search & Filter Form -->
         <form method="GET" action="{{ route('kader.children.index') }}" class="grid grid-cols-1 sm:grid-cols-4 gap-3 pt-3 border-t border-slate-100">
             <div class="sm:col-span-2">
-                <div class="relative">
-                    <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-2.5"></i>
+                <div class="relative flex items-center">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                        <i data-lucide="search" class="w-4 h-4"></i>
+                    </div>
                     <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari berdasarkan Nama Balita, NIK, atau Nama Orang Tua..."
-                           class="w-full pl-9 pr-3 py-1.5 text-xs rounded-md border border-slate-300 bg-white text-slate-800 focus:outline-none focus:border-lime-600 focus:ring-1 focus:ring-lime-600">
+                           class="w-full pl-9 pr-3 py-1.5 text-xs rounded-md border border-slate-300 bg-white text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-lime-600 focus:ring-1 focus:ring-lime-600">
                 </div>
             </div>
 
@@ -51,7 +53,7 @@
                         class="w-full py-1.5 px-2 text-xs rounded-md border border-slate-300 bg-white text-slate-700 focus:border-lime-600 focus:ring-1 focus:ring-lime-600">
                     <option value="">Semua Status Gizi</option>
                     <option value="severely_stunted" {{ request('status') === 'severely_stunted' ? 'selected' : '' }}>Sangat Pendek</option>
-                    <option value="stunted" {{ request('status') === 'stunted' ? 'selected' : '' }}>Pendek (Stunted)</option>
+                    <option value="stunted" {{ request('status') === 'stunted' ? 'selected' : '' }}>Pendek</option>
                     <option value="normal" {{ request('status') === 'normal' ? 'selected' : '' }}>Normal</option>
                     <option value="tall" {{ request('status') === 'tall' ? 'selected' : '' }}>Tinggi</option>
                 </select>

@@ -167,7 +167,7 @@
             </div>
             <div class="flex items-center space-x-1.5">
                 <span class="w-3 h-0.5 bg-rose-600 inline-block"></span>
-                <span>-3 SD (Bahaya Severely Stunted)</span>
+                <span>-3 SD (Bahaya Sangat Pendek)</span>
             </div>
             <div class="flex items-center space-x-1.5">
                 <span class="w-3 h-0.5 bg-slate-400 inline-block border-t border-dashed"></span>

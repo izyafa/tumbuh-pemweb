@@ -44,27 +44,27 @@ class AiNutritionService
         // Standard WHO / Kemenkes RI (Permenkes No. 2 Tahun 2020) Status Derivations
         $tbStatus = 'Normal';
         if ($zScoreTbU < -3.0) {
-            $tbStatus = 'Sangat Pendek (Severely Stunted)';
+            $tbStatus = 'Sangat Pendek';
         } elseif ($zScoreTbU < -2.0) {
-            $tbStatus = 'Pendek (Stunted)';
+            $tbStatus = 'Pendek';
         } elseif ($zScoreTbU > 2.0) {
             $tbStatus = 'Tinggi';
         }
 
         $bbStatus = 'Berat Badan Normal';
         if ($zScoreBbU < -3.0) {
-            $bbStatus = 'Berat Badan Sangat Kurang (Severely Underweight)';
+            $bbStatus = 'Berat Badan Sangat Kurang';
         } elseif ($zScoreBbU < -2.0) {
-            $bbStatus = 'Berat Badan Kurang (Underweight)';
+            $bbStatus = 'Berat Badan Kurang';
         } elseif ($zScoreBbU > 1.0) {
             $bbStatus = 'Risiko Berat Badan Lebih';
         }
 
-        $giziStatus = 'Gizi Baik (Normal)';
+        $giziStatus = 'Gizi Baik';
         if ($zScoreBbTb < -3.0) {
-            $giziStatus = 'Gizi Buruk (Severely Wasted)';
+            $giziStatus = 'Gizi Buruk';
         } elseif ($zScoreBbTb < -2.0) {
-            $giziStatus = 'Gizi Kurang (Wasted)';
+            $giziStatus = 'Gizi Kurang';
         } elseif ($zScoreBbTb > 2.0) {
             $giziStatus = 'Gizi Lebih / Obesitas';
         }
@@ -330,11 +330,11 @@ EOT;
 
         $clinicalAlert = null;
         if ($zScoreTbU < -3.0) {
-            $clinicalAlert = "PERINGATAN KLINIS: Anak terindikasi Severely Stunted (TB/U < -3 SD). Segera rujuk ke Puskesmas/Dokter Spesialis Anak untuk tata laksana gizi terpadu.";
+            $clinicalAlert = "PERINGATAN KLINIS: Anak terindikasi Sangat Pendek (TB/U < -3 SD). Segera rujuk ke Puskesmas/Dokter Spesialis Anak untuk tata laksana gizi terpadu.";
         } elseif ($isWeightStagnant) {
             $clinicalAlert = "PERINGATAN: Berat badan tidak naik (Stagnan / 2T). Risiko tinggi weight faltering menuju stunting, perlu konfirmasi asupan dan pemeriksaan klinis Puskesmas.";
         } elseif ($zScoreTbU < -2.0) {
-            $clinicalAlert = "PERINGATAN: Anak terindikasi Stunted (Pendek). Diperlukan intervensi protein hewani padat gizi setiap waktu makan.";
+            $clinicalAlert = "PERINGATAN: Anak terindikasi Pendek (TB/U < -2 SD). Diperlukan intervensi protein hewani padat gizi setiap waktu makan.";
         }
 
         if ($zScoreTbU < -2.0) {
@@ -464,17 +464,17 @@ EOT;
             // If LLM failed to provide a clinical alert, generate one from evidence
             if (empty($response['clinicalAlert'])) {
                 if ($zScoreTbU < -3.0) {
-                    $response['clinicalAlert'] = "PERINGATAN KLINIS: Anak terindikasi Severely Stunted (TB/U < -3 SD). Segera rujuk ke Puskesmas/Dokter Spesialis Anak untuk tata laksana gizi terpadu.";
+                    $response['clinicalAlert'] = "PERINGATAN KLINIS: Anak terindikasi Sangat Pendek (TB/U < -3 SD). Segera rujuk ke Puskesmas/Dokter Spesialis Anak untuk tata laksana gizi terpadu.";
                 } elseif ($isWeightStagnant) {
                     $response['clinicalAlert'] = "PERINGATAN: Berat badan tidak naik (Stagnan / 2T). Risiko tinggi weight faltering menuju stunting, perlu konfirmasi asupan dan pemeriksaan klinis Puskesmas.";
                 } elseif ($zScoreTbU < -2.0) {
-                    $response['clinicalAlert'] = "PERINGATAN: Anak terindikasi Stunted (Pendek). Diperlukan intervensi protein hewani padat gizi setiap waktu makan.";
+                    $response['clinicalAlert'] = "PERINGATAN: Anak terindikasi Pendek (TB/U < -2 SD). Diperlukan intervensi protein hewani padat gizi setiap waktu makan.";
                 } elseif ($zScoreBbTb < -3.0) {
                     $response['clinicalAlert'] = "PERINGATAN KLINIS: Anak terindikasi Gizi Buruk (BB/TB < -3 SD). Segera rujuk ke Puskesmas/fasilitas kesehatan terdekat.";
                 } elseif ($zScoreBbTb < -2.0) {
-                    $response['clinicalAlert'] = "PERINGATAN: Anak terindikasi Gizi Kurang (Wasted). Tingkatkan asupan kalori dan protein hewani berkualitas.";
+                    $response['clinicalAlert'] = "PERINGATAN: Anak terindikasi Gizi Kurang (BB/TB < -2 SD). Tingkatkan asupan kalori dan protein hewani berkualitas.";
                 } elseif ($zScoreBbU < -2.0) {
-                    $response['clinicalAlert'] = "PERINGATAN: Anak terindikasi Berat Badan Kurang (Underweight). Perhatikan frekuensi dan kepadatan kalori MPASI/makanan anak.";
+                    $response['clinicalAlert'] = "PERINGATAN: Anak terindikasi Berat Badan Kurang (BB/U < -2 SD). Perhatikan frekuensi dan kepadatan kalori MPASI/makanan anak.";
                 }
             }
         }

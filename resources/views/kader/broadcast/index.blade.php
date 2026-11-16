@@ -228,10 +228,12 @@
         <div class="p-3.5 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-50/70">
             <div class="flex flex-col sm:flex-row sm:items-center gap-2 flex-1">
                 <!-- Search Input -->
-                <div class="relative w-full sm:w-64">
+                <div class="relative w-full sm:w-64 flex items-center">
+                    <div class="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none text-slate-400">
+                        <i data-lucide="search" class="w-3.5 h-3.5"></i>
+                    </div>
                     <input type="text" x-model="searchQuery" placeholder="Cari nama balita, orang tua, kontak..."
-                           class="w-full pl-8 pr-3 py-1.5 text-xs rounded-md border border-slate-300 bg-white text-slate-800 focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600">
-                    <i data-lucide="search" class="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2.5"></i>
+                           class="w-full pl-8 pr-3 py-1.5 text-xs rounded-md border border-slate-300 bg-white text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600">
                 </div>
 
                 <!-- Age Category Filter -->

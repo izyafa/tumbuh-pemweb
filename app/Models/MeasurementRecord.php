@@ -56,8 +56,8 @@ class MeasurementRecord extends Model
     public function getStuntingStatusLabelAttribute(): string
     {
         return match ($this->stunting_status) {
-            'severely_stunted' => 'Sangat Pendek (Severely Stunted)',
-            'stunted' => 'Pendek (Stunted)',
+            'severely_stunted' => 'Sangat Pendek',
+            'stunted' => 'Pendek',
             'normal' => 'Normal',
             'tall' => 'Tinggi',
             default => 'Normal',

@@ -236,7 +236,7 @@ function growthCalculator() {
             recommendation: 'Lanjutkan pemberian gizi seimbang kaya protein hewani dan bawa anak rutin ke Posyandu setiap bulan.',
             tb_u: { zScore: 0.1, status: 'normal', label: 'Normal' },
             bb_u: { zScore: 0.0, status: 'normal', label: 'Berat Badan Normal' },
-            bb_tb: { zScore: 0.0, status: 'normal', label: 'Gizi Baik (Normal)' },
+            bb_tb: { zScore: 0.0, status: 'normal', label: 'Gizi Baik' },
         },
         init() {
             this.calculate();
