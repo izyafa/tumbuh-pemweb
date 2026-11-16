@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Input Cepat Penimbangan Posyandu')
-@section('page_title', 'Pencatatan Penimbangan Massal (Batch Mode)')
+@section('page_title', 'Pencatatan Penimbangan Massal')
 
 @section('content')
 <div x-data="batchEntry()" class="space-y-6">
@@ -10,7 +10,7 @@
     <div class="bg-white border border-slate-200 rounded-lg p-5 shadow-sm">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
-                <h2 class="text-base font-semibold text-slate-900">Formulir Cepat Penimbangan Hari Posyandu</h2>
+                <h2 class="text-base font-semibold text-slate-900">Formulir Cepat Penimbangan Posyandu</h2>
                 <p class="text-xs text-slate-500 mt-0.5">
                     Masukkan hasil penimbangan balita secara berurutan. Sistem secara otomatis menghitung Z-Score WHO & mendeteksi stunting atau risiko 2T secara real-time.
                 </p>
@@ -255,13 +255,24 @@
                     loading: false
                 });
                 this.$nextTick(() => {
-                    if (window.lucide) window.lucide.createIcons();
+                    if (window.refreshIcons) {
+                        window.refreshIcons();
+                    } else if (window.lucide && window.lucide.createIcons) {
+                        window.lucide.createIcons();
+                    }
                 });
             },
 
             removeRow(index) {
                 if (this.rows.length > 1) {
                     this.rows.splice(index, 1);
+                    this.$nextTick(() => {
+                        if (window.refreshIcons) {
+                            window.refreshIcons();
+                        } else if (window.lucide && window.lucide.createIcons) {
+                            window.lucide.createIcons();
+                        }
+                    });
                 }
             },
 

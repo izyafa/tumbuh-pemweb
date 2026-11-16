@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Dashboard Kader Posyandu')
-@section('page_title', 'Dashboard Operasional Posyandu')
+@section('page_title', 'Dashboard Posyandu')
 
 @section('page_badge')
     <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-lime-50 text-lime-800 border border-lime-200">
@@ -22,7 +22,7 @@
             <a href="{{ route('kader.measurements.batch') }}" 
                class="inline-flex items-center space-x-1.5 px-3.5 py-2 rounded-lg bg-lime-600 hover:bg-lime-700 text-white text-xs font-semibold shadow-xs transition cursor-pointer">
                 <i data-lucide="sparkles" class="w-4 h-4"></i>
-                <span>Input Cepat Batch</span>
+                <span>Input Cepat</span>
             </a>
             <a href="{{ route('kader.children.create') }}" 
                class="inline-flex items-center space-x-1.5 px-3 py-2 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-medium transition cursor-pointer">

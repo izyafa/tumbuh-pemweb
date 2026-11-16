@@ -14,14 +14,30 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('styles')
 </head>
-<body class="h-full text-slate-800 antialiased font-sans flex flex-col md:flex-row bg-slate-50">
+<body x-data="{ 
+    mobileNav: false, 
+    sidebarCollapsed: localStorage.getItem('tumbuh_sidebar_collapsed') === 'true',
+    toggleSidebar() {
+        this.sidebarCollapsed = !this.sidebarCollapsed;
+        localStorage.setItem('tumbuh_sidebar_collapsed', this.sidebarCollapsed);
+        setTimeout(() => {
+            window.dispatchEvent(new Event('resize'));
+            if (window.lucide && window.lucide.createIcons) {
+                window.lucide.createIcons();
+            }
+        }, 200);
+    }
+}" class="h-full text-slate-800 antialiased font-sans flex flex-col md:flex-row bg-slate-50">
 
     <!-- Sidebar Navigation -->
-    <aside x-data="{ mobileNav: false }" class="w-full md:w-64 bg-white border-r border-slate-200 flex flex-col shrink-0">
+    <aside :class="sidebarCollapsed ? 'md:w-16' : 'md:w-64'" 
+           class="w-full bg-white border-r border-slate-200 flex flex-col shrink-0 transition-[width] duration-200 ease-in-out">
         <!-- Brand Header -->
-        <div class="h-16 border-b border-slate-200 px-5 flex items-center justify-between">
-            <div class="flex items-center space-x-2.5">
-                <div class="w-8 h-8 rounded-md bg-lime-600 flex items-center justify-center text-white font-bold text-base shadow-sm">
+        <div class="h-16 border-b border-slate-200 px-3 flex items-center justify-between"
+             :class="sidebarCollapsed ? 'md:px-2 md:justify-center' : 'md:px-4'">
+            <!-- Mobile Brand View -->
+            <div class="flex items-center space-x-2.5 md:hidden">
+                <div class="w-8 h-8 rounded-md bg-lime-600 flex items-center justify-center text-white font-bold text-base shadow-sm shrink-0">
                     T
                 </div>
                 <div>
@@ -29,6 +45,39 @@
                     <span class="text-[10px] text-slate-400 font-medium uppercase tracking-wider block mt-0.5">Posyandu</span>
                 </div>
             </div>
+
+            <!-- Desktop Expanded Brand View -->
+            <div class="hidden md:flex items-center space-x-2.5 min-w-0" x-show="!sidebarCollapsed" x-cloak>
+                <div class="w-8 h-8 rounded-md bg-lime-600 flex items-center justify-center text-white font-bold text-base shadow-sm shrink-0">
+                    T
+                </div>
+                <div class="min-w-0 overflow-hidden">
+                    <span class="font-bold text-slate-900 tracking-tight text-lg leading-none block truncate">TUMBUH</span>
+                    <span class="text-[10px] text-slate-400 font-medium uppercase tracking-wider block mt-0.5 truncate">Posyandu</span>
+                </div>
+            </div>
+
+            <!-- Desktop Toggle Button: Ciutkan (ketika terbuka) -->
+            <button type="button" 
+                    @click="toggleSidebar()" 
+                    x-show="!sidebarCollapsed"
+                    x-cloak
+                    title="Ciutkan Menu"
+                    class="hidden md:inline-flex p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-md transition-colors cursor-pointer">
+                <i data-lucide="panel-left-close" class="w-4 h-4"></i>
+            </button>
+
+            <!-- Desktop Toggle Button: Buka Kembali (ketika menciut / 64px) -->
+            <button type="button" 
+                    @click="toggleSidebar()" 
+                    x-show="sidebarCollapsed"
+                    x-cloak
+                    title="Buka Menu Navigasi"
+                    class="hidden md:flex w-9 h-9 rounded-md bg-lime-50 hover:bg-lime-100 text-lime-700 items-center justify-center transition-colors cursor-pointer group">
+                <i data-lucide="panel-left-open" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+            </button>
+
+            <!-- Mobile Hamburger Toggle -->
             <span class="md:hidden">
                 <button type="button" @click="mobileNav = !mobileNav" aria-label="Menu navigasi" class="p-1.5 text-slate-500 hover:text-slate-800 rounded-md border border-slate-200">
                     <i data-lucide="menu" class="w-5 h-5" x-show="!mobileNav"></i>
@@ -38,53 +87,68 @@
         </div>
 
         <!-- Collapsible Content for Mobile, Persistent for Desktop -->
-        <div :class="mobileNav ? 'flex flex-col' : 'hidden md:flex md:flex-col'" class="flex-1 justify-between overflow-y-auto">
+        <div :class="mobileNav ? 'flex flex-col' : 'hidden md:flex md:flex-col'" class="flex-1 justify-between overflow-y-auto overflow-x-hidden">
             <!-- Navigation Links -->
-            <div class="py-4 px-3 space-y-6">
+            <div class="py-4 space-y-6" :class="sidebarCollapsed ? 'px-2' : 'px-3'">
                 <!-- Posyandu Cadre Section -->
                 <div>
-                    <p class="px-2 text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Layanan Posyandu</p>
+                    <p x-show="!sidebarCollapsed" x-cloak class="px-2 text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Layanan Posyandu</p>
+                    <div x-show="sidebarCollapsed" x-cloak class="h-px bg-slate-100 my-2 mx-1"></div>
                     <nav class="space-y-1">
                         <a href="{{ route('kader.dashboard') }}" 
-                           class="flex items-center space-x-2.5 px-2.5 py-2 rounded-md text-sm font-medium transition-colors {{ request()->routeIs('kader.dashboard') ? 'bg-lime-50 text-lime-800 font-semibold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
-                            <i data-lucide="layout-dashboard" class="w-4 h-4 {{ request()->routeIs('kader.dashboard') ? 'text-lime-700' : 'text-slate-400' }}"></i>
-                            <span>Dashboard</span>
+                           title="Dashboard"
+                           class="flex items-center py-2 rounded-md text-sm font-medium transition-colors {{ request()->routeIs('kader.dashboard') ? 'bg-lime-50 text-lime-800 font-semibold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
+                           :class="sidebarCollapsed ? 'justify-center px-0' : 'space-x-2.5 px-2.5'">
+                            <i data-lucide="layout-dashboard" class="w-4 h-4 shrink-0 {{ request()->routeIs('kader.dashboard') ? 'text-lime-700' : 'text-slate-400' }}"></i>
+                            <span x-show="!sidebarCollapsed" x-cloak class="truncate">Dashboard</span>
                         </a>
 
                         <a href="{{ route('kader.measurements.batch') }}" 
-                           class="flex items-center space-x-2.5 px-2.5 py-2 rounded-md text-sm font-medium transition-colors {{ request()->routeIs('kader.measurements.batch') ? 'bg-lime-50 text-lime-800 font-semibold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
-                            <i data-lucide="scale" class="w-4 h-4 {{ request()->routeIs('kader.measurements.batch') ? 'text-lime-700' : 'text-slate-400' }}"></i>
-                            <span>Penimbangan</span>
+                           title="Penimbangan Massal"
+                           class="flex items-center py-2 rounded-md text-sm font-medium transition-colors {{ request()->routeIs('kader.measurements.batch') ? 'bg-lime-50 text-lime-800 font-semibold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
+                           :class="sidebarCollapsed ? 'justify-center px-0' : 'space-x-2.5 px-2.5'">
+                            <i data-lucide="scale" class="w-4 h-4 shrink-0 {{ request()->routeIs('kader.measurements.batch') ? 'text-lime-700' : 'text-slate-400' }}"></i>
+                            <span x-show="!sidebarCollapsed" x-cloak class="truncate">Penimbangan</span>
                         </a>
 
                         <a href="{{ route('kader.children.index') }}" 
-                           class="flex items-center space-x-2.5 px-2.5 py-2 rounded-md text-sm font-medium transition-colors {{ request()->routeIs('kader.children.*') ? 'bg-lime-50 text-lime-800 font-semibold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
-                            <i data-lucide="baby" class="w-4 h-4 {{ request()->routeIs('kader.children.*') ? 'text-lime-700' : 'text-slate-400' }}"></i>
-                            <span>Data Balita</span>
+                           title="Data Balita"
+                           class="flex items-center py-2 rounded-md text-sm font-medium transition-colors {{ request()->routeIs('kader.children.*') ? 'bg-lime-50 text-lime-800 font-semibold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
+                           :class="sidebarCollapsed ? 'justify-center px-0' : 'space-x-2.5 px-2.5'">
+                            <i data-lucide="baby" class="w-4 h-4 shrink-0 {{ request()->routeIs('kader.children.*') ? 'text-lime-700' : 'text-slate-400' }}"></i>
+                            <span x-show="!sidebarCollapsed" x-cloak class="truncate">Data Balita</span>
                         </a>
 
                         <a href="{{ route('kader.reports.index') }}" 
-                           class="flex items-center space-x-2.5 px-2.5 py-2 rounded-md text-sm font-medium transition-colors {{ request()->routeIs('kader.reports.*') ? 'bg-lime-50 text-lime-800 font-semibold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
-                            <i data-lucide="file-text" class="w-4 h-4 {{ request()->routeIs('kader.reports.*') ? 'text-lime-700' : 'text-slate-400' }}"></i>
-                            <span>Laporan SKDN</span>
+                           title="Laporan SKDN"
+                           class="flex items-center py-2 rounded-md text-sm font-medium transition-colors {{ request()->routeIs('kader.reports.*') ? 'bg-lime-50 text-lime-800 font-semibold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
+                           :class="sidebarCollapsed ? 'justify-center px-0' : 'space-x-2.5 px-2.5'">
+                            <i data-lucide="file-text" class="w-4 h-4 shrink-0 {{ request()->routeIs('kader.reports.*') ? 'text-lime-700' : 'text-slate-400' }}"></i>
+                            <span x-show="!sidebarCollapsed" x-cloak class="truncate">Laporan SKDN</span>
                         </a>
 
                         <a href="{{ route('kader.broadcast.index') }}" 
-                           class="flex items-center space-x-2.5 px-2.5 py-2 rounded-md text-sm font-medium transition-colors {{ request()->routeIs('kader.broadcast.*') ? 'bg-lime-50 text-lime-800 font-semibold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
-                            <i data-lucide="message-circle-more" class="w-4 h-4 {{ request()->routeIs('kader.broadcast.*') ? 'text-lime-700' : 'text-slate-400' }}"></i>
-                            <span>Broadcast</span>
+                           title="Broadcast WhatsApp"
+                           class="flex items-center py-2 rounded-md text-sm font-medium transition-colors {{ request()->routeIs('kader.broadcast.*') ? 'bg-lime-50 text-lime-800 font-semibold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
+                           :class="sidebarCollapsed ? 'justify-center px-0' : 'space-x-2.5 px-2.5'">
+                            <i data-lucide="message-circle-more" class="w-4 h-4 shrink-0 {{ request()->routeIs('kader.broadcast.*') ? 'text-lime-700' : 'text-slate-400' }}"></i>
+                            <span x-show="!sidebarCollapsed" x-cloak class="truncate">Broadcast</span>
                         </a>
 
                         <a href="{{ route('kalkulator.index') }}" 
-                           class="flex items-center space-x-2.5 px-2.5 py-2 rounded-md text-sm font-medium transition-colors {{ request()->routeIs('kalkulator.*') ? 'bg-lime-50 text-lime-800 font-semibold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
-                            <i data-lucide="calculator" class="w-4 h-4 {{ request()->routeIs('kalkulator.*') ? 'text-lime-700' : 'text-slate-400' }}"></i>
-                            <span>Kalkulator</span>
+                           title="Kalkulator Gizi"
+                           class="flex items-center py-2 rounded-md text-sm font-medium transition-colors {{ request()->routeIs('kalkulator.*') ? 'bg-lime-50 text-lime-800 font-semibold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
+                           :class="sidebarCollapsed ? 'justify-center px-0' : 'space-x-2.5 px-2.5'">
+                            <i data-lucide="calculator" class="w-4 h-4 shrink-0 {{ request()->routeIs('kalkulator.*') ? 'text-lime-700' : 'text-slate-400' }}"></i>
+                            <span x-show="!sidebarCollapsed" x-cloak class="truncate">Kalkulator</span>
                         </a>
 
                         <a href="{{ route('edukasi.index') }}" 
-                           class="flex items-center space-x-2.5 px-2.5 py-2 rounded-md text-sm font-medium transition-colors {{ request()->routeIs('edukasi.*') ? 'bg-lime-50 text-lime-800 font-semibold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
-                            <i data-lucide="graduation-cap" class="w-4 h-4 {{ request()->routeIs('edukasi.*') ? 'text-lime-700' : 'text-slate-400' }}"></i>
-                            <span>Edukasi</span>
+                           title="Edukasi & Pustaka Video"
+                           class="flex items-center py-2 rounded-md text-sm font-medium transition-colors {{ request()->routeIs('edukasi.*') ? 'bg-lime-50 text-lime-800 font-semibold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
+                           :class="sidebarCollapsed ? 'justify-center px-0' : 'space-x-2.5 px-2.5'">
+                            <i data-lucide="graduation-cap" class="w-4 h-4 shrink-0 {{ request()->routeIs('edukasi.*') ? 'text-lime-700' : 'text-slate-400' }}"></i>
+                            <span x-show="!sidebarCollapsed" x-cloak class="truncate">Edukasi</span>
                         </a>
                     </nav>
                 </div>
@@ -92,24 +156,31 @@
                 @if(Auth::check() && Auth::user()->isAdmin())
                 <!-- Administrator Section -->
                 <div>
-                    <p class="px-2 text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Manajemen Sistem</p>
+                    <p x-show="!sidebarCollapsed" x-cloak class="px-2 text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Manajemen Sistem</p>
+                    <div x-show="sidebarCollapsed" x-cloak class="h-px bg-slate-100 my-2 mx-1"></div>
                     <nav class="space-y-1">
                         <a href="{{ route('admin.dashboard') }}" 
-                           class="flex items-center space-x-2.5 px-2.5 py-2 rounded-md text-sm font-medium transition-colors {{ request()->routeIs('admin.dashboard') ? 'bg-lime-50 text-lime-800 font-semibold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
-                            <i data-lucide="activity" class="w-4 h-4 {{ request()->routeIs('admin.dashboard') ? 'text-lime-700' : 'text-slate-400' }}"></i>
-                            <span>Analitik</span>
+                           title="Analitik Eksekutif"
+                           class="flex items-center py-2 rounded-md text-sm font-medium transition-colors {{ request()->routeIs('admin.dashboard') ? 'bg-lime-50 text-lime-800 font-semibold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
+                           :class="sidebarCollapsed ? 'justify-center px-0' : 'space-x-2.5 px-2.5'">
+                            <i data-lucide="activity" class="w-4 h-4 shrink-0 {{ request()->routeIs('admin.dashboard') ? 'text-lime-700' : 'text-slate-400' }}"></i>
+                            <span x-show="!sidebarCollapsed" x-cloak class="truncate">Analitik</span>
                         </a>
 
                         <a href="{{ route('admin.users') }}" 
-                           class="flex items-center space-x-2.5 px-2.5 py-2 rounded-md text-sm font-medium transition-colors {{ request()->routeIs('admin.users') ? 'bg-lime-50 text-lime-800 font-semibold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
-                            <i data-lucide="users" class="w-4 h-4 {{ request()->routeIs('admin.users') ? 'text-lime-700' : 'text-slate-400' }}"></i>
-                            <span>Pengguna</span>
+                           title="Manajemen Pengguna"
+                           class="flex items-center py-2 rounded-md text-sm font-medium transition-colors {{ request()->routeIs('admin.users') ? 'bg-lime-50 text-lime-800 font-semibold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
+                           :class="sidebarCollapsed ? 'justify-center px-0' : 'space-x-2.5 px-2.5'">
+                            <i data-lucide="users" class="w-4 h-4 shrink-0 {{ request()->routeIs('admin.users') ? 'text-lime-700' : 'text-slate-400' }}"></i>
+                            <span x-show="!sidebarCollapsed" x-cloak class="truncate">Pengguna</span>
                         </a>
 
                         <a href="{{ route('admin.videos') }}" 
-                           class="flex items-center space-x-2.5 px-2.5 py-2 rounded-md text-sm font-medium transition-colors {{ request()->routeIs('admin.videos') ? 'bg-lime-50 text-lime-800 font-semibold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
-                            <i data-lucide="video" class="w-4 h-4 {{ request()->routeIs('admin.videos') ? 'text-lime-700' : 'text-slate-400' }}"></i>
-                            <span>Kelola Edukasi</span>
+                           title="Kelola Video Edukasi"
+                           class="flex items-center py-2 rounded-md text-sm font-medium transition-colors {{ request()->routeIs('admin.videos') ? 'bg-lime-50 text-lime-800 font-semibold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
+                           :class="sidebarCollapsed ? 'justify-center px-0' : 'space-x-2.5 px-2.5'">
+                            <i data-lucide="video" class="w-4 h-4 shrink-0 {{ request()->routeIs('admin.videos') ? 'text-lime-700' : 'text-slate-400' }}"></i>
+                            <span x-show="!sidebarCollapsed" x-cloak class="truncate">Kelola Edukasi</span>
                         </a>
                     </nav>
                 </div>
@@ -117,9 +188,9 @@
             </div>
 
             <!-- User Profile & Logout Footbar -->
-            <div class="border-t border-slate-200 p-3 bg-slate-50/50">
-                <div class="flex items-center justify-between">
-                    <div class="min-w-0 flex-1 pr-2">
+            <div class="border-t border-slate-200 p-2.5 bg-slate-50/50">
+                <div class="flex items-center" :class="sidebarCollapsed ? 'justify-center' : 'justify-between'">
+                    <div class="min-w-0 flex-1 pr-2" x-show="!sidebarCollapsed" x-cloak>
                         <p class="text-xs font-semibold text-slate-800 truncate">{{ Auth::user()->name ?? 'User' }}</p>
                         <p class="text-[11px] text-slate-500 truncate flex items-center space-x-1">
                             <span class="inline-block w-1.5 h-1.5 rounded-full {{ Auth::user()?->isAdmin() ? 'bg-purple-500' : 'bg-lime-600' }}"></span>
@@ -131,7 +202,7 @@
                     </div>
                     <form method="POST" action="{{ route('logout') }}" class="shrink-0">
                         @csrf
-                        <button type="submit" title="Keluar" class="p-1.5 rounded text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors">
+                        <button type="submit" title="Keluar" class="p-1.5 rounded text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer">
                             <i data-lucide="log-out" class="w-4 h-4"></i>
                         </button>
                     </form>

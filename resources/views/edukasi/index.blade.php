@@ -156,7 +156,7 @@
                     <!-- Thumbnail with Interactive Play Overlay -->
                     <div @click="openPlayer(@js($vid))"
                          class="relative w-full h-full cursor-pointer group/thumb"
-                         title="Klik untuk membuka Mode Bioskop">
+                         title="Klik untuk menonton video">
                         <img src="{{ $vid->youtube_thumbnail_url }}" 
                              alt="{{ $vid->title }}" 
                              class="w-full h-full object-cover group-hover/thumb:scale-105 transition-transform duration-300"
@@ -177,17 +177,12 @@
 
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center space-x-2.5">
-                                    <div class="w-11 h-11 rounded-full bg-rose-600 hover:bg-rose-500 text-white flex items-center justify-center shadow-lg transform group-hover/thumb:scale-110 transition duration-200 ring-4 ring-rose-500/30">
-                                        <i data-lucide="play" class="w-5 h-5 fill-white ml-0.5"></i>
+                                    <div class="w-10 h-10 rounded-full bg-rose-600 hover:bg-rose-500 text-white flex items-center justify-center shadow-md transform group-hover/thumb:scale-110 transition duration-200 ring-4 ring-rose-500/30">
+                                        <i data-lucide="play" class="w-4 h-4 fill-white ml-0.5"></i>
                                     </div>
-                                    <div>
-                                        <span class="text-xs font-bold text-white drop-shadow-sm block leading-tight">
-                                            Mode Bioskop
-                                        </span>
-                                        <span class="text-[10px] text-slate-200">
-                                            Klik untuk menonton
-                                        </span>
-                                    </div>
+                                    <span class="text-xs font-semibold text-white drop-shadow-sm">
+                                        Klik untuk menonton
+                                    </span>
                                 </div>
                                 <span class="text-[10px] font-bold text-slate-200 bg-black/50 px-2 py-0.5 rounded border border-white/10">
                                     HD
@@ -213,25 +208,16 @@
                                 {{ $vid->title }}
                             </h3>
                         </a>
-
-                        <!-- Summary Takeaway Bullets -->
-                        <div class="mt-3 p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs text-slate-700 space-y-1 leading-relaxed">
-                            <div class="flex items-center space-x-1.5 text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-1">
-                                <i data-lucide="sparkles" class="w-3 h-3 text-lime-600"></i>
-                                <span>Intisari Praktis</span>
-                            </div>
-                            <div class="whitespace-pre-line text-[11px] text-slate-600 line-clamp-3">{{ $vid->summary }}</div>
-                        </div>
                     </div>
 
-                    <!-- Action Buttons: Mode Bioskop di kiri & Detail Modul di kanan -->
+                    <!-- Action Buttons: Tonton Video di kiri & Detail Modul di kanan -->
                     <div class="pt-3 border-t border-slate-100">
                         <div class="grid grid-cols-2 gap-2.5">
-                            <!-- Left: Mode Bioskop -->
+                            <!-- Left: Tonton Video -->
                             <button type="button" @click="openPlayer(@js($vid))"
                                     class="w-full py-2.5 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 active:scale-[0.98] text-white text-xs font-bold transition flex items-center justify-center space-x-1.5 shadow-sm hover:shadow-md cursor-pointer group/btn">
-                                <i data-lucide="tv-minimal-play" class="w-3.5 h-3.5 text-lime-400 group-hover/btn:scale-110 transition-transform"></i>
-                                <span>Mode Bioskop</span>
+                                <i data-lucide="play" class="w-3.5 h-3.5 text-lime-400 group-hover/btn:scale-110 transition-transform"></i>
+                                <span>Tonton Video</span>
                             </button>
 
                             <!-- Right: Detail Modul (Vibrant Lime Green Primary) -->
@@ -281,32 +267,25 @@
         </div>
     @endif
 
-    <!-- Interactive Theater Player Modal (Opens when Video is Clicked) -->
+    <!-- Interactive Theater Player Modal (Video Only) -->
     <div x-show="showPlayerModal" x-cloak
-         class="fixed inset-0 z-50 overflow-y-auto bg-slate-950/80 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6"
+         class="fixed inset-0 z-50 overflow-y-auto bg-slate-950/85 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6"
          @keydown.escape.window="closePlayer()">
-        <div class="bg-white rounded-2xl border border-slate-200 shadow-2xl max-w-4xl w-full overflow-hidden flex flex-col max-h-[92vh]"
+        <div class="bg-slate-900 rounded-2xl border border-slate-800 shadow-2xl max-w-3xl w-full overflow-hidden flex flex-col"
              @click.away="closePlayer()">
             
             <!-- Modal Header -->
-            <div class="bg-slate-900 text-white px-5 py-3.5 flex items-center justify-between border-b border-slate-800 shrink-0">
-                <div class="flex items-center space-x-2.5 min-w-0 pr-3">
+            <div class="bg-slate-900 text-white px-4 py-2.5 flex items-center justify-between border-b border-slate-800 shrink-0">
+                <div class="flex items-center space-x-2 min-w-0 pr-3">
                     <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-lime-500 text-slate-950 uppercase tracking-wide shrink-0"
                           x-text="activeVideo ? activeVideo.category : ''"></span>
-                    <h3 class="text-xs sm:text-sm font-bold text-white truncate" x-text="activeVideo ? activeVideo.title : ''"></h3>
+                    <h3 class="text-xs sm:text-sm font-semibold text-white truncate" x-text="activeVideo ? activeVideo.title : ''"></h3>
                 </div>
                 <div class="flex items-center space-x-2 shrink-0">
-                    <template x-if="activeVideo && activeVideo.youtube_url">
-                        <a :href="activeVideo.youtube_url" target="_blank"
-                           class="inline-flex items-center space-x-1 px-2.5 py-1 rounded bg-rose-600 hover:bg-rose-700 text-white text-[11px] font-semibold transition shadow-xs">
-                            <i data-lucide="youtube" class="w-3.5 h-3.5"></i>
-                            <span class="hidden sm:inline">Buka di YouTube</span>
-                        </a>
-                    </template>
                     <button type="button" @click="closePlayer()" 
-                            class="p-1 rounded-md text-slate-400 hover:text-white hover:bg-slate-800 transition"
+                            class="p-1 rounded-md text-slate-400 hover:text-white hover:bg-slate-800 transition cursor-pointer"
                             title="Tutup Player (ESC)">
-                        <i data-lucide="x" class="w-5 h-5"></i>
+                        <i data-lucide="x" class="w-4 h-4"></i>
                     </button>
                 </div>
             </div>
@@ -321,226 +300,6 @@
                             allowfullscreen></iframe>
                 </template>
             </div>
-
-            <!-- Interactive Details & Tabs Below Player -->
-            <div class="p-5 flex-1 overflow-y-auto space-y-4">
-                <!-- Tab Controls -->
-                <div class="flex items-center justify-between border-b border-slate-200 pb-2">
-                    <div class="flex items-center space-x-2">
-                        <button type="button" @click="playerTab = 'summary'"
-                                :class="playerTab === 'summary' ? 'bg-lime-600 text-white font-bold shadow-xs' : 'bg-slate-100 text-slate-700 hover:bg-slate-200 font-medium'"
-                                class="px-3 py-1.5 rounded-lg text-xs transition flex items-center space-x-1.5 cursor-pointer">
-                            <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
-                            <span>Intisari Materi Edukasi</span>
-                        </button>
-                        <template x-if="activeVideo && activeVideo.quiz_data && activeVideo.quiz_data.length > 0">
-                            <button type="button" @click="playerTab = 'quiz'"
-                                    :class="playerTab === 'quiz' ? 'bg-lime-600 text-white font-bold shadow-xs' : 'bg-slate-100 text-slate-700 hover:bg-slate-200 font-medium'"
-                                    class="px-3 py-1.5 rounded-lg text-xs transition flex items-center space-x-1.5 cursor-pointer">
-                                <i data-lucide="help-circle" class="w-3.5 h-3.5"></i>
-                                <span>Uji Pemahaman Mandiri (<span x-text="activeVideo.quiz_data.length"></span> Soal)</span>
-                            </button>
-                        </template>
-                    </div>
-
-                    <!-- WhatsApp Share Shortcut -->
-                    <template x-if="activeVideo">
-                        <a :href="getWhatsAppShareUrl(activeVideo)" target="_blank"
-                           class="inline-flex items-center space-x-1 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold transition shadow-xs">
-                            <i data-lucide="message-circle-more" class="w-3.5 h-3.5"></i>
-                            <span class="hidden sm:inline">Bagikan WA</span>
-                        </a>
-                    </template>
-                </div>
-
-                <!-- Tab 1: Summary -->
-                <div x-show="playerTab === 'summary'" class="space-y-3">
-                    <div class="flex items-center space-x-2 text-slate-800 font-bold text-xs uppercase tracking-wider">
-                        <i data-lucide="check-circle-2" class="w-4 h-4 text-lime-600"></i>
-                        <span>Poin Kunci & Rekomendasi Klinis:</span>
-                    </div>
-                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed whitespace-pre-line"
-                         x-text="activeVideo ? activeVideo.summary : ''">
-                    </div>
-                </div>
-
-                <!-- Tab 2: Embedded Quiz -->
-                <div x-show="playerTab === 'quiz'" class="space-y-4 text-xs">
-                    <template x-if="activeVideo && activeVideo.quiz_data">
-                        <div class="space-y-3">
-                            <template x-for="(q, qIndex) in activeVideo.quiz_data" :key="qIndex">
-                                <div class="p-3.5 rounded-xl border border-slate-200 space-y-2.5"
-                                     :class="{
-                                         'bg-slate-50': !submitted,
-                                         'bg-emerald-50/50 border-emerald-200': submitted && userAnswers[qIndex] === q.correct_index,
-                                         'bg-rose-50/50 border-rose-200': submitted && userAnswers[qIndex] !== q.correct_index
-                                     }">
-                                    <p class="font-bold text-slate-900 text-xs">
-                                        <span x-text="(qIndex + 1) + '. '"></span>
-                                        <span x-text="q.question"></span>
-                                    </p>
-
-                                    <div class="space-y-1.5 pl-2">
-                                        <template x-for="(opt, oIndex) in q.options" :key="oIndex">
-                                            <label class="flex items-start space-x-2 p-2 rounded cursor-pointer transition text-slate-700"
-                                                   :class="{
-                                                       'hover:bg-slate-100': !submitted,
-                                                       'bg-emerald-100 text-emerald-900 font-bold': submitted && oIndex === q.correct_index,
-                                                       'bg-rose-100 text-rose-900 line-through': submitted && userAnswers[qIndex] === oIndex && oIndex !== q.correct_index
-                                                   }">
-                                                <input type="radio" :name="'player_q_' + qIndex" :value="oIndex" 
-                                                       x-model.number="userAnswers[qIndex]"
-                                                       :disabled="submitted"
-                                                       class="mt-0.5 text-lime-600 focus:ring-lime-500">
-                                                <span x-text="opt" class="text-xs"></span>
-                                            </label>
-                                        </template>
-                                    </div>
-
-                                    <!-- Explanation Feedback -->
-                                    <template x-if="submitted">
-                                        <div class="mt-2 pt-2 border-t text-[11px]"
-                                             :class="userAnswers[qIndex] === q.correct_index ? 'border-emerald-200 text-emerald-800' : 'border-rose-200 text-rose-800'">
-                                            <strong>Penjelasan:</strong> <span x-text="q.explanation"></span>
-                                        </div>
-                                    </template>
-                                </div>
-                            </template>
-
-                            <!-- Score Result Summary -->
-                            <template x-if="submitted">
-                                <div class="p-3.5 rounded-xl bg-slate-900 text-white text-center space-y-1 shadow-sm">
-                                    <span class="text-xs font-semibold uppercase tracking-wider text-lime-400">Hasil Evaluasi Mandiri:</span>
-                                    <div class="text-lg font-bold font-mono text-white" x-text="scoreText"></div>
-                                </div>
-                            </template>
-
-                            <!-- Quiz Actions -->
-                            <div class="flex items-center justify-end space-x-2 pt-2">
-                                <button type="button" x-show="!submitted" @click="submitQuiz()" 
-                                        class="px-4 py-2 rounded-lg bg-lime-600 hover:bg-lime-700 text-white font-semibold cursor-pointer shadow-xs">
-                                    Kirim Jawaban Kuis
-                                </button>
-                                <button type="button" x-show="submitted" @click="resetQuiz()" 
-                                        class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-900 text-white font-semibold cursor-pointer shadow-xs">
-                                    Ulangi Kuis
-                                </button>
-                            </div>
-                        </div>
-                    </template>
-                </div>
-            </div>
-
-            <!-- Modal Footer -->
-            <div class="bg-slate-50 px-5 py-3 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-2 shrink-0">
-                <template x-if="activeVideo">
-                    <a :href="'/edukasi/' + activeVideo.id" class="text-xs text-lime-700 hover:underline font-semibold flex items-center space-x-1">
-                        <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
-                        <span>Buka Tampilan Halaman Penuh Modul &rarr;</span>
-                    </a>
-                </template>
-                <div class="flex items-center space-x-2">
-                    <button type="button" @click="closePlayer()" class="px-4 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-100 text-slate-700 text-xs font-medium cursor-pointer">
-                        Tutup Player
-                    </button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- Standalone Quiz Modal (Direct from Quiz button) -->
-    <div x-show="showQuizModal" x-cloak
-         class="fixed inset-0 z-50 overflow-y-auto bg-slate-950/70 backdrop-blur-xs flex items-center justify-center p-4"
-         @keydown.escape.window="closeQuiz()">
-        <div class="bg-white rounded-2xl border border-slate-200 shadow-xl max-w-lg w-full p-6 space-y-4" @click.away="closeQuiz()">
-            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-                <div class="flex items-center space-x-2">
-                    <div class="w-7 h-7 rounded-lg bg-lime-100 text-lime-800 flex items-center justify-center font-bold text-xs">
-                        ?
-                    </div>
-                    <div>
-                        <h3 class="text-sm font-bold text-slate-900">Uji Pemahaman Materi</h3>
-                        <p class="text-[11px] text-slate-500" x-text="activeVideo ? activeVideo.title : ''"></p>
-                    </div>
-                </div>
-                <button type="button" @click="closeQuiz()" class="text-slate-400 hover:text-slate-700">
-                    <i data-lucide="x" class="w-4 h-4"></i>
-                </button>
-            </div>
-
-            <!-- Quiz Questions Form -->
-            <template x-if="activeVideo && activeVideo.quiz_data">
-                <div class="space-y-4 text-xs">
-                    <template x-for="(q, qIndex) in activeVideo.quiz_data" :key="qIndex">
-                        <div class="p-3.5 rounded-xl border border-slate-200 space-y-2.5"
-                             :class="{
-                                 'bg-slate-50': !submitted,
-                                 'bg-emerald-50/50 border-emerald-200': submitted && userAnswers[qIndex] === q.correct_index,
-                                 'bg-rose-50/50 border-rose-200': submitted && userAnswers[qIndex] !== q.correct_index
-                             }">
-                            <p class="font-bold text-slate-900 text-xs">
-                                <span x-text="(qIndex + 1) + '. '"></span>
-                                <span x-text="q.question"></span>
-                            </p>
-
-                            <div class="space-y-1.5 pl-2">
-                                <template x-for="(opt, oIndex) in q.options" :key="oIndex">
-                                    <label class="flex items-start space-x-2 p-1.5 rounded cursor-pointer transition text-slate-700"
-                                           :class="{
-                                               'hover:bg-slate-100': !submitted,
-                                               'bg-emerald-100 text-emerald-900 font-bold': submitted && oIndex === q.correct_index,
-                                               'bg-rose-100 text-rose-900 line-through': submitted && userAnswers[qIndex] === oIndex && oIndex !== q.correct_index
-                                           }">
-                                        <input type="radio" :name="'question_' + qIndex" :value="oIndex" 
-                                               x-model.number="userAnswers[qIndex]"
-                                               :disabled="submitted"
-                                               class="mt-0.5 text-lime-600 focus:ring-lime-500">
-                                        <span x-text="opt" class="text-xs"></span>
-                                    </label>
-                                </template>
-                            </div>
-
-                            <!-- Explanation Feedback -->
-                            <template x-if="submitted">
-                                <div class="mt-2 pt-2 border-t text-[11px]"
-                                     :class="userAnswers[qIndex] === q.correct_index ? 'border-emerald-200 text-emerald-800' : 'border-rose-200 text-rose-800'">
-                                    <strong>Penjelasan:</strong> <span x-text="q.explanation"></span>
-                                </div>
-                            </template>
-                        </div>
-                    </template>
-
-                    <!-- Score Result Summary -->
-                    <template x-if="submitted">
-                        <div class="p-3 rounded-xl bg-slate-900 text-white text-center space-y-1">
-                            <span class="text-xs font-semibold uppercase tracking-wider text-slate-300">Hasil Penilaian Mandiri:</span>
-                            <div class="text-lg font-bold font-mono text-lime-400" x-text="scoreText"></div>
-                        </div>
-                    </template>
-
-                    <!-- Quiz Actions -->
-                    <div class="flex items-center justify-between pt-3 border-t border-slate-100">
-                        <button type="button" @click="closeQuiz(); openPlayer(activeVideo, 'quiz')" class="text-lime-700 hover:underline text-xs font-semibold flex items-center space-x-1">
-                            <i data-lucide="tv-minimal-play" class="w-3.5 h-3.5"></i>
-                            <span>Tonton Video Lagi</span>
-                        </button>
-                        <div class="flex items-center space-x-2">
-                            <button type="button" @click="closeQuiz()" class="px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900">
-                                Tutup
-                            </button>
-                            <button type="button" x-show="!submitted" @click="submitQuiz()" 
-                                    class="px-4 py-1.5 rounded-lg bg-lime-600 hover:bg-lime-700 text-white font-semibold cursor-pointer shadow-xs">
-                                Kirim Jawaban
-                            </button>
-                            <button type="button" x-show="submitted" @click="resetQuiz()" 
-                                    class="px-4 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-900 text-white font-semibold cursor-pointer shadow-xs">
-                                Coba Lagi
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </template>
         </div>
     </div>
 
@@ -551,42 +310,18 @@
     function academyApp() {
         return {
             showPlayerModal: false,
-            showQuizModal: false,
-            playerTab: 'summary',
             activeVideo: null,
             inlinePlayingId: null,
-            userAnswers: {},
-            submitted: false,
-            scoreText: '',
 
-            playInline(id) {
-                this.inlinePlayingId = id;
-                if (this.showPlayerModal) {
-                    this.closePlayer();
-                }
-                this.$nextTick(() => {
-                    if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
-                });
-            },
-
-            toggleInline(id) {
-                if (this.inlinePlayingId === id) {
-                    this.inlinePlayingId = null;
-                } else {
-                    this.playInline(id);
-                }
-            },
-
-            openPlayer(video, tab = 'summary') {
-                this.inlinePlayingId = null; // Pause/unmount any inline player
+            openPlayer(video) {
                 this.activeVideo = video;
-                this.playerTab = tab;
-                this.userAnswers = {};
-                this.submitted = false;
-                this.scoreText = '';
                 this.showPlayerModal = true;
                 this.$nextTick(() => {
-                    if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
+                    if (window.refreshIcons) {
+                        window.refreshIcons();
+                    } else if (window.lucide && window.lucide.createIcons) {
+                        window.lucide.createIcons();
+                    }
                 });
             },
 
@@ -604,54 +339,6 @@
                 }
                 if (!id) return '';
                 return 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&enablejsapi=1';
-            },
-
-            openQuiz(video) {
-                this.activeVideo = video;
-                this.userAnswers = {};
-                this.submitted = false;
-                this.scoreText = '';
-                this.showQuizModal = true;
-                this.$nextTick(() => {
-                    if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
-                });
-            },
-
-            closeQuiz() {
-                this.showQuizModal = false;
-                this.activeVideo = null;
-            },
-
-            submitQuiz() {
-                if (!this.activeVideo || !this.activeVideo.quiz_data) return;
-                let correctCount = 0;
-                const total = this.activeVideo.quiz_data.length;
-
-                this.activeVideo.quiz_data.forEach((q, idx) => {
-                    if (this.userAnswers[idx] === q.correct_index) {
-                        correctCount++;
-                    }
-                });
-
-                this.submitted = true;
-                this.scoreText = correctCount + ' dari ' + total + ' Benar (' + Math.round((correctCount / total) * 100) + '%)';
-                this.$nextTick(() => {
-                    if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
-                });
-            },
-
-            resetQuiz() {
-                this.userAnswers = {};
-                this.submitted = false;
-                this.scoreText = '';
-            },
-
-            getWhatsAppShareUrl(video) {
-                if (!video) return '#';
-                const base = window.location.origin;
-                const videoUrl = base + '/edukasi/' + video.id;
-                const text = encodeURIComponent('Halo Bunda/Kader, mari tonton video edukasi penting cegah stunting: "' + video.title + '"\n\nTonton selengkapnya di Tumbuh Academy:\n' + videoUrl);
-                return 'https://api.whatsapp.com/send?text=' + text;
             }
         }
     }

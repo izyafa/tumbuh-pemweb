@@ -20,6 +20,18 @@ class TumbuhApplicationTest extends TestCase
         $response->assertDontSee('>Masuk Petugas<', false);
     }
 
+    public function test_login_page_has_no_remember_checkbox_and_has_password_visibility_toggle(): void
+    {
+        $response = $this->get('/login');
+        $response->assertStatus(200);
+        $response->assertDontSee('Ingat saya');
+        $response->assertDontSee('name="remember"', false);
+        $response->assertSee('showPassword', false);
+        $response->assertSee('data-lucide="eye"', false);
+        $response->assertSee('kader1@tumbuh.id');
+        $response->assertSee('admin@tumbuh.id');
+    }
+
     public function test_guest_is_redirected_to_login(): void
     {
         $response = $this->get('/kader/dashboard');
@@ -40,7 +52,9 @@ class TumbuhApplicationTest extends TestCase
 
         $dashResponse = $this->actingAs($kader)->get(route('kader.dashboard'));
         $dashResponse->assertStatus(200);
-        $dashResponse->assertSee('Dashboard Operasional Posyandu');
+        $dashResponse->assertSee('Dashboard Posyandu');
+        $dashResponse->assertSee('toggleSidebar()', false);
+        $dashResponse->assertSee('sidebarCollapsed', false);
     }
 
     public function test_admin_can_access_admin_dashboard(): void
@@ -407,7 +421,7 @@ class TumbuhApplicationTest extends TestCase
         ];
 
         $response = $this->actingAs($admin)->put(route('admin.videos.update', $video->id), [
-            'title' => $video->title . ' (Updated)',
+            'title' => 'Edukasi MPASI Kaya Zat Besi (Updated)',
             'category' => $video->category,
             'youtube_url' => $video->youtube_url,
             'summary' => 'Ringkasan yang diperbarui.',
@@ -603,7 +617,7 @@ class TumbuhApplicationTest extends TestCase
 
         $response = $this->actingAs($kader)->get(route('kader.measurements.batch'));
         $response->assertStatus(200);
-        $response->assertSee('Pencatatan Penimbangan Massal (Batch Mode)');
+        $response->assertSee('Pencatatan Penimbangan Massal');
         $response->assertSee('Status Gizi (BB/TB)');
         $response->assertSee('Status Stunting (TB/U)');
         $response->assertSee('No.');

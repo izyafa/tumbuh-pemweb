@@ -2,13 +2,20 @@ import Alpine from 'alpinejs';
 import Chart from 'chart.js/auto';
 import { createIcons, icons } from 'lucide';
 
+const boundCreateIcons = (options = {}) => {
+    return createIcons({
+        icons,
+        ...options
+    });
+};
+
 window.Alpine = Alpine;
 window.Chart = Chart;
-window.lucide = { createIcons, icons };
+window.lucide = { createIcons: boundCreateIcons, icons };
 
 // Function to refresh Lucide icons anytime dynamic DOM updates happen
 window.refreshIcons = () => {
-    createIcons({ icons });
+    boundCreateIcons();
 };
 
 // Global Delete Confirmation Modal Handler

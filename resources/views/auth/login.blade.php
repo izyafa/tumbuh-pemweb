@@ -44,22 +44,24 @@
                     @enderror
                 </div>
 
-                <div>
+                <div x-data="{ showPassword: false }">
                     <label for="password" class="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1">Kata Sandi</label>
-                    <input type="password" name="password" id="password" required autocomplete="current-password"
-                           value="password"
-                           placeholder="Masukkan kata sandi akun"
-                           class="w-full px-3 py-2 text-sm rounded-md border border-slate-300 bg-white text-slate-900 placeholder-slate-400 focus:outline-none focus:border-lime-600 focus:ring-1 focus:ring-lime-600 transition">
+                    <div class="relative">
+                        <input :type="showPassword ? 'text' : 'password'" name="password" id="password" required autocomplete="current-password"
+                               value="password"
+                               placeholder="Masukkan kata sandi akun"
+                               class="w-full px-3 py-2 pr-10 text-sm rounded-md border border-slate-300 bg-white text-slate-900 placeholder-slate-400 focus:outline-none focus:border-lime-600 focus:ring-1 focus:ring-lime-600 transition">
+                        <button type="button" 
+                                @click="showPassword = !showPassword" 
+                                aria-label="Tampilkan atau sembunyikan kata sandi"
+                                class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 transition focus:outline-none cursor-pointer">
+                            <i data-lucide="eye" class="w-4 h-4" x-show="!showPassword"></i>
+                            <i data-lucide="eye-off" class="w-4 h-4" x-show="showPassword" x-cloak></i>
+                        </button>
+                    </div>
                     @error('password')
                         <p class="mt-1 text-xs text-rose-600">{{ $message }}</p>
                     @enderror
-                </div>
-
-                <div class="flex items-center justify-between text-xs">
-                    <label class="flex items-center space-x-2 text-slate-600 cursor-pointer">
-                        <input type="checkbox" name="remember" class="rounded border-slate-300 text-lime-600 focus:ring-lime-500">
-                        <span>Ingat saya</span>
-                    </label>
                 </div>
 
                 <button type="submit" 
