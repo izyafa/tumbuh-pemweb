@@ -17,15 +17,15 @@
 <body class="h-full text-slate-800 antialiased font-sans bg-slate-50 flex flex-col justify-between">
 
     <!-- Top Minimal Navigation -->
-    <header class="border-b border-slate-200 bg-white sticky top-0 z-30">
+    <header class="{{ request()->routeIs('login') ? 'bg-lime-700 border-none text-white' : 'border-b border-slate-200 bg-white text-slate-800' }} sticky top-0 z-30 transition-colors">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
-            <a href="/" class="flex items-center space-x-2">
-                <div class="w-7 h-7 rounded-md bg-lime-600 flex items-center justify-center text-white font-bold text-sm shadow-2xs">
-                    T
+            <a href="/" class="flex items-center space-x-2.5">
+                <div class="w-8 h-8 rounded-xl {{ request()->routeIs('login') ? 'bg-white p-1' : 'bg-lime-600 p-1' }} flex items-center justify-center shadow-xs shrink-0">
+                    <img src="{{ asset('images/logo-tumbuh-clean.png') }}" alt="Logo Tumbuh" class="w-full h-full object-contain">
                 </div>
                 <div class="leading-none">
-                    <span class="font-bold text-slate-900 tracking-tight text-base">TUMBUH</span>
-                    <span class="text-[9px] text-slate-400 font-medium uppercase tracking-wider block">Posyandu Digital</span>
+                    <span class="font-extrabold tracking-tight text-base {{ request()->routeIs('login') ? 'text-white' : 'text-slate-900' }}">TUMBUH</span>
+                    <span class="text-[9px] font-semibold uppercase tracking-wider block mt-0.5 {{ request()->routeIs('login') ? 'text-lime-200' : 'text-slate-400' }}">Posyandu Digital</span>
                 </div>
             </a>
 
@@ -54,7 +54,10 @@
                         <span class="hidden sm:inline">Edukasi</span>
                     </a>
                 @elseif(request()->routeIs('login'))
-                    {{-- Mode Halaman Login: Bersih dan distraction-free --}}
+                    <a href="/" class="inline-flex items-center space-x-1.5 text-xs text-lime-100 hover:text-white font-medium transition px-2.5 py-1.5 rounded-lg hover:bg-white/10">
+                        <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+                        <span>Beranda</span>
+                    </a>
                 @else
                     {{-- Mode Publik Tamu Umum: Kalkulator, Edukasi, dan Masuk Petugas --}}
                     <a href="{{ route('kalkulator.index') }}" class="text-slate-600 hover:text-lime-700 font-medium flex items-center space-x-1 {{ request()->routeIs('kalkulator.*') ? 'text-lime-700 font-bold' : '' }}">

@@ -40,16 +40,9 @@
                 
                 <!-- Kiri Atas: Menempel di area hijau penuh -->
                 <div class="text-white">
-                    <div class="flex items-center space-x-3 mb-6">
-                        <div class="w-12 h-12 rounded-2xl bg-white p-1.5 shadow-md flex items-center justify-center shrink-0">
-                            <img src="{{ asset('images/logo-tumbuh-clean.png') }}" 
-                                 alt="Logo Tumbuh" 
-                                 class="w-full h-full object-contain">
-                        </div>
-                        <div>
-                            <span class="text-2xl font-black tracking-tight text-white block leading-none">TUMBUH</span>
-                            <span class="text-xs font-semibold text-lime-200 tracking-wider uppercase block mt-1">Platform Posyandu Digital</span>
-                        </div>
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-lime-100 text-xs font-medium mb-4">
+                        <i data-lucide="shield-check" class="w-3.5 h-3.5 text-lime-300"></i>
+                        <span>Standar Antropometri Kemenkes RI & WHO 2006</span>
                     </div>
 
                     <div class="max-w-lg">
