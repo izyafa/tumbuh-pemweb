@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Dashboard') — Tumbuh</title>
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
 
     <!-- Google Font: Roboto -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,8 +43,8 @@
              :class="sidebarCollapsed ? 'md:px-2 md:justify-center' : 'md:px-4'">
             <!-- Mobile Brand View -->
             <div class="flex items-center space-x-2.5 md:hidden">
-                <div class="w-8 h-8 rounded-md bg-lime-600 flex items-center justify-center text-white font-bold text-base shadow-sm shrink-0">
-                    T
+                <div class="w-8 h-8 rounded-xl bg-lime-50 p-1 border border-lime-200 flex items-center justify-center shadow-xs shrink-0">
+                    <img src="{{ asset('images/logo-tumbuh-clean.png') }}" alt="Logo Tumbuh" class="w-full h-full object-contain">
                 </div>
                 <div>
                     <span class="font-bold text-slate-900 tracking-tight text-lg leading-none block">TUMBUH</span>
@@ -53,8 +54,8 @@
 
             <!-- Desktop Expanded Brand View -->
             <div class="hidden md:flex items-center space-x-2.5 min-w-0" x-show="!sidebarCollapsed" x-cloak>
-                <div class="w-8 h-8 rounded-md bg-lime-600 flex items-center justify-center text-white font-bold text-base shadow-sm shrink-0">
-                    T
+                <div class="w-8 h-8 rounded-xl bg-lime-50 p-1 border border-lime-200 flex items-center justify-center shadow-xs shrink-0">
+                    <img src="{{ asset('images/logo-tumbuh-clean.png') }}" alt="Logo Tumbuh" class="w-full h-full object-contain">
                 </div>
                 <div class="min-w-0 overflow-hidden">
                     <span class="font-bold text-slate-900 tracking-tight text-lg leading-none block truncate">TUMBUH</span>

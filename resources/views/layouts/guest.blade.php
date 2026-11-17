@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Tumbuh') — Platform Pertumbuhan Balita & Gizi</title>
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
 
     <!-- Google Font: Roboto -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,7 +21,7 @@
     <header class="{{ request()->routeIs('login') ? 'bg-lime-700 border-none text-white' : 'border-b border-slate-200 bg-white text-slate-800' }} sticky top-0 z-30 transition-colors">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
             <a href="/" class="flex items-center space-x-2.5">
-                <div class="w-8 h-8 rounded-xl {{ request()->routeIs('login') ? 'bg-white p-1' : 'bg-lime-600 p-1' }} flex items-center justify-center shadow-xs shrink-0">
+                <div class="w-8 h-8 rounded-xl {{ request()->routeIs('login') ? 'bg-white p-1' : 'bg-lime-50 p-1 border border-lime-200' }} flex items-center justify-center shadow-xs shrink-0">
                     <img src="{{ asset('images/logo-tumbuh-clean.png') }}" alt="Logo Tumbuh" class="w-full h-full object-contain">
                 </div>
                 <div class="leading-none">
