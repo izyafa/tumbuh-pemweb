@@ -43,9 +43,7 @@
              :class="sidebarCollapsed ? 'md:px-2 md:justify-center' : 'md:px-4'">
             <!-- Mobile Brand View -->
             <div class="flex items-center space-x-2.5 md:hidden">
-                <div class="w-8 h-8 rounded-xl bg-lime-50 p-1 border border-lime-200 flex items-center justify-center shadow-xs shrink-0">
-                    <img src="{{ asset('images/logo-tumbuh-clean.png') }}" alt="Logo Tumbuh" class="w-full h-full object-contain">
-                </div>
+                <img src="{{ asset('images/logo-tumbuh-clean.png') }}" alt="Logo Tumbuh" class="w-9 h-9 object-contain shrink-0">
                 <div>
                     <span class="font-bold text-slate-900 tracking-tight text-lg leading-none block">TUMBUH</span>
                     <span class="text-[10px] text-slate-400 font-medium uppercase tracking-wider block mt-0.5">Posyandu</span>
@@ -54,9 +52,7 @@
 
             <!-- Desktop Expanded Brand View -->
             <div class="hidden md:flex items-center space-x-2.5 min-w-0" x-show="!sidebarCollapsed" x-cloak>
-                <div class="w-8 h-8 rounded-xl bg-lime-50 p-1 border border-lime-200 flex items-center justify-center shadow-xs shrink-0">
-                    <img src="{{ asset('images/logo-tumbuh-clean.png') }}" alt="Logo Tumbuh" class="w-full h-full object-contain">
-                </div>
+                <img src="{{ asset('images/logo-tumbuh-clean.png') }}" alt="Logo Tumbuh" class="w-9 h-9 object-contain shrink-0">
                 <div class="min-w-0 overflow-hidden">
                     <span class="font-bold text-slate-900 tracking-tight text-lg leading-none block truncate">TUMBUH</span>
                     <span class="text-[10px] text-slate-400 font-medium uppercase tracking-wider block mt-0.5 truncate">Posyandu</span>

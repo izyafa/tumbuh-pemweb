@@ -38,9 +38,7 @@
         <!-- Kop Header -->
         <div class="border-b-2 border-slate-900 pb-3 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-white p-1 border border-slate-200 flex items-center justify-center shadow-xs shrink-0">
-                    <img src="{{ asset('images/logo-tumbuh-clean.png') }}" alt="Logo Tumbuh" class="w-full h-full object-contain">
-                </div>
+                <img src="{{ asset('images/logo-tumbuh-clean.png') }}" alt="Logo Tumbuh" class="w-11 h-11 object-contain shrink-0">
                 <div>
                     <h1 class="text-xs font-bold uppercase tracking-wider text-slate-600">Kementerian Kesehatan RI • Posyandu Terpadu</h1>
                     <h2 class="text-lg font-black uppercase tracking-tight text-slate-900">Kartu Menuju Sehat (KMS) Digital & Imunisasi</h2>

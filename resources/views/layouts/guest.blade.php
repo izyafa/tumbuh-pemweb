@@ -21,9 +21,7 @@
     <header class="{{ request()->routeIs('login') ? 'bg-lime-700 border-none text-white' : 'border-b border-slate-200 bg-white text-slate-800' }} sticky top-0 z-30 transition-colors">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
             <a href="/" class="flex items-center space-x-2.5">
-                <div class="w-8 h-8 rounded-xl {{ request()->routeIs('login') ? 'bg-white p-1' : 'bg-lime-50 p-1 border border-lime-200' }} flex items-center justify-center shadow-xs shrink-0">
-                    <img src="{{ asset('images/logo-tumbuh-clean.png') }}" alt="Logo Tumbuh" class="w-full h-full object-contain">
-                </div>
+                <img src="{{ asset('images/logo-tumbuh-clean.png') }}" alt="Logo Tumbuh" class="w-9 h-9 object-contain shrink-0">
                 <div class="leading-none">
                     <span class="font-extrabold tracking-tight text-base {{ request()->routeIs('login') ? 'text-white' : 'text-slate-900' }}">TUMBUH</span>
                     <span class="text-[9px] font-semibold uppercase tracking-wider block mt-0.5 {{ request()->routeIs('login') ? 'text-lime-200' : 'text-slate-400' }}">Posyandu Digital</span>
