@@ -3,7 +3,7 @@
 @section('title', 'Masuk Petugas & Kader')
 
 @section('content')
-<div class="min-h-[calc(100vh-140px)] flex items-center justify-center py-6 sm:py-10 px-4 sm:px-6 lg:px-8"
+<div class="relative w-full min-h-[calc(100vh-130px)] flex flex-col justify-center"
      x-data="{
          showPassword: false,
          selectedRole: 'kader',
@@ -20,71 +20,66 @@
          }
      }">
 
-    <!-- Master Frame (Desain 3): Rounded Canvas dengan Top Banner Berwarna & Bottom Neutral -->
-    <div class="w-full max-w-5xl rounded-[32px] overflow-hidden border border-slate-200/90 shadow-xl relative bg-slate-100">
-        
-        <!-- Two-Tone Background: Top 55% Lime-700 + Bottom 45% Light Grey -->
-        <div class="absolute inset-0 flex flex-col pointer-events-none" aria-hidden="true">
-            <div class="h-[55%] bg-lime-700 relative overflow-hidden">
-                <!-- Subtle graphic element / leaf watermark ring -->
-                <div class="absolute -right-16 -top-16 w-80 h-80 rounded-full border border-white/10 pointer-events-none"></div>
-                <div class="absolute -right-24 -top-24 w-96 h-96 rounded-full border border-white/5 pointer-events-none"></div>
-            </div>
-            <div class="h-[45%] bg-slate-100"></div>
+    <!-- Full-Bleed Two-Tone Background: Menempel langsung ke navbar & footer tanpa border luar -->
+    <div class="absolute inset-0 flex flex-col pointer-events-none" aria-hidden="true">
+        <!-- Top Half (Lime-700) Full-Width: Menempel langsung di bawah navbar -->
+        <div class="h-[52%] min-h-[300px] bg-lime-700 relative overflow-hidden">
+            <div class="absolute -right-20 -top-20 w-96 h-96 rounded-full border border-white/10 pointer-events-none"></div>
+            <div class="absolute -right-36 -top-36 w-[32rem] h-[32rem] rounded-full border border-white/5 pointer-events-none"></div>
         </div>
+        <!-- Bottom Half (Slate-50) Full-Width: Menempel ke footer -->
+        <div class="flex-1 bg-slate-50"></div>
+    </div>
 
-        <!-- Foreground Content Grid -->
-        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 min-h-[580px] p-6 sm:p-10 lg:p-12 gap-8 items-center">
+    <!-- Foreground Content Layer: Terpusat secara proporsional di dalam container lebar -->
+    <div class="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 my-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
-            <!-- Sisi Kiri (lg:col-span-7): Top Hero Info + Bottom "Login As" Profile Cards -->
-            <div class="lg:col-span-7 flex flex-col justify-between h-full py-2">
+            <!-- Sisi Kiri (lg:col-span-7): Brand Info di Atas & Akun Demo di Bawah -->
+            <div class="lg:col-span-7 flex flex-col justify-between py-2">
                 
-                <!-- Kiri Atas: Berada di atas area hijau (Top Band) -->
-                <div class="text-white pt-2">
-                    <!-- Brand Header dengan Logo Resmi -->
+                <!-- Kiri Atas: Menempel di area hijau penuh -->
+                <div class="text-white">
                     <div class="flex items-center space-x-3 mb-6">
-                        <div class="w-11 h-11 rounded-2xl bg-white p-1.5 shadow-sm flex items-center justify-center shrink-0">
+                        <div class="w-12 h-12 rounded-2xl bg-white p-1.5 shadow-md flex items-center justify-center shrink-0">
                             <img src="{{ asset('images/logo-tumbuh-clean.png') }}" 
                                  alt="Logo Tumbuh" 
                                  class="w-full h-full object-contain">
                         </div>
                         <div>
-                            <span class="text-xl font-extrabold tracking-tight text-white block leading-none">TUMBUH</span>
-                            <span class="text-[11px] font-semibold text-lime-200 tracking-wider uppercase block mt-1">Platform Posyandu Digital</span>
+                            <span class="text-2xl font-black tracking-tight text-white block leading-none">TUMBUH</span>
+                            <span class="text-xs font-semibold text-lime-200 tracking-wider uppercase block mt-1">Platform Posyandu Digital</span>
                         </div>
                     </div>
 
-                    <!-- Headline & Deskripsi -->
-                    <div class="max-w-md">
+                    <div class="max-w-lg">
                         <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
                             Masuk ke Portal Tumbuh
                         </h1>
-                        <p class="mt-3 text-sm text-lime-50/90 leading-relaxed">
+                        <p class="mt-3 text-base text-lime-50/90 leading-relaxed">
                             Sistem terintegrasi pencatatan balita, otomatisasi kurva KMS digital, dan kalkulasi Z-Score WHO 2006 untuk kader Posyandu.
                         </p>
                     </div>
                 </div>
 
-                <!-- Kiri Bawah: Berada di atas area terang (The "Login As" Profile Shelf!) -->
-                <div class="mt-10 lg:mt-14 pt-4">
-                    <div class="flex items-center space-x-1.5 mb-3">
-                        <span class="text-xs font-bold uppercase tracking-wider text-slate-600">
-                            Masuk sebagai (Akun Demo)
-                        </span>
-                    </div>
+                <!-- Kiri Bawah: Menempel di area terang penuh (Login As Profiles) -->
+                <div class="mt-10 lg:mt-16 pt-4">
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-3">
+                        Masuk sebagai (Akun Demo):
+                    </span>
 
                     <div class="flex flex-wrap gap-3">
                         <!-- Profile Card 1: Kader Posyandu -->
                         <button type="button"
                                 @click="selectAccount('kader', 'kader1@tumbuh.id', 'password')"
-                                :class="selectedRole === 'kader' ? 'border-lime-600 ring-2 ring-lime-600/30 bg-white shadow-md' : 'border-slate-200 bg-white/80 hover:bg-white shadow-xs'"
-                                class="w-36 p-3.5 rounded-2xl border text-center transition duration-150 cursor-pointer group relative">
+                                :class="selectedRole === 'kader' ? 'border-lime-600 ring-2 ring-lime-600/30 bg-white shadow-md' : 'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50/80 shadow-2xs'"
+                                class="w-40 p-3.5 rounded-2xl border text-center transition duration-150 cursor-pointer group">
                             <div class="w-12 h-12 rounded-full bg-lime-100 text-lime-800 font-bold flex items-center justify-center text-sm mx-auto mb-2 border border-lime-200 group-hover:scale-105 transition">
                                 KP
                             </div>
-                            <span class="font-bold text-xs text-slate-800 block truncate">Ibu Siti Rahma</span>
-                            <span class="text-[10px] text-slate-500 block truncate mt-0.5">Kader Posyandu</span>
-                            <span class="inline-block px-2 py-0.5 rounded-full text-[9px] font-semibold bg-lime-100 text-lime-700 mt-1.5">
+                            <span class="font-bold text-xs text-slate-900 block truncate">Ibu Siti Rahma</span>
+                            <span class="text-[11px] text-slate-500 block truncate mt-0.5">Kader Posyandu</span>
+                            <span class="inline-block px-2 py-0.5 rounded-full text-[10px] font-semibold bg-lime-100 text-lime-700 mt-1.5">
                                 Aktif
                             </span>
                         </button>
@@ -92,14 +87,14 @@
                         <!-- Profile Card 2: Admin Puskesmas -->
                         <button type="button"
                                 @click="selectAccount('admin', 'admin@tumbuh.id', 'password')"
-                                :class="selectedRole === 'admin' ? 'border-lime-600 ring-2 ring-lime-600/30 bg-white shadow-md' : 'border-slate-200 bg-white/80 hover:bg-white shadow-xs'"
-                                class="w-36 p-3.5 rounded-2xl border text-center transition duration-150 cursor-pointer group relative">
+                                :class="selectedRole === 'admin' ? 'border-lime-600 ring-2 ring-lime-600/30 bg-white shadow-md' : 'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50/80 shadow-2xs'"
+                                class="w-40 p-3.5 rounded-2xl border text-center transition duration-150 cursor-pointer group">
                             <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center text-sm mx-auto mb-2 border border-emerald-200 group-hover:scale-105 transition">
                                 DR
                             </div>
-                            <span class="font-bold text-xs text-slate-800 block truncate">dr. Hendra</span>
-                            <span class="text-[10px] text-slate-500 block truncate mt-0.5">Admin Puskesmas</span>
-                            <span class="inline-block px-2 py-0.5 rounded-full text-[9px] font-semibold bg-emerald-100 text-emerald-700 mt-1.5">
+                            <span class="font-bold text-xs text-slate-900 block truncate">dr. Hendra</span>
+                            <span class="text-[11px] text-slate-500 block truncate mt-0.5">Admin Puskesmas</span>
+                            <span class="inline-block px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-100 text-emerald-700 mt-1.5">
                                 Aktif
                             </span>
                         </button>
@@ -108,9 +103,9 @@
 
             </div>
 
-            <!-- Sisi Kanan (lg:col-span-5): KOTAK FORM MENGAMBANG (THE FLOATING CARD!) -->
+            <!-- Sisi Kanan (lg:col-span-5): SATU-SATUNYA KOTAK MENGAMBANG (THE FLOATING FORM CARD) -->
             <div class="lg:col-span-5 flex justify-center lg:justify-end">
-                <div class="w-full max-w-md bg-white rounded-[28px] border border-slate-200 shadow-2xl shadow-slate-900/10 p-7 sm:p-9 relative">
+                <div class="w-full max-w-md bg-white rounded-3xl border border-slate-200/90 shadow-2xl shadow-slate-900/15 p-7 sm:p-9 relative">
                     
                     <!-- Header Form -->
                     <div class="mb-6">
