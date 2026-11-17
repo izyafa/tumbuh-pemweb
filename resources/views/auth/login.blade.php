@@ -55,9 +55,9 @@
                     </div>
                 </div>
 
-                <!-- Kiri Bawah: Menempel di area terang penuh (Login As Profiles) -->
-                <div class="mt-10 lg:mt-16 pt-4">
-                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-3">
+                <!-- Kiri Bawah: Menempel di area terang penuh (Login As Profiles) dengan Spasi Nyaman -->
+                <div class="mt-16 sm:mt-24 lg:mt-32 pt-6">
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-3.5">
                         Masuk sebagai (Akun Demo):
                     </span>
 

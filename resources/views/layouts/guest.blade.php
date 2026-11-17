@@ -54,10 +54,7 @@
                         <span class="hidden sm:inline">Edukasi</span>
                     </a>
                 @elseif(request()->routeIs('login'))
-                    <a href="/" class="inline-flex items-center space-x-1.5 text-xs text-lime-100 hover:text-white font-medium transition px-2.5 py-1.5 rounded-lg hover:bg-white/10">
-                        <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
-                        <span>Beranda</span>
-                    </a>
+                    {{-- Mode Halaman Login: Bersih dan distraction-free --}}
                 @else
                     {{-- Mode Publik Tamu Umum: Kalkulator, Edukasi, dan Masuk Petugas --}}
                     <a href="{{ route('kalkulator.index') }}" class="text-slate-600 hover:text-lime-700 font-medium flex items-center space-x-1 {{ request()->routeIs('kalkulator.*') ? 'text-lime-700 font-bold' : '' }}">
