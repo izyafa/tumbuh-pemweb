@@ -3,7 +3,7 @@
 @section('title', 'Masuk Petugas & Kader')
 
 @section('content')
-<div class="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto"
+<div class="min-h-[calc(100vh-140px)] flex items-center justify-center py-6 sm:py-10 px-4 sm:px-6 lg:px-8"
      x-data="{
          showPassword: false,
          selectedRole: 'kader',
@@ -20,125 +20,108 @@
          }
      }">
 
-    <!-- Container Utama: Bersih, Terang, Humanis & Profesional (Tanpa Warna Gelap) -->
-    <div class="rounded-3xl border border-slate-200 bg-white shadow-sm overflow-hidden">
-        <div class="grid grid-cols-1 lg:grid-cols-12">
+    <!-- Master Frame (Desain 3): Rounded Canvas dengan Top Banner Berwarna & Bottom Neutral -->
+    <div class="w-full max-w-5xl rounded-[32px] overflow-hidden border border-slate-200/90 shadow-xl relative bg-slate-100">
+        
+        <!-- Two-Tone Background: Top 55% Lime-700 + Bottom 45% Light Grey -->
+        <div class="absolute inset-0 flex flex-col pointer-events-none" aria-hidden="true">
+            <div class="h-[55%] bg-lime-700 relative overflow-hidden">
+                <!-- Subtle graphic element / leaf watermark ring -->
+                <div class="absolute -right-16 -top-16 w-80 h-80 rounded-full border border-white/10 pointer-events-none"></div>
+                <div class="absolute -right-24 -top-24 w-96 h-96 rounded-full border border-white/5 pointer-events-none"></div>
+            </div>
+            <div class="h-[45%] bg-slate-100"></div>
+        </div>
+
+        <!-- Foreground Content Grid -->
+        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 min-h-[580px] p-6 sm:p-10 lg:p-12 gap-8 items-center">
             
-            <!-- Sisi Kiri: Brand, Penjelasan & Pemilihan Akun Cepat (Desain 3) -->
-            <div class="lg:col-span-7 bg-slate-50/70 border-b lg:border-b-0 lg:border-r border-slate-200 p-6 sm:p-10 lg:p-12 flex flex-col justify-between">
-                <div>
+            <!-- Sisi Kiri (lg:col-span-7): Top Hero Info + Bottom "Login As" Profile Cards -->
+            <div class="lg:col-span-7 flex flex-col justify-between h-full py-2">
+                
+                <!-- Kiri Atas: Berada di atas area hijau (Top Band) -->
+                <div class="text-white pt-2">
                     <!-- Brand Header dengan Logo Resmi -->
                     <div class="flex items-center space-x-3 mb-6">
-                        <img src="{{ asset('images/logo-tumbuh-clean.png') }}" 
-                             alt="Logo Tumbuh" 
-                             class="w-12 h-12 object-contain">
+                        <div class="w-11 h-11 rounded-2xl bg-white p-1.5 shadow-sm flex items-center justify-center shrink-0">
+                            <img src="{{ asset('images/logo-tumbuh-clean.png') }}" 
+                                 alt="Logo Tumbuh" 
+                                 class="w-full h-full object-contain">
+                        </div>
                         <div>
-                            <span class="text-xl font-bold tracking-tight text-slate-900 block leading-none">TUMBUH</span>
-                            <span class="text-xs font-semibold text-lime-700 tracking-wider uppercase block mt-1">Platform Posyandu Digital</span>
+                            <span class="text-xl font-extrabold tracking-tight text-white block leading-none">TUMBUH</span>
+                            <span class="text-[11px] font-semibold text-lime-200 tracking-wider uppercase block mt-1">Platform Posyandu Digital</span>
                         </div>
                     </div>
 
-                    <!-- Judul & Deskripsi Ramah Pengguna -->
-                    <div class="max-w-xl">
-                        <div class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-lime-100/70 border border-lime-200 text-lime-800 text-xs font-medium mb-3">
-                            <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-lime-600"></i>
-                            <span>Standar Baku Kemenkes RI & WHO Anthro 2006</span>
-                        </div>
-                        <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 leading-snug">
-                            Sistem Pemantauan Balita & Deteksi Dini Stunting
+                    <!-- Headline & Deskripsi -->
+                    <div class="max-w-md">
+                        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
+                            Masuk ke Portal Tumbuh
                         </h1>
-                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">
-                            Membantu kader Posyandu dan tenaga kesehatan komunitas mengelola data penimbangan, grafik KMS digital otomatis, serta rekomendasi nutrisi terpadu.
+                        <p class="mt-3 text-sm text-lime-50/90 leading-relaxed">
+                            Sistem terintegrasi pencatatan balita, otomatisasi kurva KMS digital, dan kalkulasi Z-Score WHO 2006 untuk kader Posyandu.
                         </p>
                     </div>
-
-                    <!-- 2 Kartu Info Fungsional -->
-                    <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                        <div class="p-3.5 rounded-2xl bg-white border border-slate-200 flex items-start space-x-3">
-                            <div class="w-8 h-8 rounded-xl bg-lime-50 text-lime-700 flex items-center justify-center shrink-0 border border-lime-200">
-                                <i data-lucide="calculator" class="w-4 h-4"></i>
-                            </div>
-                            <div>
-                                <span class="font-semibold text-slate-800 block">Kalkulasi Z-Score Otomatis</span>
-                                <span class="text-[11px] text-slate-500 mt-0.5 block">Indikator BB/U, TB/U, dan BB/TB presisi</span>
-                            </div>
-                        </div>
-
-                        <div class="p-3.5 rounded-2xl bg-white border border-slate-200 flex items-start space-x-3">
-                            <div class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 border border-emerald-200">
-                                <i data-lucide="line-chart" class="w-4 h-4"></i>
-                            </div>
-                            <div>
-                                <span class="font-semibold text-slate-800 block">KMS Digital Interaktif</span>
-                                <span class="text-[11px] text-slate-500 mt-0.5 block">Kurva pemantauan tumbuh kembang anak</span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
-                <!-- Bagian Kiri Bawah: "Login as" / Pilihan Akun Demo (Desain 3) -->
-                <div class="mt-8 pt-6 border-t border-slate-200">
-                    <div class="flex items-center justify-between mb-3">
-                        <span class="text-xs font-semibold text-slate-700 uppercase tracking-wider flex items-center space-x-1.5">
-                            <i data-lucide="users" class="w-3.5 h-3.5 text-lime-600"></i>
-                            <span>Pilih Akun Demo (Klik untuk Isi Otomatis):</span>
+                <!-- Kiri Bawah: Berada di atas area terang (The "Login As" Profile Shelf!) -->
+                <div class="mt-10 lg:mt-14 pt-4">
+                    <div class="flex items-center space-x-1.5 mb-3">
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-600">
+                            Masuk sebagai (Akun Demo)
                         </span>
-                        <span class="text-[11px] text-slate-400">1-Klik Siap Masuk</span>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <!-- Akun Kader -->
+                    <div class="flex flex-wrap gap-3">
+                        <!-- Profile Card 1: Kader Posyandu -->
                         <button type="button"
                                 @click="selectAccount('kader', 'kader1@tumbuh.id', 'password')"
-                                :class="selectedRole === 'kader' ? 'border-lime-600 bg-lime-50/60 ring-2 ring-lime-600/20' : 'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50/80'"
-                                class="text-left p-3.5 rounded-2xl border transition duration-150 flex items-center space-x-3 cursor-pointer group shadow-2xs">
-                            <div class="w-10 h-10 rounded-xl bg-lime-100 text-lime-800 font-bold flex items-center justify-center text-sm border border-lime-200 shrink-0">
+                                :class="selectedRole === 'kader' ? 'border-lime-600 ring-2 ring-lime-600/30 bg-white shadow-md' : 'border-slate-200 bg-white/80 hover:bg-white shadow-xs'"
+                                class="w-36 p-3.5 rounded-2xl border text-center transition duration-150 cursor-pointer group relative">
+                            <div class="w-12 h-12 rounded-full bg-lime-100 text-lime-800 font-bold flex items-center justify-center text-sm mx-auto mb-2 border border-lime-200 group-hover:scale-105 transition">
                                 KP
                             </div>
-                            <div class="min-w-0 flex-1">
-                                <div class="flex items-center justify-between">
-                                    <span class="font-bold text-xs text-slate-900 truncate">Kader Posyandu</span>
-                                    <span class="inline-block w-2 h-2 rounded-full bg-lime-600" title="Terpilih"></span>
-                                </div>
-                                <p class="text-[11px] text-slate-700 font-medium truncate">Ibu Siti Rahma, S.Pd</p>
-                                <p class="text-[10px] text-slate-500 font-mono truncate">kader1@tumbuh.id</p>
-                            </div>
+                            <span class="font-bold text-xs text-slate-800 block truncate">Ibu Siti Rahma</span>
+                            <span class="text-[10px] text-slate-500 block truncate mt-0.5">Kader Posyandu</span>
+                            <span class="inline-block px-2 py-0.5 rounded-full text-[9px] font-semibold bg-lime-100 text-lime-700 mt-1.5">
+                                Aktif
+                            </span>
                         </button>
 
-                        <!-- Akun Admin Puskesmas -->
+                        <!-- Profile Card 2: Admin Puskesmas -->
                         <button type="button"
                                 @click="selectAccount('admin', 'admin@tumbuh.id', 'password')"
-                                :class="selectedRole === 'admin' ? 'border-lime-600 bg-lime-50/60 ring-2 ring-lime-600/20' : 'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50/80'"
-                                class="text-left p-3.5 rounded-2xl border transition duration-150 flex items-center space-x-3 cursor-pointer group shadow-2xs">
-                            <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center text-sm border border-emerald-200 shrink-0">
+                                :class="selectedRole === 'admin' ? 'border-lime-600 ring-2 ring-lime-600/30 bg-white shadow-md' : 'border-slate-200 bg-white/80 hover:bg-white shadow-xs'"
+                                class="w-36 p-3.5 rounded-2xl border text-center transition duration-150 cursor-pointer group relative">
+                            <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center text-sm mx-auto mb-2 border border-emerald-200 group-hover:scale-105 transition">
                                 DR
                             </div>
-                            <div class="min-w-0 flex-1">
-                                <div class="flex items-center justify-between">
-                                    <span class="font-bold text-xs text-slate-900 truncate">Admin Puskesmas</span>
-                                    <span class="inline-block w-2 h-2 rounded-full bg-emerald-600" title="Terpilih"></span>
-                                </div>
-                                <p class="text-[11px] text-slate-700 font-medium truncate">dr. Hendra Pratama</p>
-                                <p class="text-[10px] text-slate-500 font-mono truncate">admin@tumbuh.id</p>
-                            </div>
+                            <span class="font-bold text-xs text-slate-800 block truncate">dr. Hendra</span>
+                            <span class="text-[10px] text-slate-500 block truncate mt-0.5">Admin Puskesmas</span>
+                            <span class="inline-block px-2 py-0.5 rounded-full text-[9px] font-semibold bg-emerald-100 text-emerald-700 mt-1.5">
+                                Aktif
+                            </span>
                         </button>
                     </div>
                 </div>
+
             </div>
 
-            <!-- Sisi Kanan: Form Login Bersih & Kontras Tinggi -->
-            <div class="lg:col-span-5 bg-white p-6 sm:p-10 lg:p-12 flex flex-col justify-between">
-                <div>
+            <!-- Sisi Kanan (lg:col-span-5): KOTAK FORM MENGAMBANG (THE FLOATING CARD!) -->
+            <div class="lg:col-span-5 flex justify-center lg:justify-end">
+                <div class="w-full max-w-md bg-white rounded-[28px] border border-slate-200 shadow-2xl shadow-slate-900/10 p-7 sm:p-9 relative">
+                    
                     <!-- Header Form -->
                     <div class="mb-6">
-                        <span class="text-xs font-semibold uppercase tracking-wider text-lime-700 block mb-1">
-                            Akses Petugas & Tenaga Medis
+                        <span class="text-xs font-bold text-lime-700 uppercase tracking-wider block mb-1">
+                            Selamat Datang di TUMBUH
                         </span>
-                        <h2 class="text-2xl font-bold tracking-tight text-slate-900">
-                            Masuk ke Portal
+                        <h2 class="text-3xl font-extrabold tracking-tight text-slate-900">
+                            Masuk
                         </h2>
                         <p class="text-xs text-slate-500 mt-1">
-                            Gunakan alamat email dan kata sandi yang telah terdaftar.
+                            Masukkan email dan kata sandi akun petugas.
                         </p>
                     </div>
 
@@ -157,7 +140,7 @@
                         </div>
                     @endif
 
-                    <!-- Login Form -->
+                    <!-- Form Login -->
                     <form action="{{ route('login') }}" 
                           method="POST" 
                           @submit="submitting = true" 
@@ -169,20 +152,15 @@
                             <label for="email" class="block text-xs font-semibold text-slate-700 mb-1.5">
                                 Alamat Email
                             </label>
-                            <div class="relative">
-                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                                    <i data-lucide="mail" class="w-4 h-4"></i>
-                                </div>
-                                <input type="email" 
-                                       name="email" 
-                                       id="email" 
-                                       required 
-                                       autocomplete="email" 
-                                       autofocus
-                                       value="{{ old('email', 'kader1@tumbuh.id') }}"
-                                       placeholder="kader1@tumbuh.id"
-                                       class="w-full pl-9 pr-3 py-2.5 text-sm rounded-xl border border-slate-300 bg-white text-slate-900 placeholder-slate-400 focus:outline-none focus:border-lime-600 focus:ring-2 focus:ring-lime-600/20 transition duration-150">
-                            </div>
+                            <input type="email" 
+                                   name="email" 
+                                   id="email" 
+                                   required 
+                                   autocomplete="email" 
+                                   autofocus
+                                   value="{{ old('email', 'kader1@tumbuh.id') }}"
+                                   placeholder="kader1@tumbuh.id"
+                                   class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 bg-slate-50/50 text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-lime-600 focus:ring-2 focus:ring-lime-600/20 transition duration-150">
                             @error('email')
                                 <p class="mt-1.5 text-xs text-rose-600 flex items-center space-x-1">
                                     <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i>
@@ -202,17 +180,14 @@
                                 </span>
                             </div>
                             <div class="relative">
-                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                                    <i data-lucide="lock" class="w-4 h-4"></i>
-                                </div>
                                 <input :type="showPassword ? 'text' : 'password'" 
                                        name="password" 
                                        id="password" 
                                        required 
                                        autocomplete="current-password"
                                        value="password"
-                                       placeholder="Masukkan kata sandi akun"
-                                       class="w-full pl-9 pr-10 py-2.5 text-sm rounded-xl border border-slate-300 bg-white text-slate-900 placeholder-slate-400 focus:outline-none focus:border-lime-600 focus:ring-2 focus:ring-lime-600/20 transition duration-150">
+                                       placeholder="Masukkan kata sandi"
+                                       class="w-full px-3.5 pr-10 py-2.5 text-sm rounded-xl border border-slate-300 bg-slate-50/50 text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-lime-600 focus:ring-2 focus:ring-lime-600/20 transition duration-150">
                                 <button type="button" 
                                         @click="showPassword = !showPassword" 
                                         aria-label="Tampilkan atau sembunyikan kata sandi"
@@ -233,7 +208,7 @@
                         <div class="pt-2">
                             <button type="submit" 
                                     :disabled="submitting"
-                                    class="w-full py-2.5 px-4 rounded-xl bg-lime-600 hover:bg-lime-700 active:bg-lime-800 text-white font-semibold text-sm transition duration-150 shadow-xs focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lime-600 flex items-center justify-center space-x-2 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer">
+                                    class="w-full py-3 px-4 rounded-xl bg-lime-600 hover:bg-lime-700 active:bg-lime-800 text-white font-bold text-sm transition duration-150 shadow-md shadow-lime-600/20 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lime-600 flex items-center justify-center space-x-2 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer">
                                 <template x-if="!submitting">
                                     <span class="inline-flex items-center space-x-2">
                                         <i data-lucide="log-in" class="w-4 h-4"></i>
@@ -246,20 +221,21 @@
                                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                         </svg>
-                                        <span>Memverifikasi Akun...</span>
+                                        <span>Memverifikasi...</span>
                                     </span>
                                 </template>
                             </button>
                         </div>
                     </form>
-                </div>
 
-                <!-- Footer Micro-Security Trust Signal -->
-                <div class="mt-8 pt-4 border-t border-slate-100 text-center">
-                    <p class="text-[11px] text-slate-400 flex items-center justify-center space-x-1">
-                        <i data-lucide="shield-check" class="w-3.5 h-3.5 text-lime-600"></i>
-                        <span>Enkripsi Sesi Dilindungi • Hak Akses Terverifikasi</span>
-                    </p>
+                    <!-- Trust Note -->
+                    <div class="mt-6 pt-4 border-t border-slate-100 text-center">
+                        <p class="text-[11px] text-slate-400 flex items-center justify-center space-x-1">
+                            <i data-lucide="shield-check" class="w-3.5 h-3.5 text-lime-600"></i>
+                            <span>Standar Baku Antropometri Kemenkes & WHO</span>
+                        </p>
+                    </div>
+
                 </div>
             </div>
 
