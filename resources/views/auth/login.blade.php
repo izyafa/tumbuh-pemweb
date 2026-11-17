@@ -3,7 +3,7 @@
 @section('title', 'Masuk Petugas & Kader')
 
 @section('content')
-<div class="py-6 sm:py-10 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto"
+<div class="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto"
      x-data="{
          showPassword: false,
          selectedRole: 'kader',
@@ -20,129 +20,125 @@
          }
      }">
 
-    <!-- Main Container: Overlapping Split Canvas (Desain 3 Architecture) -->
-    <div class="rounded-3xl border border-slate-200/90 bg-white shadow-xl shadow-slate-900/5 overflow-hidden">
+    <!-- Container Utama: Bersih, Terang, Humanis & Profesional (Tanpa Warna Gelap) -->
+    <div class="rounded-3xl border border-slate-200 bg-white shadow-sm overflow-hidden">
         <div class="grid grid-cols-1 lg:grid-cols-12">
             
-            <!-- Sisi Kiri: Brand Hero & Quick Role Switcher (Desain 3 Left Zone) -->
-            <div class="lg:col-span-7 bg-slate-900 text-white p-6 sm:p-10 lg:p-12 flex flex-col justify-between relative overflow-hidden">
-                <!-- Background Subtle Ambient Glow (Non-slop, clean dark surface) -->
-                <div class="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-lime-500/10 blur-3xl pointer-events-none"></div>
-                <div class="absolute -bottom-24 -right-24 w-80 h-80 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none"></div>
-
-                <div class="relative z-10">
-                    <!-- Brand Badge & Logo -->
-                    <div class="flex items-center space-x-3 mb-8">
+            <!-- Sisi Kiri: Brand, Penjelasan & Pemilihan Akun Cepat (Desain 3) -->
+            <div class="lg:col-span-7 bg-slate-50/70 border-b lg:border-b-0 lg:border-r border-slate-200 p-6 sm:p-10 lg:p-12 flex flex-col justify-between">
+                <div>
+                    <!-- Brand Header dengan Logo Resmi -->
+                    <div class="flex items-center space-x-3 mb-6">
                         <img src="{{ asset('images/logo-tumbuh-clean.png') }}" 
                              alt="Logo Tumbuh" 
-                             class="w-11 h-11 object-contain drop-shadow-sm">
+                             class="w-12 h-12 object-contain">
                         <div>
-                            <span class="text-xl font-bold tracking-tight text-white block leading-none">TUMBUH</span>
-                            <span class="text-[11px] font-medium text-lime-400 tracking-wider uppercase block mt-1">Platform Posyandu Digital</span>
+                            <span class="text-xl font-bold tracking-tight text-slate-900 block leading-none">TUMBUH</span>
+                            <span class="text-xs font-semibold text-lime-700 tracking-wider uppercase block mt-1">Platform Posyandu Digital</span>
                         </div>
                     </div>
 
-                    <!-- Headline & Deskripsi Sistem -->
+                    <!-- Judul & Deskripsi Ramah Pengguna -->
                     <div class="max-w-xl">
-                        <div class="inline-flex items-center space-x-2 px-2.5 py-1 rounded-full bg-lime-500/10 border border-lime-500/20 text-lime-300 text-xs font-medium mb-4">
-                            <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
-                            <span>Standar Antropometri Kemenkes & WHO 2006</span>
+                        <div class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-lime-100/70 border border-lime-200 text-lime-800 text-xs font-medium mb-3">
+                            <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-lime-600"></i>
+                            <span>Standar Baku Kemenkes RI & WHO Anthro 2006</span>
                         </div>
-                        <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-white leading-tight">
-                            Portal Pencatatan Pertumbuhan Balita & Deteksi Dini Stunting
+                        <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 leading-snug">
+                            Sistem Pemantauan Balita & Deteksi Dini Stunting
                         </h1>
-                        <p class="mt-3 text-sm text-slate-300 leading-relaxed">
-                            Otomatisasi kalkulasi Z-Score antropometri, kurva KMS digital interaktif, dan panduan nutrisi klinis berbasis AI untuk kader Posyandu dan tenaga kesehatan komunitas.
+                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+                            Membantu kader Posyandu dan tenaga kesehatan komunitas mengelola data penimbangan, grafik KMS digital otomatis, serta rekomendasi nutrisi terpadu.
                         </p>
                     </div>
 
-                    <!-- Key Feature Highlights -->
-                    <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-300">
-                        <div class="flex items-center space-x-2.5 p-2.5 rounded-xl bg-white/5 border border-white/10">
-                            <div class="w-7 h-7 rounded-lg bg-lime-500/20 text-lime-400 flex items-center justify-center shrink-0">
+                    <!-- 2 Kartu Info Fungsional -->
+                    <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                        <div class="p-3.5 rounded-2xl bg-white border border-slate-200 flex items-start space-x-3">
+                            <div class="w-8 h-8 rounded-xl bg-lime-50 text-lime-700 flex items-center justify-center shrink-0 border border-lime-200">
                                 <i data-lucide="calculator" class="w-4 h-4"></i>
                             </div>
                             <div>
-                                <span class="font-semibold text-white block">Kalkulasi Otomatis</span>
-                                <span class="text-[11px] text-slate-400">Z-Score BB/U, TB/U, BB/TB</span>
+                                <span class="font-semibold text-slate-800 block">Kalkulasi Z-Score Otomatis</span>
+                                <span class="text-[11px] text-slate-500 mt-0.5 block">Indikator BB/U, TB/U, dan BB/TB presisi</span>
                             </div>
                         </div>
 
-                        <div class="flex items-center space-x-2.5 p-2.5 rounded-xl bg-white/5 border border-white/10">
-                            <div class="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+                        <div class="p-3.5 rounded-2xl bg-white border border-slate-200 flex items-start space-x-3">
+                            <div class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 border border-emerald-200">
                                 <i data-lucide="line-chart" class="w-4 h-4"></i>
                             </div>
                             <div>
-                                <span class="font-semibold text-white block">KMS Digital Interaktif</span>
-                                <span class="text-[11px] text-slate-400">Grafik pertumbuhan real-time</span>
+                                <span class="font-semibold text-slate-800 block">KMS Digital Interaktif</span>
+                                <span class="text-[11px] text-slate-500 mt-0.5 block">Kurva pemantauan tumbuh kembang anak</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Bagian Kiri Bawah: "Login As" Quick Profile Switcher (Desain 3 Unique Feature) -->
-                <div class="relative z-10 mt-8 pt-6 border-t border-slate-800">
+                <!-- Bagian Kiri Bawah: "Login as" / Pilihan Akun Demo (Desain 3) -->
+                <div class="mt-8 pt-6 border-t border-slate-200">
                     <div class="flex items-center justify-between mb-3">
-                        <span class="text-xs font-semibold text-slate-300 uppercase tracking-wider flex items-center space-x-1.5">
-                            <i data-lucide="users" class="w-3.5 h-3.5 text-lime-400"></i>
-                            <span>Masuk Cepat Sebagai (Akun Demo):</span>
+                        <span class="text-xs font-semibold text-slate-700 uppercase tracking-wider flex items-center space-x-1.5">
+                            <i data-lucide="users" class="w-3.5 h-3.5 text-lime-600"></i>
+                            <span>Pilih Akun Demo (Klik untuk Isi Otomatis):</span>
                         </span>
-                        <span class="text-[10px] text-slate-400">Klik untuk isi otomatis</span>
+                        <span class="text-[11px] text-slate-400">1-Klik Siap Masuk</span>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <!-- Profil Kader -->
+                        <!-- Akun Kader -->
                         <button type="button"
                                 @click="selectAccount('kader', 'kader1@tumbuh.id', 'password')"
-                                :class="selectedRole === 'kader' ? 'ring-2 ring-lime-400 border-lime-400/50 bg-white/10' : 'border-white/10 bg-white/5 hover:bg-white/10'"
-                                class="text-left p-3 rounded-2xl border transition duration-150 flex items-center space-x-3 cursor-pointer group">
-                            <div class="w-10 h-10 rounded-xl bg-lime-600 text-white font-bold flex items-center justify-center text-sm shadow-xs shrink-0">
+                                :class="selectedRole === 'kader' ? 'border-lime-600 bg-lime-50/60 ring-2 ring-lime-600/20' : 'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50/80'"
+                                class="text-left p-3.5 rounded-2xl border transition duration-150 flex items-center space-x-3 cursor-pointer group shadow-2xs">
+                            <div class="w-10 h-10 rounded-xl bg-lime-100 text-lime-800 font-bold flex items-center justify-center text-sm border border-lime-200 shrink-0">
                                 KP
                             </div>
                             <div class="min-w-0 flex-1">
                                 <div class="flex items-center justify-between">
-                                    <span class="font-semibold text-xs text-white truncate group-hover:text-lime-300 transition">Kader Posyandu</span>
-                                    <span class="w-2 h-2 rounded-full bg-lime-400" title="Aktif"></span>
+                                    <span class="font-bold text-xs text-slate-900 truncate">Kader Posyandu</span>
+                                    <span class="inline-block w-2 h-2 rounded-full bg-lime-600" title="Terpilih"></span>
                                 </div>
-                                <p class="text-[11px] text-slate-300 font-medium">Ibu Siti Rahma, S.Pd</p>
-                                <p class="text-[10px] text-slate-400 font-mono truncate">kader1@tumbuh.id</p>
+                                <p class="text-[11px] text-slate-700 font-medium truncate">Ibu Siti Rahma, S.Pd</p>
+                                <p class="text-[10px] text-slate-500 font-mono truncate">kader1@tumbuh.id</p>
                             </div>
                         </button>
 
-                        <!-- Profil Admin Puskesmas -->
+                        <!-- Akun Admin Puskesmas -->
                         <button type="button"
                                 @click="selectAccount('admin', 'admin@tumbuh.id', 'password')"
-                                :class="selectedRole === 'admin' ? 'ring-2 ring-lime-400 border-lime-400/50 bg-white/10' : 'border-white/10 bg-white/5 hover:bg-white/10'"
-                                class="text-left p-3 rounded-2xl border transition duration-150 flex items-center space-x-3 cursor-pointer group">
-                            <div class="w-10 h-10 rounded-xl bg-emerald-700 text-white font-bold flex items-center justify-center text-sm shadow-xs shrink-0">
+                                :class="selectedRole === 'admin' ? 'border-lime-600 bg-lime-50/60 ring-2 ring-lime-600/20' : 'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50/80'"
+                                class="text-left p-3.5 rounded-2xl border transition duration-150 flex items-center space-x-3 cursor-pointer group shadow-2xs">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center text-sm border border-emerald-200 shrink-0">
                                 DR
                             </div>
                             <div class="min-w-0 flex-1">
                                 <div class="flex items-center justify-between">
-                                    <span class="font-semibold text-xs text-white truncate group-hover:text-lime-300 transition">Admin Puskesmas</span>
-                                    <span class="w-2 h-2 rounded-full bg-emerald-400" title="Aktif"></span>
+                                    <span class="font-bold text-xs text-slate-900 truncate">Admin Puskesmas</span>
+                                    <span class="inline-block w-2 h-2 rounded-full bg-emerald-600" title="Terpilih"></span>
                                 </div>
-                                <p class="text-[11px] text-slate-300 font-medium">dr. Hendra Pratama</p>
-                                <p class="text-[10px] text-slate-400 font-mono truncate">admin@tumbuh.id</p>
+                                <p class="text-[11px] text-slate-700 font-medium truncate">dr. Hendra Pratama</p>
+                                <p class="text-[10px] text-slate-500 font-mono truncate">admin@tumbuh.id</p>
                             </div>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Sisi Kanan: The Floating Form Card (Desain 3 Right Card) -->
+            <!-- Sisi Kanan: Form Login Bersih & Kontras Tinggi -->
             <div class="lg:col-span-5 bg-white p-6 sm:p-10 lg:p-12 flex flex-col justify-between">
                 <div>
                     <!-- Header Form -->
                     <div class="mb-6">
                         <span class="text-xs font-semibold uppercase tracking-wider text-lime-700 block mb-1">
-                            Akses Masuk Petugas
+                            Akses Petugas & Tenaga Medis
                         </span>
                         <h2 class="text-2xl font-bold tracking-tight text-slate-900">
-                            Masuk ke Akun
+                            Masuk ke Portal
                         </h2>
                         <p class="text-xs text-slate-500 mt-1">
-                            Silakan masukkan kredensial akun Anda untuk mengakses sistem.
+                            Gunakan alamat email dan kata sandi yang telah terdaftar.
                         </p>
                     </div>
 
@@ -170,7 +166,7 @@
 
                         <!-- Field Email -->
                         <div>
-                            <label for="email" class="block text-xs font-medium text-slate-700 mb-1.5">
+                            <label for="email" class="block text-xs font-semibold text-slate-700 mb-1.5">
                                 Alamat Email
                             </label>
                             <div class="relative">
@@ -198,11 +194,11 @@
                         <!-- Field Password -->
                         <div>
                             <div class="flex items-center justify-between mb-1.5">
-                                <label for="password" class="block text-xs font-medium text-slate-700">
+                                <label for="password" class="block text-xs font-semibold text-slate-700">
                                     Kata Sandi
                                 </label>
-                                <span class="text-[11px] text-slate-400 font-mono">
-                                    Default: <code class="bg-slate-100 text-slate-700 px-1 py-0.5 rounded text-[10px]">password</code>
+                                <span class="text-[11px] text-slate-400">
+                                    Default: <code class="bg-slate-100 text-slate-700 px-1 py-0.5 rounded text-[10px] font-mono">password</code>
                                 </span>
                             </div>
                             <div class="relative">
@@ -215,7 +211,7 @@
                                        required 
                                        autocomplete="current-password"
                                        value="password"
-                                       placeholder="Masukkan kata sandi"
+                                       placeholder="Masukkan kata sandi akun"
                                        class="w-full pl-9 pr-10 py-2.5 text-sm rounded-xl border border-slate-300 bg-white text-slate-900 placeholder-slate-400 focus:outline-none focus:border-lime-600 focus:ring-2 focus:ring-lime-600/20 transition duration-150">
                                 <button type="button" 
                                         @click="showPassword = !showPassword" 
@@ -237,7 +233,7 @@
                         <div class="pt-2">
                             <button type="submit" 
                                     :disabled="submitting"
-                                    class="w-full py-3 px-4 rounded-xl bg-lime-600 hover:bg-lime-700 active:bg-lime-800 text-white font-medium text-sm transition duration-150 shadow-xs focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lime-600 flex items-center justify-center space-x-2 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer">
+                                    class="w-full py-2.5 px-4 rounded-xl bg-lime-600 hover:bg-lime-700 active:bg-lime-800 text-white font-semibold text-sm transition duration-150 shadow-xs focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lime-600 flex items-center justify-center space-x-2 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer">
                                 <template x-if="!submitting">
                                     <span class="inline-flex items-center space-x-2">
                                         <i data-lucide="log-in" class="w-4 h-4"></i>
@@ -261,8 +257,8 @@
                 <!-- Footer Micro-Security Trust Signal -->
                 <div class="mt-8 pt-4 border-t border-slate-100 text-center">
                     <p class="text-[11px] text-slate-400 flex items-center justify-center space-x-1">
-                        <i data-lucide="lock" class="w-3 h-3 text-slate-400"></i>
-                        <span>Enkripsi Sesi Terlindungi • Hanya Petugas Berwenang</span>
+                        <i data-lucide="shield-check" class="w-3.5 h-3.5 text-lime-600"></i>
+                        <span>Enkripsi Sesi Dilindungi • Hak Akses Terverifikasi</span>
                     </p>
                 </div>
             </div>
